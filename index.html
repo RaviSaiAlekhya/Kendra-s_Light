@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kendra's Light - Handcrafted Candles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styles - All in One */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fefaf6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #5d4037;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: #ffb74d;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 3rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #5d4037;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 i {
+            margin-right: 10px;
+            color: #ffb74d;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: -5px;
+            font-style: italic;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #5d4037;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffb74d;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5d4037;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            background: linear-gradient(135deg, #fefaf6 0%, #fff3e0 100%);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .candle-glow {
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(to top, #ffb74d, #ffcc80, #fff3e0);
+            border-radius: 100px 100px 20px 20px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 183, 77, 0.7);
+            animation: flicker 3s infinite alternate;
+        }
+
+        .candle-glow::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to top, #ff9800, #ffcc80, #fff3e0);
+            border-radius: 50% 50% 20px 20px;
+            filter: blur(5px);
+        }
+
+        @keyframes flicker {
+            0%, 100% { box-shadow: 0 0 50px rgba(255, 183, 77, 0.7); }
+            50% { box-shadow: 0 0 60px rgba(255, 183, 77, 0.9), 0 0 100px rgba(255, 183, 77, 0.4); }
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ffb74d;
+            color: #5d4037;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid #ffb74d;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #ffb74d;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .story-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .story-text {
+            flex: 2;
+        }
+
+        .story-intro {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #5d4037;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #5d4037;
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        .memory-date {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .memory-date i {
+            color: #ffb74d;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .story-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ffecb3, #ffcc80);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #5d4037;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .image-placeholder p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+            background-color: #f9f5f0;
+        }
+
+        .product-category {
+            margin-bottom: 60px;
+        }
+
+        .product-category h3 {
+            font-size: 1.8rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-category h3 i {
+            margin-right: 10px;
+            color: #ffb74d;
+        }
+
+        .category-subtitle {
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-header {
+            padding: 20px;
+            color: white;
+        }
+
+        .lavender { background-color: #9c27b0; }
+        .blacksand { background-color: #455a64; }
+        .spearmint { background-color: #4caf50; }
+        .melon { background-color: #ff9800; }
+        .coconut { background-color: #8d6e63; }
+        .pinksand { background-color: #e91e63; }
+
+        .product-header h4 {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-desc {
+            color: #777;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .product-sizes {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .size-option {
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            transition: background-color 0.3s;
+        }
+
+        .size-option:hover {
+            background-color: #ffecb3;
+        }
+
+        .size {
+            display: block;
+            font-weight: 600;
+            color: #5d4037;
+        }
+
+        .price {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff9800;
+            margin-top: 5px;
+        }
+
+        .wax-melts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .wax-item {
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            font-weight: 500;
+            color: #5d4037;
+        }
+
+        .wax-item:hover {
+            transform: translateY(-5px);
+            background-color: #ffecb3;
+        }
+
+        /* Order Section */
+        .order-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .order-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #f9f5f0;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            background-color: #ffecb3;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ffb74d;
+            color: #5d4037;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            color: #5d4037;
+            margin-bottom: 15px;
+        }
+
+        .payment-methods {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background-color: #f9f5f0;
+            border-radius: 10px;
+        }
+
+        .payment-methods h3 {
+            font-size: 1.8rem;
+            color: #5d4037;
+            margin-bottom: 30px;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-option i {
+            font-size: 3rem;
+            color: #5d4037;
+        }
+
+        .payment-note {
+            color: #777;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: #f9f5f0;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h3, .contact-form h3 {
+            color: #5d4037;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contact-methods {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: #ffb74d;
+            margin-right: 15px;
+            width: 40px;
+        }
+
+        .contact-item h4 {
+            color: #5d4037;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #777;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ffb74d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5d4037;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #ffcc80;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo h2 i {
+            margin-right: 10px;
+        }
+
+        .footer-logo p {
+            color: #ffcc80;
+            font-style: italic;
+        }
+
+        .footer-links h4, .footer-social h4 {
+            color: #ffcc80;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ffcc80;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #ffb74d;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffcc80;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .story-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .order-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-icons {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-candle-holder"></i> Kendra's Light</h1>
+                <p class="tagline">Illuminating Memories, One Candle at a Time</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#order">How to Order</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Handcrafted Candles Infused with Love & Memory</h2>
+            <p>Each candle carries the light and spirit of Kendra - bold, loving, and unapologetically real</p>
+            <a href="#products" class="btn">Shop Our Candles</a>
+        </div>
+        <div class="hero-image">
+            <div class="candle-glow"></div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p class="story-intro">Just two sisters, one big one small, two different realms but still connected. Physical & spiritual.</p>
+                    
+                    <p>My sister Kendra passed away September 10, 2020, and since that day I've never been the same. I guess we all haven't been the same. She was the glue leaving behind 3 beautiful daughters & 2 handsome sons, a brother & a mother.</p>
+                    
+                    <p>To know Kendra is to love Kendra. She was bold, loud & real. She was unapologetically her. Most importantly she loved no matter what was thrown her way.</p>
+                    
+                    <p>My sister was my best friend, my right hand. We did everything together. The strength she carried and all she endured was admirable.</p>
+                    
+                    <p>Turning pain into positivity because of her, she's still my inspiration and this is just a continuation of dedication to her.</p>
+                    
+                    <p class="signature">With love, Ashley</p>
+                    
+                    <div class="memory-date">
+                        <i class="fas fa-heart"></i>
+                        <span>Forever in our hearts - September 10, 2020</span>
+                    </div>
+                </div>
+                <div class="story-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-star"></i>
+                        <p>In Memory of Kendra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Handcrafted Candles</h2>
+            <p class="section-subtitle">Each scent is carefully crafted to bring comfort, peace, and light</p>
+            
+            <div class="product-category">
+                <h3><i class="fas fa-fire"></i> Original Scent Candles</h3>
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-header lavender">
+                            <h4>Lavender & Sage</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">A calming blend for relaxation and peace</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-header blacksand">
+                            <h4>Blacksand & Cashmere</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Warm, sophisticated, and comforting</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-header spearmint">
+                            <h4>Spearmint & Sandalwood</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Refreshing with earthy undertones</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-header melon">
+                            <h4>Sunburst Melon</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Bright, fruity, and uplifting</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-header coconut">
+                            <h4>Coconut Milk & Patchouli</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Creamy with an earthy, exotic twist</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div class="product-header pinksand">
+                            <h4>Pink Sand</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Subtle, sweet, and beachy</p>
+                            <div class="product-sizes">
+                                <div class="size-option">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-category">
+                <h3><i class="fas fa-snowflake"></i> Wax Melts</h3>
+                <p class="category-subtitle">All original scents available as wax melts - $4 each</p>
+                <div class="wax-melts">
+                    <div class="wax-item">Lavender & Sage</div>
+                    <div class="wax-item">Blacksand & Cashmere</div>
+                    <div class="wax-item">Spearmint & Sandalwood</div>
+                    <div class="wax-item">Sunburst Melon</div>
+                    <div class="wax-item">Coconut Milk & Patchouli</div>
+                    <div class="wax-item">Pink Sand</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <h2 class="section-title">How to Order</h2>
+            <div class="order-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Products</h3>
+                    <p>Select your favorite candles and wax melts from our collection</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Contact Us</h3>
+                    <p>Send us a message with your order via Instagram, Facebook, or email</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Make Payment</h3>
+                    <p>We'll send you a payment request through your preferred method</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Receive Your Order</h3>
+                    <p>We'll ship your candles or arrange for local pickup</p>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <h3>Payment Options</h3>
+                <div class="payment-icons">
+                    <div class="payment-option">
+                        <i class="fab fa-venmo"></i>
+                        <span>Venmo</span>
+                    </div>
+                    <div class="payment-option">
+                        <i class="fab fa-paypal"></i>
+                        <span>PayPal</span>
+                    </div>
+                    <div class="payment-option">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>CashApp</span>
+                    </div>
+                </div>
+                <p class="payment-note">We accept Venmo, PayPal, and CashApp for your convenience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p>We'd love to hear from you! Reach out to place an order or just to share how Kendra's Light has touched you.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <h4>Instagram</h4>
+                                <p>@KendrasLight</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-facebook"></i>
+                            <div>
+                                <h4>Facebook</h4>
+                                <p>Kendra's Light Candles</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>kendraslight@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-candle-holder"></i> Kendra's Light</h2>
+                    <p>Keeping Kendra's light shining through every candle</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#order">How to Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kendra's Light. All rights reserved. | In loving memory of Kendra</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav ul');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                });
+            });
+            
+            // Form submission
+            const messageForm = document.getElementById('messageForm');
+            if (messageForm) {
+                messageForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = this.querySelector('input[type="text"]').value;
+                    const email = this.querySelector('input[type="email"]').value;
+                    const message = this.querySelector('textarea').value;
+                    
+                    // In a real application, you would send this data to a server
+                    // For now, we'll just show a confirmation message
+                    alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
+                    
+                    // Reset the form
+                    this.reset();
+                });
+            }
+            
+            // Add subtle animation to product cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Observe steps
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(20px)';
+                step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(step);
+            });
+        });
+    </script>
+</body>
+</html>
