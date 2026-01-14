@@ -196,99 +196,116 @@
             color: var(--color-primary);
         }
 
-        /* Hero Section */
+        /* ======================= */
+        /* HERO SECTION - UPDATED! */
+        /* ======================= */
         .hero {
             display: flex;
             min-height: 100vh;
             align-items: center;
-            background: linear-gradient(135deg, var(--color-light) 0%, #fff3e0 100%);
+            justify-content: center; /* Center content horizontally */
             padding-top: 100px;
             position: relative;
             overflow: hidden;
+            text-align: center; /* Center text alignment */
+        }
+
+        /* Background Image with Overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.PNG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        /* Dark overlay for better text readability */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 1;
         }
 
         .hero-content {
             flex: 1;
             padding: 40px;
-            z-index: 2;
+            z-index: 2; /* Above the background */
+            position: relative; /* For z-index to work */
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the content box */
         }
 
+        /* Update text colors for contrast on dark background */
         .hero-content h2 {
             font-family: var(--font-heading);
             font-size: 3.5rem;
             font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: 25px;
+            color: #ffffff; /* White for better contrast */
+            margin-bottom: 30px;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
         }
 
         .hero-content p {
             font-family: var(--font-body);
-            font-size: 1.3rem;
-            color: var(--color-gray);
-            margin-bottom: 35px;
-            max-width: 600px;
+            font-size: 1.4rem; /* Slightly larger for emphasis */
+            color: #f0f0f0; /* Light gray for contrast */
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
             font-weight: 400;
             line-height: 1.8;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow */
         }
 
-        .hero-image {
-            flex: 1;
-            position: relative;
-            min-height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .candle-glow {
-            width: 200px;
-            height: 300px;
-            background: linear-gradient(to top, #ffb74d, #ffcc80, #fff3e0);
-            border-radius: 100px 100px 20px 20px;
-            position: relative;
-            box-shadow: 0 0 50px rgba(255, 183, 77, 0.7);
-            animation: flicker 3s infinite alternate;
-        }
-
-        .candle-glow::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 60px;
-            background: linear-gradient(to top, #ff9800, #ffcc80, #fff3e0);
-            border-radius: 50% 50% 20px 20px;
-            filter: blur(5px);
-        }
-
-        @keyframes flicker {
-            0%, 100% { box-shadow: 0 0 50px rgba(255, 183, 77, 0.7); }
-            50% { box-shadow: 0 0 60px rgba(255, 183, 77, 0.9), 0 0 100px rgba(255, 183, 77, 0.4); }
-        }
-
-        .btn {
+        /* Button styling update for contrast */
+        .hero .btn {
             display: inline-block;
             background-color: var(--color-secondary);
             color: var(--color-primary);
-            padding: 15px 35px;
+            padding: 18px 45px; /* Larger padding for emphasis */
             border-radius: 50px;
             text-decoration: none;
             font-family: var(--font-body);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
-            border: 2px solid var(--color-secondary);
+            border: 3px solid var(--color-secondary); /* Thicker border */
             cursor: pointer;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+            position: relative;
+            z-index: 2;
         }
 
-        .btn:hover {
+        .hero .btn:hover {
             background-color: transparent;
             color: var(--color-secondary);
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
+
+        /* Remove the candle animation on the side */
+        .hero-image {
+            display: none; /* Hide the candle animation */
+        }
+
+        /* ======================= */
+        /* END HERO SECTION UPDATES */
+        /* ======================= */
 
         /* Story Section */
         .story-section {
@@ -1339,6 +1356,10 @@
                 font-size: 2.5rem;
             }
             
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
             .section-title {
                 font-size: 2.2rem;
             }
@@ -1374,6 +1395,12 @@
             .logo h1 {
                 font-size: 2rem;
             }
+            
+            /* Adjust hero button for mobile */
+            .hero .btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1383,6 +1410,10 @@
             
             .hero-content h2 {
                 font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
             }
             
             .section-title {
@@ -1429,7 +1460,7 @@
         <div class="container">
             <div class="logo">
                 <h1><i class="fas fa-candle-holder"></i> Kendra's Light</h1>
-                <p class="tagline">Crafted By Ashley</p>
+                <p class="tagline">Illuminating Memories, One Candle at a Time</p>
             </div>
             <nav>
                 <ul>
@@ -1485,15 +1516,12 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - UPDATED! -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>Handcrafted Candles Infused with Love & Memory</h2>
             <p>Each candle carries the light and spirit of Kendra - bold, loving, and unapologetically real</p>
             <a href="#products" class="btn">Shop Our Candles</a>
-        </div>
-        <div class="hero-image">
-            <div class="candle-glow"></div>
         </div>
     </section>
 
