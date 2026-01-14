@@ -1547,8 +1547,8 @@
         { src: 'Spearmint&Sandalwood.PNG', alt: 'Spearmint & Sandalwood Candle' },
         { src: 'SunburstMelon.PNG', alt: 'Sunburst Melon Candle' },
         { src: 'Coconutmilk&Patchouli.PNG', alt: 'Coconut Milk & Patchouli Candle' },
-        { src: 'PinkSand.PNG', alt: 'Pink Sand Candle' }
-        // Add when you have the image: { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' }
+        { src: 'PinkSand.PNG', alt: 'Pink Sand Candle' },
+        { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' }
     ];
 
     // Shopping Cart System
@@ -1621,6 +1621,46 @@
         lightboxImg.src = images[currentImageIndex].src;
         lightboxImg.alt = images[currentImageIndex].alt;
         lightboxCaption.textContent = images[currentImageIndex].alt;
+    }
+
+    // FIX: Initialize Product Image Click Handlers
+    function initProductImageClick() {
+        // Add click event to all product image containers
+        const productImageContainers = document.querySelectorAll('.product-image');
+        productImageContainers.forEach(container => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const img = this.querySelector('img');
+                if (img) {
+                    const imageSrc = img.src;
+                    const imageAlt = img.alt;
+                    
+                    // Check if the image source is valid (not empty or placeholder)
+                    // For local files, we need to check if the image actually loaded
+                    if (imageSrc && imageSrc !== '' && !img.complete) {
+                        // Image hasn't loaded yet, wait for it
+                        img.onload = function() {
+                            openLightbox(imageSrc, imageAlt);
+                        };
+                        img.onerror = function() {
+                            // Image failed to load
+                            const productCard = container.closest('.product-card');
+                            const productName = productCard.querySelector('.product-header h4').textContent;
+                            alert(`${productName} - Image preview coming soon!`);
+                        };
+                    } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
+                        // Image has loaded successfully
+                        openLightbox(imageSrc, imageAlt);
+                    } else {
+                        // Image failed to load or is placeholder
+                        const productCard = container.closest('.product-card');
+                        const productName = productCard.querySelector('.product-header h4').textContent;
+                        alert(`${productName} - Image preview coming soon!`);
+                    }
+                }
+            });
+        });
     }
 
     // Shopping Cart Functions
@@ -2120,6 +2160,9 @@ Thank you for supporting Kendra's Light!
         
         // Initialize lightbox
         initLightbox();
+        
+        // FIX: Initialize product image click handlers (THIS IS THE KEY FIX)
+        initProductImageClick();
         
         // Initialize cart display
         updateCart();
