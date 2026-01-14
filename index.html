@@ -101,57 +101,58 @@
             padding: 0 20px;
         }
 
-        /* Logo with Image */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+       /* Logo with Image */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        .logo-image {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-            transition: transform 0.3s ease;
-        }
+.logo-image {
+    height: 1.2em; /* Match font size */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+}
 
-        .logo-image:hover {
-            transform: scale(1.05);
-        }
+.logo-image:hover {
+    transform: scale(1.05);
+}
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
 
-        .logo h1 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            letter-spacing: 0.5px;
-            margin: 0;
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-        }
+.logo h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+}
 
-        .logo h1 i {
-            margin-right: 10px;
-            color: var(--color-secondary);
-            font-size: 2.2rem;
-        }
+/* Remove the candle icon since we're using the image logo */
+.logo h1 i {
+    display: none; /* Hide the font-awesome candle since we have image logo */
+}
 
-        .tagline {
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--color-gray);
-            font-style: italic;
-            font-weight: 300;
-            margin-top: 2px;
-            margin-left: 0;
-        }
+.tagline {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    font-style: italic;
+    font-weight: 300;
+    margin-top: 2px;
+    margin-left: 0;
+}
 
         /* Navigation */
         nav ul {
@@ -1220,42 +1221,45 @@
         }
 
         /* Footer Logo with Image */
-        .footer-logo .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.footer-logo .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        .footer-logo-image {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            filter: brightness(1.2);
-        }
+.footer-logo-image {
+    height: 1.2em; /* Match font size */
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.2);
+    vertical-align: middle;
+}
 
-        .footer-logo h2 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ffcc80;
-            margin: 0 0 5px 0;
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-        }
+.footer-logo h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffcc80;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .footer-logo h2 i {
-            margin-right: 10px;
-        }
+/* Hide the candle icon in footer since we have image logo */
+.footer-logo h2 i {
+    display: none;
+}
 
-        .footer-logo p {
-            font-family: var(--font-body);
-            color: #ffcc80;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 1rem;
-            margin: 0;
-        }
+.footer-logo p {
+    font-family: var(--font-body);
+    color: #ffcc80;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0;
+}
 
         .footer-links h4, .footer-social h4 {
             font-family: var(--font-heading);
@@ -1433,21 +1437,21 @@
                 flex-direction: column;
             }
             
-            .logo-image {
-                height: 50px;
-            }
-            
             .logo h1 {
-                font-size: 2rem;
-            }
-            
-            .footer-logo-image {
-                height: 50px;
-            }
-            
-            .footer-logo h2 {
-                font-size: 2rem;
-            }
+    font-size: 2rem;
+}
+
+.logo-image {
+    height: 1.2em; /* Still 1.2 times the font size */
+}
+
+.footer-logo h2 {
+    font-size: 2rem;
+}
+
+.footer-logo-image {
+    height: 1.2em; /* Still 1.2 times the font size */
+}
             
             /* Adjust hero button for mobile */
             .hero .btn {
@@ -1457,74 +1461,70 @@
         }
 
         @media (max-width: 576px) {
-            .logo-image {
-                height: 40px;
-            }
-            
-            .logo h1 {
-                font-size: 1.6rem;
-            }
-            
-            .logo h1 i {
-                font-size: 1.8rem;
-            }
-            
-            .tagline {
-                font-size: 0.8rem;
-            }
-            
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .story-intro {
-                font-size: 1.5rem;
-            }
-            
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .cart-item-quantity {
-                align-self: flex-start;
-            }
-            
-            .product-image {
-                height: 280px;
-            }
-            
-            .wax-melts {
-                grid-template-columns: 1fr;
-            }
-            
-            .lightbox-nav {
-                padding: 0 15px;
-            }
-            
-            .lightbox-nav button {
-                width: 50px;
-                height: 50px;
-                font-size: 2rem;
-            }
-            
-            .footer-logo-image {
-                height: 40px;
-            }
-            
-            .footer-logo h2 {
-                font-size: 1.6rem;
-            }
-        }
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .logo-image {
+        height: 1.2em; /* Still 1.2 times the font size */
+    }
+    
+    .tagline {
+        font-size: 0.8rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .story-intro {
+        font-size: 1.5rem;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .cart-item-quantity {
+        align-self: flex-start;
+    }
+    
+    .product-image {
+        height: 280px;
+    }
+    
+    .wax-melts {
+        grid-template-columns: 1fr;
+    }
+    
+    .lightbox-nav {
+        padding: 0 15px;
+    }
+    
+    .lightbox-nav button {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    
+    .footer-logo h2 {
+        font-size: 1.6rem;
+    }
+    
+    .footer-logo-image {
+        height: 1.2em; /* Still 1.2 times the font size */
+    }
+}
     </style>
 </head>
 <body>
@@ -1532,14 +1532,14 @@
     <header>
         <div class="container">
             <div class="logo">
-                <div class="logo-container">
-                    <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
-                    <div class="logo-text">
-                        <h1><i class="fas fa-candle-holder"></i> Kendra's Light</h1>
-                        <p class="tagline">Crafted By Ashley</p>
-                    </div>
-                </div>
-            </div>
+    <div class="logo-container">
+        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
+        <div class="logo-text">
+            <h1>Kendra's Light</h1>
+            <p class="tagline">Crafted By Ashley</p>
+        </div>
+    </div>
+</div>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -2019,14 +2019,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <div class="logo-container">
-                        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
-                        <div class="logo-text">
-                            <h2><i class="fas fa-candle-holder"></i> Kendra's Light</h2>
-                            <p>Keeping Kendra's light shining through every candle</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="logo-container">
+        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
+        <div class="logo-text">
+            <h2>Kendra's Light</h2>
+            <p>Keeping Kendra's light shining through every candle</p>
+        </div>
+    </div>
+</div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
