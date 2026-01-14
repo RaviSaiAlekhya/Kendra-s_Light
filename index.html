@@ -101,19 +101,44 @@
             padding: 0 20px;
         }
 
-        /* Logo using Playfair Display */
+        /* Logo with Image */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
         .logo h1 {
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--color-primary);
+            letter-spacing: 0.5px;
+            margin: 0;
+            line-height: 1.2;
             display: flex;
             align-items: center;
-            letter-spacing: 0.5px;
         }
 
         .logo h1 i {
-            margin-right: 15px;
+            margin-right: 10px;
             color: var(--color-secondary);
             font-size: 2.2rem;
         }
@@ -122,10 +147,10 @@
             font-family: var(--font-body);
             font-size: 0.9rem;
             color: var(--color-gray);
-            margin-top: -5px;
             font-style: italic;
             font-weight: 300;
-            margin-left: 50px;
+            margin-top: 2px;
+            margin-left: 0;
         }
 
         /* Navigation */
@@ -1194,18 +1219,33 @@
             flex: 1;
         }
 
+        /* Footer Logo with Image */
+        .footer-logo .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-image {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
         .footer-logo h2 {
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 700;
             color: #ffcc80;
+            margin: 0 0 5px 0;
+            line-height: 1.2;
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
         }
 
         .footer-logo h2 i {
-            margin-right: 15px;
+            margin-right: 10px;
         }
 
         .footer-logo p {
@@ -1213,7 +1253,8 @@
             color: #ffcc80;
             font-style: italic;
             font-weight: 300;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            margin: 0;
         }
 
         .footer-links h4, .footer-social h4 {
@@ -1392,7 +1433,19 @@
                 flex-direction: column;
             }
             
+            .logo-image {
+                height: 50px;
+            }
+            
             .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-logo-image {
+                height: 50px;
+            }
+            
+            .footer-logo h2 {
                 font-size: 2rem;
             }
             
@@ -1404,8 +1457,20 @@
         }
 
         @media (max-width: 576px) {
+            .logo-image {
+                height: 40px;
+            }
+            
             .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .logo h1 i {
                 font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
             }
             
             .hero-content h2 {
@@ -1451,6 +1516,14 @@
                 height: 50px;
                 font-size: 2rem;
             }
+            
+            .footer-logo-image {
+                height: 40px;
+            }
+            
+            .footer-logo h2 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
@@ -1459,8 +1532,13 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1><i class="fas fa-candle-holder"></i> Kendra's Light</h1>
-                <p class="tagline">Crafted By Ashley</p>
+                <div class="logo-container">
+                    <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1><i class="fas fa-candle-holder"></i> Kendra's Light</h1>
+                        <p class="tagline">Crafted By Ashley</p>
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul>
@@ -1666,7 +1744,7 @@
                     <!-- Product 5 -->
                     <div class="product-card" data-product-id="5">
                         <div class="product-image">
-                            <img src="Coconutmilk&Patchouli.PNG" alt="Coconutmilk & Patchouli Candle">
+                            <img src="Coconutmilk&Patchouli.PNG" alt="Coconut Milk & Patchouli Candle">
                         </div>
                         <div class="product-header coconut">
                             <h4>Coconut Milk & Patchouli</h4>
@@ -1941,8 +2019,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h2><i class="fas fa-candle-holder"></i> Kendra's Light</h2>
-                    <p>Keeping Kendra's light shining through every candle</p>
+                    <div class="logo-container">
+                        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
+                        <div class="logo-text">
+                            <h2><i class="fas fa-candle-holder"></i> Kendra's Light</h2>
+                            <p>Keeping Kendra's light shining through every candle</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
