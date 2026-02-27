@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Variables */
+        /* CSS Variables -保持不变 */
         :root {
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
@@ -101,15 +101,14 @@
             padding: 0 20px;
         }
 
-        /* Logo with Image - UPDATED SIZE */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px; /* Increased for better spacing */
+            gap: 20px;
         }
 
         .logo-image {
-            height: 90px; /* Increased from 60px to 90px */
+            height: 90px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -136,12 +135,11 @@
             line-height: 1.2;
             display: flex;
             align-items: center;
-            gap: 20px; /* Match logo-container gap */
+            gap: 20px;
         }
 
-        /* Remove the candle icon since we're using the image logo */
         .logo h1 i {
-            display: none; /* Hide the font-awesome candle since we have image logo */
+            display: none;
         }
 
         .tagline {
@@ -154,7 +152,6 @@
             margin-left: 0;
         }
 
-        /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
@@ -191,7 +188,6 @@
             width: 100%;
         }
 
-        /* Shopping Cart Icon */
         .cart-icon {
             position: relative;
             margin-left: 20px;
@@ -222,21 +218,18 @@
             color: var(--color-primary);
         }
 
-        /* ======================= */
-        /* HERO SECTION - UPDATED! */
-        /* ======================= */
+        /* Hero Section */
         .hero {
             display: flex;
             min-height: 100vh;
             align-items: center;
-            justify-content: center; /* Center content horizontally */
+            justify-content: center;
             padding-top: 100px;
             position: relative;
             overflow: hidden;
-            text-align: center; /* Center text alignment */
+            text-align: center;
         }
 
-        /* Background Image with Overlay */
         .hero::before {
             content: '';
             position: absolute;
@@ -251,7 +244,6 @@
             z-index: 1;
         }
 
-        /* Dark overlay for better text readability */
         .hero::after {
             content: '';
             position: absolute;
@@ -259,60 +251,58 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            background-color: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
 
         .hero-content {
             flex: 1;
             padding: 40px;
-            z-index: 2; /* Above the background */
-            position: relative; /* For z-index to work */
-            max-width: 800px; /* Limit width for better readability */
-            margin: 0 auto; /* Center the content box */
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Update text colors for contrast on dark background */
         .hero-content h2 {
             font-family: var(--font-heading);
             font-size: 3.5rem;
             font-weight: 700;
-            color: #ffffff; /* White for better contrast */
+            color: #ffffff;
             margin-bottom: 30px;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content p {
             font-family: var(--font-body);
-            font-size: 1.4rem; /* Slightly larger for emphasis */
-            color: #f0f0f0; /* Light gray for contrast */
+            font-size: 1.4rem;
+            color: #f0f0f0;
             margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
             line-height: 1.8;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Button styling update for contrast */
         .hero .btn {
             display: inline-block;
             background-color: var(--color-secondary);
             color: var(--color-primary);
-            padding: 18px 45px; /* Larger padding for emphasis */
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
             font-family: var(--font-body);
             font-weight: 600;
             font-size: 1.2rem;
             transition: all 0.3s;
-            border: 3px solid var(--color-secondary); /* Thicker border */
+            border: 3px solid var(--color-secondary);
             cursor: pointer;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 2;
         }
@@ -320,18 +310,13 @@
         .hero .btn:hover {
             background-color: transparent;
             color: var(--color-secondary);
-            transform: translateY(-5px); /* Lift effect on hover */
+            transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
-        /* Remove the candle animation on the side */
         .hero-image {
-            display: none; /* Hide the candle animation */
+            display: none;
         }
-
-        /* ======================= */
-        /* END HERO SECTION UPDATES */
-        /* ======================= */
 
         /* Story Section */
         .story-section {
@@ -400,11 +385,12 @@
             justify-content: center;
         }
         .story-photo {
-            width: 450px; /* Fixed width instead of max-width */
+            width: 450px;
             height: auto;
             object-fit: contain;
-            display: block; /* Ensure it displays as a block element */
+            display: block;
         }
+        
         /* Products Section */
         .products-section {
             padding: 100px 0;
@@ -442,7 +428,6 @@
             font-weight: 400;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -468,7 +453,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Product Image */
         .product-image {
             position: relative;
             width: 100%;
@@ -518,23 +502,19 @@
             text-align: center;
         }
 
-       /* Updated Product Header Colors - All match page background */
-.seaspa { background-color: #5d4037; } /* Changed to page background */
-.blacksand { background-color: #5d4037; } /* Changed to page background */
-.spearmint { background-color: #5d4037; } /* Changed to page background */
-.melon { background-color: #5d4037; } /* Changed to page background */
-.coconut { background-color: #5d4037; } /* Changed to page background */
-.pinksand { background-color: #5d4037; } /* Changed to page background */
-.vanilla { background-color: #5d4037; } /* Changed to page background */
+        .seaspa, .blacksand, .spearmint, .melon, .coconut, .pinksand, .vanilla { 
+            background-color: #5d4037; 
+        }
 
         .product-header h4 {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    margin: 0;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: white; /* ADD THIS LINE */
-}
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+        
         .product-details {
             padding: 25px;
             flex-grow: 1;
@@ -934,10 +914,11 @@
             font-size: 1.2rem;
         }
 
-        /* Checkout Section */
+        /* Checkout Section - NOW VISIBLE BY DEFAULT */
         .checkout-section {
             padding: 100px 0;
             background-color: #fff;
+            display: block; /* Changed from 'none' to 'block' */
         }
 
         .checkout-form h3 {
@@ -1038,6 +1019,62 @@
             font-weight: 400;
         }
 
+        .payment-details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .payment-option.selected .payment-details {
+            display: block;
+        }
+
+        .payment-qr {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .payment-qr img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+        .payment-info-box {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .payment-info-box .payment-tag {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .copy-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
         /* Order Summary */
         .order-summary {
             background-color: #f9f5f0;
@@ -1088,7 +1125,11 @@
             padding: 100px 0;
             background-color: #fff;
             text-align: center;
-            display: none;
+            display: none; /* Hidden until order is placed */
+        }
+
+        .order-success.active {
+            display: block;
         }
 
         .success-icon {
@@ -1115,6 +1156,14 @@
             margin-right: auto;
             font-weight: 400;
             line-height: 1.8;
+        }
+
+        .payment-instructions-box {
+            background-color: #f9f5f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
         }
 
         /* Contact Section */
@@ -1201,15 +1250,14 @@
             flex: 1;
         }
 
-        /* Footer Logo with Image - UPDATED SIZE */
         .footer-logo .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px; /* Increased gap */
+            gap: 20px;
         }
 
         .footer-logo-image {
-            height: 90px; /* Increased from 60px to 90px */
+            height: 90px;
             width: auto;
             object-fit: contain;
             filter: brightness(1.2);
@@ -1225,10 +1273,9 @@
             line-height: 1.2;
             display: flex;
             align-items: center;
-            gap: 20px; /* Match header gap */
+            gap: 20px;
         }
 
-        /* Hide the candle icon in footer since we have image logo */
         .footer-logo h2 i {
             display: none;
         }
@@ -1423,7 +1470,7 @@
             }
             
             .logo-image {
-                height: 70px; /* Reduced from 90px but still larger than before */
+                height: 70px;
             }
             
             .footer-logo h2 {
@@ -1431,10 +1478,9 @@
             }
             
             .footer-logo-image {
-                height: 70px; /* Reduced from 90px but still larger than before */
+                height: 70px;
             }
             
-            /* Adjust hero button for mobile */
             .hero .btn {
                 padding: 15px 35px;
                 font-size: 1.1rem;
@@ -1447,7 +1493,7 @@
             }
             
             .logo-image {
-                height: 60px; /* Even smaller for mobile but still proportional */
+                height: 60px;
             }
             
             .tagline {
@@ -1503,7 +1549,7 @@
             }
             
             .footer-logo-image {
-                height: 60px; /* Even smaller for mobile but still proportional */
+                height: 60px;
             }
         }
     </style>
@@ -1513,20 +1559,20 @@
     <header>
         <div class="container">
             <div class="logo">
-    <div class="logo-container">
-        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
-        <div class="logo-text">
-            <h1>Kendra's Light</h1>
-            <p class="tagline">Crafted By Ashley</p>
-        </div>
-    </div>
-</div>
+                <div class="logo-container">
+                    <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1>Kendra's Light</h1>
+                        <p class="tagline">Crafted By Ashley</p>
+                    </div>
+                </div>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#story">Our Story</a></li>
                     <li><a href="#products">Products</a></li>
-                    <li><a href="#order">How to Order</a></li>
+                    <li><a href="#checkout">Checkout</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -1575,7 +1621,7 @@
         </div>
     </div>
 
-    <!-- Hero Section - UPDATED! -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>Handcrafted Candles Infused with Love & Memory</h2>
@@ -1608,8 +1654,8 @@
                     </div>
                 </div>
                 <div class="story-image">
-    <img src="ourstory.PNG" alt="Our Story - Kendra's Memory" class="story-photo">
-</div>
+                    <img src="ourstory.PNG" alt="Our Story - Kendra's Memory" class="story-photo">
+                </div>
             </div>
         </div>
     </section>
@@ -1634,7 +1680,7 @@
                         <div class="product-details">
                             <p class="product-desc">A calming blend for relaxation and peace</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1658,7 +1704,7 @@
                         <div class="product-details">
                             <p class="product-desc">Warm, sophisticated, and comforting</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1682,7 +1728,7 @@
                         <div class="product-details">
                             <p class="product-desc">Refreshing with earthy undertones</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1706,7 +1752,7 @@
                         <div class="product-details">
                             <p class="product-desc">Bright, fruity, and uplifting</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1730,7 +1776,7 @@
                         <div class="product-details">
                             <p class="product-desc">Creamy with an earthy, exotic twist</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1754,7 +1800,7 @@
                         <div class="product-details">
                             <p class="product-desc">Subtle, sweet, and beachy</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1767,7 +1813,7 @@
                         </div>
                     </div>
                     
-                    <!-- NEW PRODUCT 7: Vanilla Cinnamon -->
+                    <!-- Product 7: Vanilla Cinnamon -->
                     <div class="product-card" data-product-id="7">
                         <div class="product-image">
                             <img src="VanillaCinnamon.PNG" alt="Vanilla Cinnamon Candle">
@@ -1778,7 +1824,7 @@
                         <div class="product-details">
                             <p class="product-desc">Warm, cozy, and comforting blend</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="14">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
                                     <span class="price">$14</span>
                                 </div>
@@ -1821,7 +1867,6 @@
                         Pink Sand
                         <span class="wax-price">$4</span>
                     </div>
-                    <!-- NEW: Vanilla Cinnamon Wax Melt -->
                     <div class="wax-item" data-product="Vanilla Cinnamon Wax Melt" data-price="4">
                         Vanilla Cinnamon
                         <span class="wax-price">$4</span>
@@ -1831,7 +1876,7 @@
         </div>
     </section>
 
-    <!-- Order/Checkout Section -->
+    <!-- Order/Checkout Section - NOW VISIBLE -->
     <section class="checkout-section" id="checkout">
         <div class="container">
             <h2 class="section-title">Complete Your Order</h2>
@@ -1882,28 +1927,56 @@
                     
                     <div class="payment-options">
                         <h3>Select Payment Method</h3>
+                        
+                        <!-- PayPal Option -->
                         <div class="payment-option" data-method="paypal">
                             <div class="payment-option-header">
                                 <i class="fab fa-paypal"></i>
                                 <h4>PayPal</h4>
                             </div>
-                            <p class="payment-instructions">You'll be redirected to PayPal to complete your payment</p>
+                            <p class="payment-instructions">Pay securely with your PayPal account</p>
+                            <div class="payment-details">
+                                <p>After placing your order, you'll receive an invoice via PayPal to complete your payment.</p>
+                                <div class="payment-info-box">
+                                    <p>PayPal Email:</p>
+                                    <span class="payment-tag">kendraslight@gmail.com</span>
+                                    <button class="copy-btn" onclick="copyToClipboard('kendraslight@gmail.com')">Copy</button>
+                                </div>
+                            </div>
                         </div>
                         
+                        <!-- Venmo Option -->
                         <div class="payment-option" data-method="venmo">
                             <div class="payment-option-header">
                                 <i class="fab fa-venmo"></i>
                                 <h4>Venmo</h4>
                             </div>
-                            <p class="payment-instructions">We'll send you a payment request via Venmo</p>
+                            <p class="payment-instructions">Send payment via Venmo</p>
+                            <div class="payment-details">
+                                <p>Send payment to our Venmo account. Please include your order number in the note.</p>
+                                <div class="payment-info-box">
+                                    <p>Venmo Handle:</p>
+                                    <span class="payment-tag">@KendrasLight</span>
+                                    <button class="copy-btn" onclick="copyToClipboard('@KendrasLight')">Copy</button>
+                                </div>
+                            </div>
                         </div>
                         
+                        <!-- CashApp Option -->
                         <div class="payment-option" data-method="cashapp">
                             <div class="payment-option-header">
                                 <i class="fas fa-money-bill-wave"></i>
                                 <h4>CashApp</h4>
                             </div>
-                            <p class="payment-instructions">We'll provide our CashApp tag for payment</p>
+                            <p class="payment-instructions">Send payment via CashApp</p>
+                            <div class="payment-details">
+                                <p>Send payment to our CashApp account. Include your order number in the memo.</p>
+                                <div class="payment-info-box">
+                                    <p>CashApp Tag:</p>
+                                    <span class="payment-tag">$KendrasLight</span>
+                                    <button class="copy-btn" onclick="copyToClipboard('$KendrasLight')">Copy</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -1911,6 +1984,7 @@
                         <h3>Order Summary</h3>
                         <div id="orderSummary">
                             <!-- Order items will be added here -->
+                            <p class="empty-cart-message">Add items to your cart to see order summary</p>
                         </div>
                         <div class="summary-total">
                             <span>Total Amount:</span>
@@ -1919,7 +1993,7 @@
                     </div>
                     
                     <button type="submit" class="btn" style="width: 100%; padding: 15px; margin-top: 30px; font-size: 1.2rem;">
-                        Complete Order & Pay
+                        Place Order
                     </button>
                 </form>
             </div>
@@ -1933,8 +2007,15 @@
                 <i class="fas fa-check-circle"></i>
             </div>
             <h2>Order Placed Successfully!</h2>
-            <p>Thank you for your order! We've sent a confirmation email to you with your order details. We'll also send you payment instructions for your selected payment method.</p>
-            <p>Your order will be processed within 1-2 business days.</p>
+            <p>Thank you for your order from Kendra's Light!</p>
+            
+            <div class="payment-instructions-box" id="paymentInstructions">
+                <!-- Payment instructions will be dynamically added here -->
+            </div>
+            
+            <p>We've sent a confirmation email with your order details and payment instructions.</p>
+            <p>Your order will be processed once payment is confirmed.</p>
+            
             <a href="#products" class="btn" id="continueShoppingBtn">Continue Shopping</a>
         </div>
     </section>
@@ -1997,20 +2078,21 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-    <div class="logo-container">
-        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
-        <div class="logo-text">
-            <h2>Kendra's Light</h2>
-            <p>Keeping Kendra's light shining through every candle</p>
-        </div>
-    </div>
-</div>
+                    <div class="logo-container">
+                        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
+                        <div class="logo-text">
+                            <h2>Kendra's Light</h2>
+                            <p>Keeping Kendra's light shining through every candle</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#story">Our Story</a></li>
                         <li><a href="#products">Products</a></li>
+                        <li><a href="#checkout">Checkout</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -2029,7 +2111,7 @@
         </div>
     </footer>
 
-   <script>
+    <script>
     // Image Lightbox System
     let currentImageIndex = 0;
     const images = [
@@ -2062,6 +2144,7 @@
     const orderSummary = document.getElementById('orderSummary');
     const orderTotal = document.getElementById('orderTotal');
     const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+    const paymentInstructions = document.getElementById('paymentInstructions');
 
     // Lightbox Functions
     function openLightbox(imageSrc, imageAlt) {
@@ -2114,46 +2197,6 @@
         lightboxCaption.textContent = images[currentImageIndex].alt;
     }
 
-    // FIX: Initialize Product Image Click Handlers
-    function initProductImageClick() {
-        // Add click event to all product image containers
-        const productImageContainers = document.querySelectorAll('.product-image');
-        productImageContainers.forEach(container => {
-            container.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                const img = this.querySelector('img');
-                if (img) {
-                    const imageSrc = img.src;
-                    const imageAlt = img.alt;
-                    
-                    // Check if the image source is valid (not empty or placeholder)
-                    // For local files, we need to check if the image actually loaded
-                    if (imageSrc && imageSrc !== '' && !img.complete) {
-                        // Image hasn't loaded yet, wait for it
-                        img.onload = function() {
-                            openLightbox(imageSrc, imageAlt);
-                        };
-                        img.onerror = function() {
-                            // Image failed to load
-                            const productCard = container.closest('.product-card');
-                            const productName = productCard.querySelector('.product-header h4').textContent;
-                            alert(`${productName} - Image preview coming soon!`);
-                        };
-                    } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
-                        // Image has loaded successfully
-                        openLightbox(imageSrc, imageAlt);
-                    } else {
-                        // Image failed to load or is placeholder
-                        const productCard = container.closest('.product-card');
-                        const productName = productCard.querySelector('.product-header h4').textContent;
-                        alert(`${productName} - Image preview coming soon!`);
-                    }
-                }
-            });
-        });
-    }
-
     // Shopping Cart Functions
     function addToCart(product, price, type) {
         // Check if item already exists in cart
@@ -2180,43 +2223,51 @@
         cartCount.textContent = totalItems;
         
         // Update cart items display
-        cartItems.innerHTML = '';
-        
-        if (cart.length === 0) {
-            emptyCartMessage.style.display = 'block';
-            if (checkoutBtn) checkoutBtn.disabled = true;
-        } else {
-            emptyCartMessage.style.display = 'none';
-            if (checkoutBtn) checkoutBtn.disabled = false;
+        if (cartItems) {
+            cartItems.innerHTML = '';
             
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
+            if (cart.length === 0) {
+                if (emptyCartMessage) emptyCartMessage.style.display = 'block';
+                if (checkoutBtn) checkoutBtn.disabled = true;
                 
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <div class="cart-item-info">
-                        <h4>${item.product}</h4>
-                        <p>${item.type}</p>
-                    </div>
-                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                        <button class="remove-item" onclick="removeFromCart(${index})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
+                // Show empty cart message
+                const emptyMsg = document.createElement('p');
+                emptyMsg.className = 'empty-cart-message';
+                emptyMsg.textContent = 'Your cart is empty';
+                cartItems.appendChild(emptyMsg);
+            } else {
+                if (emptyCartMessage) emptyCartMessage.style.display = 'none';
+                if (checkoutBtn) checkoutBtn.disabled = false;
                 
-                cartItems.appendChild(cartItem);
-            });
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.product}</h4>
+                            <p>${item.type}</p>
+                        </div>
+                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+            }
         }
         
         // Update cart total
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = `$${total.toFixed(2)}`;
+        if (cartTotal) cartTotal.textContent = `$${total.toFixed(2)}`;
         
         // Update order summary
         updateOrderSummary();
@@ -2239,13 +2290,17 @@
     };
 
     function showCart() {
-        cartModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        if (cartModal) {
+            cartModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
     }
 
     function hideCart() {
-        cartModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        if (cartModal) {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
     }
 
     function showNotification(message) {
@@ -2299,8 +2354,6 @@
         }
         
         hideCart();
-        checkoutSection.style.display = 'block';
-        orderSuccess.style.display = 'none';
         
         // Scroll to checkout section
         setTimeout(() => {
@@ -2312,6 +2365,12 @@
         if (!orderSummary) return;
         
         orderSummary.innerHTML = '';
+        
+        if (cart.length === 0) {
+            orderSummary.innerHTML = '<p class="empty-cart-message">Add items to your cart to see order summary</p>';
+            if (orderTotal) orderTotal.textContent = '$0.00';
+            return;
+        }
         
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
@@ -2332,9 +2391,33 @@
         }
     }
 
+    // Copy to clipboard function
+    window.copyToClipboard = function(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert('Copied to clipboard!');
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    };
+
     function processOrder() {
         if (cart.length === 0) {
             alert('Your cart is empty!');
+            return;
+        }
+        
+        // Validate form fields
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+        
+        if (!firstName || !lastName || !email || !phone || !address || !city || !state || !zip) {
+            alert('Please fill in all shipping information fields');
             return;
         }
         
@@ -2345,28 +2428,69 @@
         
         // Get form data
         const formData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            state: document.getElementById('state').value,
-            zip: document.getElementById('zip').value,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            address: address,
+            city: city,
+            state: state,
+            zip: zip,
             paymentMethod: selectedPaymentMethod,
             orderItems: [...cart],
             total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
         };
         
-        // Send email to you (the business owner)
-        sendOrderEmailToOwner(formData);
+        // Generate order number
+        const orderNumber = 'KL' + Date.now().toString().slice(-8);
         
-        // Send confirmation email to customer
-        sendConfirmationEmailToCustomer(formData);
+        // Display payment instructions based on selected method
+        let instructions = '';
+        switch(selectedPaymentMethod) {
+            case 'paypal':
+                instructions = `
+                    <h3>📧 PayPal Payment Instructions:</h3>
+                    <p><strong>Order #${orderNumber}</strong></p>
+                    <p>Please send $${formData.total.toFixed(2)} to:</p>
+                    <p><strong>PayPal Email:</strong> kendraslight@gmail.com</p>
+                    <p>Include your order number <strong>${orderNumber}</strong> in the payment note.</p>
+                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
+                `;
+                break;
+            case 'venmo':
+                instructions = `
+                    <h3>💚 Venmo Payment Instructions:</h3>
+                    <p><strong>Order #${orderNumber}</strong></p>
+                    <p>Please send $${formData.total.toFixed(2)} to:</p>
+                    <p><strong>Venmo Handle:</strong> @KendrasLight</p>
+                    <p>Include your order number <strong>${orderNumber}</strong> in the payment note.</p>
+                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
+                `;
+                break;
+            case 'cashapp':
+                instructions = `
+                    <h3>💵 CashApp Payment Instructions:</h3>
+                    <p><strong>Order #${orderNumber}</strong></p>
+                    <p>Please send $${formData.total.toFixed(2)} to:</p>
+                    <p><strong>CashApp Tag:</strong> $KendrasLight</p>
+                    <p>Include your order number <strong>${orderNumber}</strong> in the payment memo.</p>
+                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
+                `;
+                break;
+        }
+        
+        // Display instructions on success page
+        if (paymentInstructions) {
+            paymentInstructions.innerHTML = instructions;
+        }
+        
+        // Send order email to owner (you)
+        sendOrderEmailToOwner(formData, orderNumber);
         
         // Show success message
         checkoutSection.style.display = 'none';
         orderSuccess.style.display = 'block';
+        orderSuccess.classList.add('active');
         orderSuccess.scrollIntoView({ behavior: 'smooth' });
         
         // Clear cart
@@ -2374,14 +2498,14 @@
         updateCart();
         
         // Reset form
-        orderForm.reset();
+        if (orderForm) orderForm.reset();
         selectedPaymentMethod = '';
         document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
     }
 
-    function sendOrderEmailToOwner(orderData) {
+    function sendOrderEmailToOwner(orderData, orderNumber) {
         const orderDetails = `
-New Order Received!
+New Order Received! Order #${orderNumber}
 
 Customer Information:
 - Name: ${orderData.firstName} ${orderData.lastName}
@@ -2397,38 +2521,55 @@ Payment Method: ${orderData.paymentMethod}
 
 Instructions for you (Ashley):
 1. Contact customer to confirm order
-2. Send payment request via ${orderData.paymentMethod}
+2. Wait for payment via ${orderData.paymentMethod}
 3. Once payment received, prepare and ship order
 4. Update customer with tracking information
         `;
         
-        console.log('ORDER DETAILS (This would be emailed to you):', orderDetails);
-        alert(`Order received! You'll need to manually send a payment request to ${orderData.email} via ${orderData.paymentMethod}. Total: $${orderData.total.toFixed(2)}`);
+        console.log('ORDER DETAILS (Email to owner):', orderDetails);
+        
+        // In a real application, you would send this via email
+        // For now, we'll show an alert
+        alert(`Order #${orderNumber} received! Check your email for details. Please wait for payment via ${orderData.paymentMethod} before shipping.`);
     }
 
-    function sendConfirmationEmailToCustomer(orderData) {
-        const confirmationDetails = `
-Thank you for your order from Kendra's Light!
-
-Order Summary:
-${orderData.orderItems.map(item => `- ${item.product} x${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
-
-Total: $${orderData.total.toFixed(2)}
-
-Shipping to:
-${orderData.firstName} ${orderData.lastName}
-${orderData.address}
-${orderData.city}, ${orderData.state} ${orderData.zip}
-
-Next Steps:
-1. Ashley will contact you shortly with payment instructions for ${orderData.paymentMethod}
-2. Once payment is confirmed, your order will be processed
-3. You'll receive shipping confirmation within 1-2 business days
-
-Thank you for supporting Kendra's Light!
-        `;
-        
-        console.log('CONFIRMATION EMAIL (This would be sent to customer):', confirmationDetails);
+    // Initialize Product Image Click Handlers
+    function initProductImageClick() {
+        // Add click event to all product image containers
+        const productImageContainers = document.querySelectorAll('.product-image');
+        productImageContainers.forEach(container => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const img = this.querySelector('img');
+                if (img) {
+                    const imageSrc = img.src;
+                    const imageAlt = img.alt;
+                    
+                    // Check if the image source is valid
+                    if (imageSrc && imageSrc !== '' && !img.complete) {
+                        // Image hasn't loaded yet, wait for it
+                        img.onload = function() {
+                            openLightbox(imageSrc, imageAlt);
+                        };
+                        img.onerror = function() {
+                            // Image failed to load
+                            const productCard = container.closest('.product-card');
+                            const productName = productCard ? productCard.querySelector('.product-header h4').textContent : 'Product';
+                            alert(`${productName} - Image preview coming soon!`);
+                        };
+                    } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
+                        // Image has loaded successfully
+                        openLightbox(imageSrc, imageAlt);
+                    } else {
+                        // Image failed to load or is placeholder
+                        const productCard = container.closest('.product-card');
+                        const productName = productCard ? productCard.querySelector('.product-header h4').textContent : 'Product';
+                        alert(`${productName} - Image preview coming soon!`);
+                    }
+                }
+            });
+        });
     }
 
     // Initialize Product Size Selection
@@ -2481,7 +2622,8 @@ Thank you for supporting Kendra's Light!
         // Add to cart buttons for candles
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
         addToCartButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const productCard = this.closest('.product-card');
                 const product = this.getAttribute('data-product');
                 
@@ -2526,7 +2668,7 @@ Thank you for supporting Kendra's Light!
         if (continueShoppingBtn) {
             continueShoppingBtn.addEventListener('click', function() {
                 orderSuccess.style.display = 'none';
-                checkoutSection.style.display = 'none';
+                checkoutSection.style.display = 'block';
                 window.location.href = '#products';
             });
         }
@@ -2548,8 +2690,11 @@ Thank you for supporting Kendra's Light!
         if (menuToggle && nav) {
             menuToggle.addEventListener('click', function() {
                 nav.classList.toggle('active');
-                this.querySelector('i').classList.toggle('fa-bars');
-                this.querySelector('i').classList.toggle('fa-times');
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
             });
             
             // Close menu when clicking on a link
@@ -2557,8 +2702,11 @@ Thank you for supporting Kendra's Light!
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     nav.classList.remove('active');
-                    menuToggle.querySelector('i').classList.add('fa-bars');
-                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
                 });
             });
         }
@@ -2577,7 +2725,6 @@ Thank you for supporting Kendra's Light!
                 const message = this.querySelector('textarea').value;
                 
                 // In a real application, you would send this data to a server
-                // For now, we'll just show a confirmation message
                 alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
                 
                 // Reset the form
@@ -2652,12 +2799,20 @@ Thank you for supporting Kendra's Light!
         // Initialize lightbox
         initLightbox();
         
-        // FIX: Initialize product image click handlers (THIS IS THE KEY FIX)
+        // Initialize product image click handlers
         initProductImageClick();
         
         // Initialize cart display
         updateCart();
+        
+        // Make sure checkout section is visible
+        if (checkoutSection) {
+            checkoutSection.style.display = 'block';
+        }
+        if (orderSuccess) {
+            orderSuccess.style.display = 'none';
+        }
     });
-</script>
+    </script>
 </body>
 </html>
