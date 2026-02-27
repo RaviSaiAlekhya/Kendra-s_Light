@@ -7,8 +7,6 @@
     <!-- Google Fonts Import -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
     <style>
         /* CSS Variables */
         :root {
@@ -107,11 +105,11 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 20px; /* Increased for better spacing */
         }
 
         .logo-image {
-            height: 90px;
+            height: 90px; /* Increased from 60px to 90px */
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -138,7 +136,12 @@
             line-height: 1.2;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 20px; /* Match logo-container gap */
+        }
+
+        /* Remove the candle icon since we're using the image logo */
+        .logo h1 i {
+            display: none; /* Hide the font-awesome candle since we have image logo */
         }
 
         .tagline {
@@ -219,18 +222,21 @@
             color: var(--color-primary);
         }
 
-        /* Hero Section */
+        /* ======================= */
+        /* HERO SECTION - UPDATED! */
+        /* ======================= */
         .hero {
             display: flex;
             min-height: 100vh;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Center content horizontally */
             padding-top: 100px;
             position: relative;
             overflow: hidden;
-            text-align: center;
+            text-align: center; /* Center text alignment */
         }
 
+        /* Background Image with Overlay */
         .hero::before {
             content: '';
             position: absolute;
@@ -245,6 +251,7 @@
             z-index: 1;
         }
 
+        /* Dark overlay for better text readability */
         .hero::after {
             content: '';
             position: absolute;
@@ -252,58 +259,60 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
             z-index: 1;
         }
 
         .hero-content {
             flex: 1;
             padding: 40px;
-            z-index: 2;
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+            z-index: 2; /* Above the background */
+            position: relative; /* For z-index to work */
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the content box */
         }
 
+        /* Update text colors for contrast on dark background */
         .hero-content h2 {
             font-family: var(--font-heading);
             font-size: 3.5rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #ffffff; /* White for better contrast */
             margin-bottom: 30px;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
         }
 
         .hero-content p {
             font-family: var(--font-body);
-            font-size: 1.4rem;
-            color: #f0f0f0;
+            font-size: 1.4rem; /* Slightly larger for emphasis */
+            color: #f0f0f0; /* Light gray for contrast */
             margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
             line-height: 1.8;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow */
         }
 
+        /* Button styling update for contrast */
         .hero .btn {
             display: inline-block;
             background-color: var(--color-secondary);
             color: var(--color-primary);
-            padding: 18px 45px;
+            padding: 18px 45px; /* Larger padding for emphasis */
             border-radius: 50px;
             text-decoration: none;
             font-family: var(--font-body);
             font-weight: 600;
             font-size: 1.2rem;
             transition: all 0.3s;
-            border: 3px solid var(--color-secondary);
+            border: 3px solid var(--color-secondary); /* Thicker border */
             cursor: pointer;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
             position: relative;
             z-index: 2;
         }
@@ -311,9 +320,18 @@
         .hero .btn:hover {
             background-color: transparent;
             color: var(--color-secondary);
-            transform: translateY(-5px);
+            transform: translateY(-5px); /* Lift effect on hover */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
+
+        /* Remove the candle animation on the side */
+        .hero-image {
+            display: none; /* Hide the candle animation */
+        }
+
+        /* ======================= */
+        /* END HERO SECTION UPDATES */
+        /* ======================= */
 
         /* Story Section */
         .story-section {
@@ -382,10 +400,10 @@
             justify-content: center;
         }
         .story-photo {
-            width: 450px;
+            width: 450px; /* Fixed width instead of max-width */
             height: auto;
             object-fit: contain;
-            display: block;
+            display: block; /* Ensure it displays as a block element */
         }
         /* Products Section */
         .products-section {
@@ -500,22 +518,23 @@
             text-align: center;
         }
 
-        .seaspa { background-color: #5d4037; }
-        .blacksand { background-color: #5d4037; }
-        .spearmint { background-color: #5d4037; }
-        .melon { background-color: #5d4037; }
-        .coconut { background-color: #5d4037; }
-        .pinksand { background-color: #5d4037; }
-        .vanilla { background-color: #5d4037; }
+       /* Updated Product Header Colors - All match page background */
+.seaspa { background-color: #5d4037; } /* Changed to page background */
+.blacksand { background-color: #5d4037; } /* Changed to page background */
+.spearmint { background-color: #5d4037; } /* Changed to page background */
+.melon { background-color: #5d4037; } /* Changed to page background */
+.coconut { background-color: #5d4037; } /* Changed to page background */
+.pinksand { background-color: #5d4037; } /* Changed to page background */
+.vanilla { background-color: #5d4037; } /* Changed to page background */
 
         .product-header h4 {
-            font-family: var(--font-heading);
-            font-size: 1.6rem;
-            margin: 0;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: white;
-        }
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: white; /* ADD THIS LINE */
+}
         .product-details {
             padding: 25px;
             flex-grow: 1;
@@ -913,40 +932,118 @@
             text-align: center;
             padding: 15px;
             font-size: 1.2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .cart-actions .btn:first-child {
-            background-color: #f5f5f5;
-            color: var(--color-primary);
-        }
-
-        .cart-actions .btn:last-child {
-            background-color: var(--color-secondary);
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-
-        .cart-actions .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Checkout Section - Simplified */
+        /* Checkout Section */
         .checkout-section {
             padding: 100px 0;
             background-color: #fff;
         }
 
+        .checkout-form h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            font-family: var(--font-body);
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Payment Options */
+        .payment-options {
+            margin: 40px 0;
+        }
+
+        .payment-option {
+            background-color: #f9f5f0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option.selected {
+            border-color: var(--color-secondary);
+            background-color: #ffecb3;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-option-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .payment-option-header i {
+            font-size: 2rem;
+            color: var(--color-primary);
+        }
+
+        .payment-option-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .payment-instructions {
+            font-family: var(--font-body);
+            color: var(--color-gray);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Order Summary */
         .order-summary {
             background-color: #f9f5f0;
             border-radius: 10px;
             padding: 30px;
-            margin: 40px auto;
-            max-width: 600px;
+            margin: 40px 0;
         }
 
         .order-summary h3 {
@@ -955,7 +1052,6 @@
             color: var(--color-primary);
             margin-bottom: 20px;
             font-weight: 600;
-            text-align: center;
         }
 
         .summary-item {
@@ -964,6 +1060,10 @@
             padding: 15px 0;
             border-bottom: 1px solid #ddd;
             font-family: var(--font-body);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
         }
 
         .summary-total {
@@ -983,59 +1083,38 @@
             font-size: 1.8rem;
         }
 
-        .form-group {
+        /* Order Success */
+        .order-success {
+            padding: 100px 0;
+            background-color: #fff;
+            text-align: center;
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #4caf50;
+            margin-bottom: 30px;
+        }
+
+        .order-success h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--color-primary);
             margin-bottom: 25px;
+            font-weight: 700;
         }
 
-        .form-group label {
+        .order-success p {
             font-family: var(--font-body);
-            display: block;
-            margin-bottom: 8px;
-            color: var(--color-primary);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--color-secondary);
-        }
-
-        #paypal-button-container {
-            min-height: 150px;
-            padding: 20px 0;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            color: var(--color-primary);
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+            color: var(--color-gray);
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.8;
         }
 
         /* Contact Section */
@@ -1104,20 +1183,6 @@
             font-weight: 400;
         }
 
-        .contact-form .form-group input,
-        .contact-form .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-        }
-
-        .contact-form .form-group textarea {
-            resize: vertical;
-        }
-
         /* Footer */
         footer {
             background-color: var(--color-primary);
@@ -1136,14 +1201,15 @@
             flex: 1;
         }
 
+        /* Footer Logo with Image - UPDATED SIZE */
         .footer-logo .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 20px; /* Increased gap */
         }
 
         .footer-logo-image {
-            height: 90px;
+            height: 90px; /* Increased from 60px to 90px */
             width: auto;
             object-fit: contain;
             filter: brightness(1.2);
@@ -1159,7 +1225,12 @@
             line-height: 1.2;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 20px; /* Match header gap */
+        }
+
+        /* Hide the candle icon in footer since we have image logo */
+        .footer-logo h2 i {
+            display: none;
         }
 
         .footer-logo p {
@@ -1352,7 +1423,7 @@
             }
             
             .logo-image {
-                height: 70px;
+                height: 70px; /* Reduced from 90px but still larger than before */
             }
             
             .footer-logo h2 {
@@ -1360,9 +1431,10 @@
             }
             
             .footer-logo-image {
-                height: 70px;
+                height: 70px; /* Reduced from 90px but still larger than before */
             }
             
+            /* Adjust hero button for mobile */
             .hero .btn {
                 padding: 15px 35px;
                 font-size: 1.1rem;
@@ -1375,7 +1447,7 @@
             }
             
             .logo-image {
-                height: 60px;
+                height: 60px; /* Even smaller for mobile but still proportional */
             }
             
             .tagline {
@@ -1431,7 +1503,7 @@
             }
             
             .footer-logo-image {
-                height: 60px;
+                height: 60px; /* Even smaller for mobile but still proportional */
             }
         }
     </style>
@@ -1441,19 +1513,20 @@
     <header>
         <div class="container">
             <div class="logo">
-                <div class="logo-container">
-                    <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
-                    <div class="logo-text">
-                        <h1>Kendra's Light</h1>
-                        <p class="tagline">Crafted By Ashley</p>
-                    </div>
-                </div>
-            </div>
+    <div class="logo-container">
+        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="logo-image">
+        <div class="logo-text">
+            <h1>Kendra's Light</h1>
+            <p class="tagline">Crafted By Ashley</p>
+        </div>
+    </div>
+</div>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#story">Our Story</a></li>
                     <li><a href="#products">Products</a></li>
+                    <li><a href="#order">How to Order</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -1488,6 +1561,7 @@
                 <button class="close-cart" id="closeCart">&times;</button>
             </div>
             <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
                 <p class="empty-cart-message" id="emptyCartMessage">Your cart is empty</p>
             </div>
             <div class="cart-total">
@@ -1501,22 +1575,7 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div class="cart-modal" id="successModal" style="display: none;">
-        <div class="cart-content" style="max-width: 500px; text-align: center;">
-            <div class="cart-header" style="background: #4caf50;">
-                <h2 style="color: white; margin: 0;">✓ Order Successful!</h2>
-            </div>
-            <div style="padding: 40px;">
-                <i class="fas fa-check-circle" style="font-size: 5rem; color: #4caf50; margin-bottom: 20px;"></i>
-                <h3 style="margin-bottom: 20px;">Thank You For Your Order!</h3>
-                <p id="successMessage" style="margin-bottom: 30px;">Your order has been placed successfully.</p>
-                <button class="btn" onclick="closeSuccessModal()" style="background: #5d4037; color: white;">Continue Shopping</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
+    <!-- Hero Section - UPDATED! -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>Handcrafted Candles Infused with Love & Memory</h2>
@@ -1549,8 +1608,8 @@
                     </div>
                 </div>
                 <div class="story-image">
-                    <img src="ourstory.PNG" alt="Our Story - Kendra's Memory" class="story-photo">
-                </div>
+    <img src="ourstory.PNG" alt="Our Story - Kendra's Memory" class="story-photo">
+</div>
             </div>
         </div>
     </section>
@@ -1762,6 +1821,7 @@
                         Pink Sand
                         <span class="wax-price">$4</span>
                     </div>
+                    <!-- NEW: Vanilla Cinnamon Wax Melt -->
                     <div class="wax-item" data-product="Vanilla Cinnamon Wax Melt" data-price="4">
                         Vanilla Cinnamon
                         <span class="wax-price">$4</span>
@@ -1771,52 +1831,111 @@
         </div>
     </section>
 
-    <!-- Checkout Section - Simplified with PayPal -->
-    <section class="checkout-section" id="checkout" style="display: none;">
+    <!-- Order/Checkout Section -->
+    <section class="checkout-section" id="checkout">
         <div class="container">
             <h2 class="section-title">Complete Your Order</h2>
-            
-            <!-- Order Summary -->
-            <div class="order-summary">
-                <h3>Order Summary</h3>
-                <div id="orderSummaryItems"></div>
-                <div class="summary-total">
-                    <span>Total:</span>
-                    <span class="total-price" id="checkoutTotal">$0.00</span>
-                </div>
-            </div>
-
-            <!-- Contact Information Form (Simple) -->
-            <div style="max-width: 500px; margin: 0 auto 30px;">
-                <h3 style="text-align: center; margin-bottom: 20px;">Contact Information</h3>
-                <div class="form-group">
-                    <label for="checkoutEmail">Email Address *</label>
-                    <input type="email" id="checkoutEmail" required placeholder="Your email for order confirmation">
-                </div>
-                <div class="form-group">
-                    <label for="checkoutName">Full Name *</label>
-                    <input type="text" id="checkoutName" required placeholder="Your full name">
-                </div>
-            </div>
-
-            <!-- PayPal Button Container -->
-            <div id="paypal-button-container" style="max-width: 500px; margin: 0 auto;"></div>
-            
-            <!-- Manual Payment Options (Simplified) -->
-            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px dashed #ddd;">
-                <h4 style="margin-bottom: 20px;">Prefer to pay another way?</h4>
-                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    <button class="btn" onclick="processManualPayment('venmo')" style="background: #3d5afe; color: white;">
-                        <i class="fab fa-venmo"></i> Pay with Venmo
+            <div class="checkout-form">
+                <h3>Shipping Information</h3>
+                <form id="orderForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Street Address *</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP Code *</label>
+                            <input type="text" id="zip" name="zip" required>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-option" data-method="paypal">
+                            <div class="payment-option-header">
+                                <i class="fab fa-paypal"></i>
+                                <h4>PayPal</h4>
+                            </div>
+                            <p class="payment-instructions">You'll be redirected to PayPal to complete your payment</p>
+                        </div>
+                        
+                        <div class="payment-option" data-method="venmo">
+                            <div class="payment-option-header">
+                                <i class="fab fa-venmo"></i>
+                                <h4>Venmo</h4>
+                            </div>
+                            <p class="payment-instructions">We'll send you a payment request via Venmo</p>
+                        </div>
+                        
+                        <div class="payment-option" data-method="cashapp">
+                            <div class="payment-option-header">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h4>CashApp</h4>
+                            </div>
+                            <p class="payment-instructions">We'll provide our CashApp tag for payment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="orderSummary">
+                            <!-- Order items will be added here -->
+                        </div>
+                        <div class="summary-total">
+                            <span>Total Amount:</span>
+                            <span class="total-price" id="orderTotal">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; padding: 15px; margin-top: 30px; font-size: 1.2rem;">
+                        Complete Order & Pay
                     </button>
-                    <button class="btn" onclick="processManualPayment('cashapp')" style="background: #00d632; color: white;">
-                        <i class="fas fa-money-bill-wave"></i> Pay with CashApp
-                    </button>
-                </div>
-                <p style="color: #777; margin-top: 20px; font-size: 0.9rem;">
-                    After payment, you'll receive order confirmation via email.
-                </p>
+                </form>
             </div>
+        </div>
+    </section>
+
+    <!-- Order Success Message -->
+    <section class="order-success" id="orderSuccess">
+        <div class="container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your order! We've sent a confirmation email to you with your order details. We'll also send you payment instructions for your selected payment method.</p>
+            <p>Your order will be processed within 1-2 business days.</p>
+            <a href="#products" class="btn" id="continueShoppingBtn">Continue Shopping</a>
         </div>
     </section>
 
@@ -1878,14 +1997,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <div class="logo-container">
-                        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
-                        <div class="logo-text">
-                            <h2>Kendra's Light</h2>
-                            <p>Keeping Kendra's light shining through every candle</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="logo-container">
+        <img src="kendralogo.PNG" alt="Kendra's Light Logo" class="footer-logo-image">
+        <div class="logo-text">
+            <h2>Kendra's Light</h2>
+            <p>Keeping Kendra's light shining through every candle</p>
+        </div>
+    </div>
+</div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -1910,550 +2029,635 @@
         </div>
     </footer>
 
-    <script>
-        // Image Lightbox System
-        let currentImageIndex = 0;
-        const images = [
-            { src: 'SeaSpa.PNG', alt: 'Sea Spa Candle' },
-            { src: 'Blacksand&Cashmere.PNG', alt: 'Blacksand & Cashmere Candle' },
-            { src: 'Spearmint&Sandalwood.PNG', alt: 'Spearmint & Sandalwood Candle' },
-            { src: 'SunburstMelon.PNG', alt: 'Sunburst Melon Candle' },
-            { src: 'Coconutmilk&Patchouli.PNG', alt: 'Coconut Milk & Patchouli Candle' },
-            { src: 'PinkSand.PNG', alt: 'Pink Sand Candle' },
-            { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' }
-        ];
+   <script>
+    // Image Lightbox System
+    let currentImageIndex = 0;
+    const images = [
+        { src: 'SeaSpa.PNG', alt: 'Sea Spa Candle' },
+        { src: 'Blacksand&Cashmere.PNG', alt: 'Blacksand & Cashmere Candle' },
+        { src: 'Spearmint&Sandalwood.PNG', alt: 'Spearmint & Sandalwood Candle' },
+        { src: 'SunburstMelon.PNG', alt: 'Sunburst Melon Candle' },
+        { src: 'Coconutmilk&Patchouli.PNG', alt: 'Coconut Milk & Patchouli Candle' },
+        { src: 'PinkSand.PNG', alt: 'Pink Sand Candle' },
+        { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' }
+    ];
 
-        // Shopping Cart System
-        let cart = [];
-        let currentOrderTotal = 0;
+    // Shopping Cart System
+    let cart = [];
+    let selectedPaymentMethod = '';
 
-        // DOM Elements
-        const cartIcon = document.getElementById('cartIcon');
-        const cartModal = document.getElementById('cartModal');
-        const closeCart = document.getElementById('closeCart');
-        const cartItems = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        const cartTotal = document.getElementById('cartTotal');
-        const continueShopping = document.getElementById('continueShopping');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const emptyCartMessage = document.getElementById('emptyCartMessage');
-        const checkoutSection = document.getElementById('checkout');
-        const messageForm = document.getElementById('messageForm');
-        const successModal = document.getElementById('successModal');
-        const successMessage = document.getElementById('successMessage');
+    // DOM Elements
+    const cartIcon = document.getElementById('cartIcon');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartItems = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const continueShopping = document.getElementById('continueShopping');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const checkoutSection = document.getElementById('checkout');
+    const orderSuccess = document.getElementById('orderSuccess');
+    const orderForm = document.getElementById('orderForm');
+    const orderSummary = document.getElementById('orderSummary');
+    const orderTotal = document.getElementById('orderTotal');
+    const continueShoppingBtn = document.getElementById('continueShoppingBtn');
 
-        // Lightbox Functions
-        function openLightbox(imageSrc, imageAlt) {
-            if (!imageSrc || imageSrc === '') return;
-            
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxCaption = document.getElementById('lightboxCaption');
-            
-            currentImageIndex = images.findIndex(img => img.src === imageSrc);
-            
-            if (currentImageIndex === -1) {
-                lightboxImg.src = imageSrc;
-                lightboxImg.alt = imageAlt;
-                lightboxCaption.textContent = imageAlt;
-            } else {
-                lightboxImg.src = images[currentImageIndex].src;
-                lightboxImg.alt = images[currentImageIndex].alt;
-                lightboxCaption.textContent = images[currentImageIndex].alt;
-            }
-            
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function navigateLightbox(direction) {
-            if (images.length === 0) return;
-            
-            currentImageIndex += direction;
-            
-            if (currentImageIndex < 0) {
-                currentImageIndex = images.length - 1;
-            } else if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            }
-            
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxCaption = document.getElementById('lightboxCaption');
-            
+    // Lightbox Functions
+    function openLightbox(imageSrc, imageAlt) {
+        if (!imageSrc || imageSrc === '') return;
+        
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        
+        // Find the image index
+        currentImageIndex = images.findIndex(img => img.src === imageSrc);
+        
+        if (currentImageIndex === -1) {
+            // If image not in array, just show this one (won't have navigation)
+            lightboxImg.src = imageSrc;
+            lightboxImg.alt = imageAlt;
+            lightboxCaption.textContent = imageAlt;
+        } else {
             lightboxImg.src = images[currentImageIndex].src;
             lightboxImg.alt = images[currentImageIndex].alt;
             lightboxCaption.textContent = images[currentImageIndex].alt;
         }
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-        // Initialize Product Image Click Handlers
-        function initProductImageClick() {
-            const productImageContainers = document.querySelectorAll('.product-image');
-            productImageContainers.forEach(container => {
-                container.addEventListener('click', function(e) {
-                    e.stopPropagation();
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function navigateLightbox(direction) {
+        if (images.length === 0) return;
+        
+        currentImageIndex += direction;
+        
+        if (currentImageIndex < 0) {
+            currentImageIndex = images.length - 1;
+        } else if (currentImageIndex >= images.length) {
+            currentImageIndex = 0;
+        }
+        
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        
+        lightboxImg.src = images[currentImageIndex].src;
+        lightboxImg.alt = images[currentImageIndex].alt;
+        lightboxCaption.textContent = images[currentImageIndex].alt;
+    }
+
+    // FIX: Initialize Product Image Click Handlers
+    function initProductImageClick() {
+        // Add click event to all product image containers
+        const productImageContainers = document.querySelectorAll('.product-image');
+        productImageContainers.forEach(container => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const img = this.querySelector('img');
+                if (img) {
+                    const imageSrc = img.src;
+                    const imageAlt = img.alt;
                     
-                    const img = this.querySelector('img');
-                    if (img) {
-                        const imageSrc = img.src;
-                        const imageAlt = img.alt;
-                        
-                        if (imageSrc && imageSrc !== '' && !img.complete) {
-                            img.onload = function() {
-                                openLightbox(imageSrc, imageAlt);
-                            };
-                            img.onerror = function() {
-                                const productCard = container.closest('.product-card');
-                                const productName = productCard.querySelector('.product-header h4').textContent;
-                                alert(`${productName} - Image preview coming soon!`);
-                            };
-                        } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
+                    // Check if the image source is valid (not empty or placeholder)
+                    // For local files, we need to check if the image actually loaded
+                    if (imageSrc && imageSrc !== '' && !img.complete) {
+                        // Image hasn't loaded yet, wait for it
+                        img.onload = function() {
                             openLightbox(imageSrc, imageAlt);
-                        } else {
+                        };
+                        img.onerror = function() {
+                            // Image failed to load
                             const productCard = container.closest('.product-card');
                             const productName = productCard.querySelector('.product-header h4').textContent;
                             alert(`${productName} - Image preview coming soon!`);
-                        }
+                        };
+                    } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
+                        // Image has loaded successfully
+                        openLightbox(imageSrc, imageAlt);
+                    } else {
+                        // Image failed to load or is placeholder
+                        const productCard = container.closest('.product-card');
+                        const productName = productCard.querySelector('.product-header h4').textContent;
+                        alert(`${productName} - Image preview coming soon!`);
                     }
-                });
+                }
+            });
+        });
+    }
+
+    // Shopping Cart Functions
+    function addToCart(product, price, type) {
+        // Check if item already exists in cart
+        const existingItem = cart.find(item => item.product === product);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                product: product,
+                price: price,
+                quantity: 1,
+                type: type
             });
         }
+        
+        updateCart();
+        showNotification(`${product} added to cart!`);
+    }
 
-        // Shopping Cart Functions
-        function addToCart(product, price, type) {
-            const existingItem = cart.find(item => item.product === product);
+    function updateCart() {
+        // Update cart count
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        
+        // Update cart items display
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            emptyCartMessage.style.display = 'block';
+            if (checkoutBtn) checkoutBtn.disabled = true;
+        } else {
+            emptyCartMessage.style.display = 'none';
+            if (checkoutBtn) checkoutBtn.disabled = false;
             
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    product: product,
-                    price: price,
-                    quantity: 1,
-                    type: type
-                });
-            }
-            
-            updateCart();
-            showNotification(`${product} added to cart!`);
-        }
-
-        function updateCart() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                emptyCartMessage.style.display = 'block';
-                if (checkoutBtn) checkoutBtn.disabled = true;
-            } else {
-                emptyCartMessage.style.display = 'none';
-                if (checkoutBtn) checkoutBtn.disabled = false;
-                
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <div class="cart-item-info">
-                            <h4>${item.product}</h4>
-                            <p>${item.type}</p>
-                        </div>
-                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                        <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                            <button class="remove-item" onclick="removeFromCart(${index})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    `;
-                    
-                    cartItems.appendChild(cartItem);
-                });
-            }
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            cartTotal.textContent = `$${total.toFixed(2)}`;
-        }
-
-        window.updateQuantity = function(index, change) {
-            cart[index].quantity += change;
-            
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
-            
-            updateCart();
-        };
-
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            updateCart();
-        };
-
-        function showCart() {
-            cartModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideCart() {
-            cartModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background-color: #5d4037;
-                color: white;
-                padding: 15px 25px;
-                border-radius: 5px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                z-index: 3000;
-                animation: slideIn 0.3s ease;
-                font-weight: 500;
-            `;
-            
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                    document.head.removeChild(style);
-                }, 300);
-            }, 3000);
-        }
-
-        // =============== SIMPLIFIED PAYMENT HANDLING ===============
-
-        function proceedToCheckout() {
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
-            
-            hideCart();
-            
-            currentOrderTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            const orderSummary = document.getElementById('orderSummaryItems');
-            orderSummary.innerHTML = '';
-            
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
-                orderSummary.innerHTML += `
-                    <div class="summary-item">
-                        <span>${item.product} x${item.quantity}</span>
-                        <span>$${itemTotal.toFixed(2)}</span>
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.product}</h4>
+                        <p>${item.type}</p>
+                    </div>
+                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        <button class="remove-item" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 `;
+                
+                cartItems.appendChild(cartItem);
             });
-            
-            document.getElementById('checkoutTotal').textContent = `$${currentOrderTotal.toFixed(2)}`;
-            
-            checkoutSection.style.display = 'block';
-            
-            if (window.paypal) {
-                renderPayPalButtons();
+        }
+        
+        // Update cart total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Update order summary
+        updateOrderSummary();
+    }
+
+    // Make functions globally available for onclick attributes
+    window.updateQuantity = function(index, change) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        
+        updateCart();
+    };
+
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        updateCart();
+    };
+
+    function showCart() {
+        cartModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideCart() {
+        cartModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: #5d4037;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
+            font-weight: 500;
+        `;
+        
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
             }
-            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => {
-                checkoutSection.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
+                document.body.removeChild(notification);
+                document.head.removeChild(style);
+            }, 300);
+        }, 3000);
+    }
 
-        function renderPayPalButtons() {
-            const container = document.getElementById('paypal-button-container');
-            container.innerHTML = '';
-            
-            paypal.Buttons({
-                style: {
-                    layout: 'vertical',
-                    color: 'gold',
-                    shape: 'rect',
-                    label: 'paypal'
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: currentOrderTotal.toFixed(2)
-                            },
-                            description: 'Kendra\'s Light Candle Order'
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        const customerName = document.getElementById('checkoutName').value || details.payer.name.given_name;
-                        const customerEmail = document.getElementById('checkoutEmail').value || details.payer.email_address;
-                        
-                        completeOrder('paypal', customerName, customerEmail, details.id);
-                    });
-                },
-                onCancel: function(data) {
-                    alert('Payment cancelled. You can try again when ready.');
-                },
-                onError: function(err) {
-                    console.error('PayPal Error:', err);
-                    alert('There was an error processing your payment. Please try again or use another method.');
-                }
-            }).render('#paypal-button-container');
+    function proceedToCheckout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
         }
+        
+        hideCart();
+        checkoutSection.style.display = 'block';
+        orderSuccess.style.display = 'none';
+        
+        // Scroll to checkout section
+        setTimeout(() => {
+            checkoutSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
 
-        function processManualPayment(method) {
-            const name = document.getElementById('checkoutName').value;
-            const email = document.getElementById('checkoutEmail').value;
+    function updateOrderSummary() {
+        if (!orderSummary) return;
+        
+        orderSummary.innerHTML = '';
+        
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
             
-            if (!name || !email) {
-                alert('Please enter your name and email address');
-                return;
-            }
-            
-            const paymentDetails = method === 'venmo' 
-                ? { handle: '@KendrasLight', instruction: 'Send payment to @KendrasLight on Venmo' }
-                : { handle: '$KendrasLight', instruction: 'Send payment to $KendrasLight on CashApp' };
-            
-            const instructions = `
-                Order Total: $${currentOrderTotal.toFixed(2)}
-                
-                Please send payment via ${method === 'venmo' ? 'Venmo' : 'CashApp'}:
-                ${paymentDetails.instruction}
-                
-                Once payment is sent, we'll process your order immediately.
-                
-                We've sent a confirmation email to ${email}
+            const summaryItem = document.createElement('div');
+            summaryItem.className = 'summary-item';
+            summaryItem.innerHTML = `
+                <span>${item.product} x${item.quantity}</span>
+                <span>$${itemTotal.toFixed(2)}</span>
             `;
             
-            if (confirm(`Complete your order?\n\n${instructions}\n\nClick OK once you've sent payment`)) {
-                completeOrder(method, name, email, 'MANUAL-' + Date.now());
-            }
+            orderSummary.appendChild(summaryItem);
+        });
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        if (orderTotal) {
+            orderTotal.textContent = `$${total.toFixed(2)}`;
         }
+    }
 
-        function completeOrder(method, customerName, customerEmail, transactionId) {
-            const order = {
-                id: transactionId,
-                date: new Date().toISOString(),
-                customer: customerName,
-                email: customerEmail,
-                paymentMethod: method,
-                items: [...cart],
-                total: currentOrderTotal
-            };
-            
-            const orders = JSON.parse(localStorage.getItem('kendrasLightOrders') || '[]');
-            orders.push(order);
-            localStorage.setItem('kendrasLightOrders', JSON.stringify(orders));
-            
-            checkoutSection.style.display = 'none';
-            
-            let successMsg = `Thank you ${customerName}! Your order has been placed.`;
-            if (method !== 'paypal') {
-                successMsg += ` We'll process your order once payment is confirmed. A confirmation has been sent to ${customerEmail}.`;
-            } else {
-                successMsg += ` A receipt has been sent to ${customerEmail}.`;
-            }
-            
-            successMessage.textContent = successMsg;
-            successModal.style.display = 'flex';
-            
-            cart = [];
-            updateCart();
-            
-            document.getElementById('checkoutName').value = '';
-            document.getElementById('checkoutEmail').value = '';
+    function processOrder() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
         }
-
-        window.closeSuccessModal = function() {
-            successModal.style.display = 'none';
+        
+        if (!selectedPaymentMethod) {
+            alert('Please select a payment method');
+            return;
+        }
+        
+        // Get form data
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            zip: document.getElementById('zip').value,
+            paymentMethod: selectedPaymentMethod,
+            orderItems: [...cart],
+            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
         };
+        
+        // Send email to you (the business owner)
+        sendOrderEmailToOwner(formData);
+        
+        // Send confirmation email to customer
+        sendConfirmationEmailToCustomer(formData);
+        
+        // Show success message
+        checkoutSection.style.display = 'none';
+        orderSuccess.style.display = 'block';
+        orderSuccess.scrollIntoView({ behavior: 'smooth' });
+        
+        // Clear cart
+        cart = [];
+        updateCart();
+        
+        // Reset form
+        orderForm.reset();
+        selectedPaymentMethod = '';
+        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+    }
 
-        // Initialize Product Size Selection
-        function initProductSizeSelection() {
-            const sizeOptions = document.querySelectorAll('.size-option');
-            sizeOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const productCard = this.closest('.product-card');
-                    const allOptions = productCard.querySelectorAll('.size-option');
-                    allOptions.forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-        }
+    function sendOrderEmailToOwner(orderData) {
+        const orderDetails = `
+New Order Received!
 
-        // Initialize Wax Melts Click Handlers
-        function initWaxMelts() {
-            const waxItems = document.querySelectorAll('.wax-item');
-            waxItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const product = this.getAttribute('data-product');
-                    const price = parseFloat(this.getAttribute('data-price'));
-                    
-                    addToCart(product, price, 'Wax Melt');
-                    showCart();
-                });
-            });
-        }
+Customer Information:
+- Name: ${orderData.firstName} ${orderData.lastName}
+- Email: ${orderData.email}
+- Phone: ${orderData.phone}
+- Address: ${orderData.address}, ${orderData.city}, ${orderData.state} ${orderData.zip}
 
-        // Initialize Everything When Page Loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav ul');
-            
-            if (menuToggle && nav) {
-                menuToggle.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                    this.querySelector('i').classList.toggle('fa-bars');
-                    this.querySelector('i').classList.toggle('fa-times');
-                });
+Order Items:
+${orderData.orderItems.map(item => `- ${item.product} x${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
+
+Total Amount: $${orderData.total.toFixed(2)}
+Payment Method: ${orderData.paymentMethod}
+
+Instructions for you (Ashley):
+1. Contact customer to confirm order
+2. Send payment request via ${orderData.paymentMethod}
+3. Once payment received, prepare and ship order
+4. Update customer with tracking information
+        `;
+        
+        console.log('ORDER DETAILS (This would be emailed to you):', orderDetails);
+        alert(`Order received! You'll need to manually send a payment request to ${orderData.email} via ${orderData.paymentMethod}. Total: $${orderData.total.toFixed(2)}`);
+    }
+
+    function sendConfirmationEmailToCustomer(orderData) {
+        const confirmationDetails = `
+Thank you for your order from Kendra's Light!
+
+Order Summary:
+${orderData.orderItems.map(item => `- ${item.product} x${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
+
+Total: $${orderData.total.toFixed(2)}
+
+Shipping to:
+${orderData.firstName} ${orderData.lastName}
+${orderData.address}
+${orderData.city}, ${orderData.state} ${orderData.zip}
+
+Next Steps:
+1. Ashley will contact you shortly with payment instructions for ${orderData.paymentMethod}
+2. Once payment is confirmed, your order will be processed
+3. You'll receive shipping confirmation within 1-2 business days
+
+Thank you for supporting Kendra's Light!
+        `;
+        
+        console.log('CONFIRMATION EMAIL (This would be sent to customer):', confirmationDetails);
+    }
+
+    // Initialize Product Size Selection
+    function initProductSizeSelection() {
+        const sizeOptions = document.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in this product
+                const productCard = this.closest('.product-card');
+                const allOptions = productCard.querySelectorAll('.size-option');
+                allOptions.forEach(opt => opt.classList.remove('selected'));
                 
-                const navLinks = document.querySelectorAll('nav ul li a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        nav.classList.remove('active');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                    });
-                });
-            }
-            
-            // Contact form
-            if (messageForm) {
-                messageForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const name = this.querySelector('input[type="text"]').value;
-                    alert(`Thank you for your message, ${name}! We'll get back to you soon.`);
-                    this.reset();
-                });
-            }
-            
-            // Product size selection
-            initProductSizeSelection();
-            
-            // Wax melts
-            initWaxMelts();
-            
-            // Cart functionality
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const productCard = this.closest('.product-card');
-                    const product = this.getAttribute('data-product');
-                    
-                    const selectedSize = productCard.querySelector('.size-option.selected');
-                    
-                    if (!selectedSize) {
-                        alert('Please select a size before adding to cart');
-                        return;
-                    }
-                    
-                    const size = selectedSize.getAttribute('data-size');
-                    const price = parseFloat(selectedSize.getAttribute('data-price'));
-                    const productName = `${product} (${size})`;
-                    
-                    addToCart(productName, price, 'Candle');
-                    showCart();
-                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+    }
+
+    // Initialize Wax Melts Click Handlers
+    function initWaxMelts() {
+        const waxItems = document.querySelectorAll('.wax-item');
+        waxItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const product = this.getAttribute('data-product');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                addToCart(product, price, 'Wax Melt');
+                showCart();
+            });
+        });
+    }
+
+    // Initialize Payment Method Selection
+    function initPaymentMethods() {
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                selectedPaymentMethod = this.getAttribute('data-method');
+            });
+        });
+    }
+
+    // Initialize Cart Functionality
+    function initCart() {
+        // Add to cart buttons for candles
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const product = this.getAttribute('data-product');
+                
+                // Get selected size
+                const selectedSize = productCard.querySelector('.size-option.selected');
+                
+                if (!selectedSize) {
+                    alert('Please select a size before adding to cart');
+                    return;
+                }
+                
+                const size = selectedSize.getAttribute('data-size');
+                const price = parseFloat(selectedSize.getAttribute('data-price'));
+                const productName = `${product} (${size})`;
+                
+                addToCart(productName, price, 'Candle');
+                showCart();
+            });
+        });
+        
+        // Cart icon click
+        if (cartIcon) {
+            cartIcon.addEventListener('click', showCart);
+        }
+        
+        // Close cart
+        if (closeCart) {
+            closeCart.addEventListener('click', hideCart);
+        }
+        
+        // Continue shopping button
+        if (continueShopping) {
+            continueShopping.addEventListener('click', hideCart);
+        }
+        
+        // Checkout button
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', proceedToCheckout);
+        }
+        
+        // Continue shopping after success
+        if (continueShoppingBtn) {
+            continueShoppingBtn.addEventListener('click', function() {
+                orderSuccess.style.display = 'none';
+                checkoutSection.style.display = 'none';
+                window.location.href = '#products';
+            });
+        }
+        
+        // Order form submission
+        if (orderForm) {
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                processOrder();
+            });
+        }
+    }
+
+    // Initialize Mobile Menu
+    function initMobileMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul');
+        
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
             });
             
-            if (cartIcon) {
-                cartIcon.addEventListener('click', showCart);
-            }
-            
-            if (closeCart) {
-                closeCart.addEventListener('click', hideCart);
-            }
-            
-            if (continueShopping) {
-                continueShopping.addEventListener('click', hideCart);
-            }
-            
-            if (checkoutBtn) {
-                checkoutBtn.addEventListener('click', proceedToCheckout);
-            }
-            
-            // Lightbox
-            initProductImageClick();
-            
-            const lightbox = document.getElementById('lightbox');
-            const closeLightboxBtn = document.getElementById('closeLightbox');
-            const prevBtn = document.getElementById('prevImage');
-            const nextBtn = document.getElementById('nextImage');
-            
-            if (closeLightboxBtn) {
-                closeLightboxBtn.addEventListener('click', closeLightbox);
-            }
-            
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => navigateLightbox(-1));
-            }
-            
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => navigateLightbox(1));
-            }
-            
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) {
-                        closeLightbox();
-                    }
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
                 });
-            }
-            
-            document.addEventListener('keydown', function(e) {
-                const lightbox = document.getElementById('lightbox');
-                if (lightbox && lightbox.classList.contains('active')) {
-                    if (e.key === 'Escape') {
-                        closeLightbox();
-                    } else if (e.key === 'ArrowLeft') {
-                        navigateLightbox(-1);
-                    } else if (e.key === 'ArrowRight') {
-                        navigateLightbox(1);
-                    }
+            });
+        }
+    }
+
+    // Initialize Contact Form
+    function initContactForm() {
+        const messageForm = document.getElementById('messageForm');
+        if (messageForm) {
+            messageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = this.querySelector('input[type="text"]').value;
+                const email = this.querySelector('input[type="email"]').value;
+                const message = this.querySelector('textarea').value;
+                
+                // In a real application, you would send this data to a server
+                // For now, we'll just show a confirmation message
+                alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
+                
+                // Reset the form
+                this.reset();
+            });
+        }
+    }
+
+    // Initialize Lightbox
+    function initLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const closeLightboxBtn = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('prevImage');
+        const nextBtn = document.getElementById('nextImage');
+        
+        if (closeLightboxBtn) {
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => navigateLightbox(-1));
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => navigateLightbox(1));
+        }
+        
+        // Close lightbox when clicking outside the image
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
                 }
             });
-            
-            // Update cart
-            updateCart();
+        }
+        
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox && lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
         });
+    }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target === successModal) {
-                successModal.style.display = 'none';
-            }
-            if (event.target === cartModal) {
-                cartModal.style.display = 'none';
-            }
-        };
-    </script>
+    // Initialize Everything When Page Loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize mobile menu
+        initMobileMenu();
+        
+        // Initialize contact form
+        initContactForm();
+        
+        // Initialize product size selection
+        initProductSizeSelection();
+        
+        // Initialize wax melts click handlers
+        initWaxMelts();
+        
+        // Initialize payment method selection
+        initPaymentMethods();
+        
+        // Initialize cart functionality
+        initCart();
+        
+        // Initialize lightbox
+        initLightbox();
+        
+        // FIX: Initialize product image click handlers (THIS IS THE KEY FIX)
+        initProductImageClick();
+        
+        // Initialize cart display
+        updateCart();
+    });
+</script>
 </body>
 </html>
