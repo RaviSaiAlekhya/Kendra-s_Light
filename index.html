@@ -505,6 +505,10 @@
         .seaspa, .blacksand, .spearmint, .melon, .coconut, .pinksand, .vanilla { 
             background-color: #5d4037; 
         }
+        /* New product header colors */
+        .vintage { background-color: #4a6b5e; }      /* Vintage Reserve - muted teal */
+        .timber { background-color: #6b4f3c; }       /* Timber Patchouli - warm brown */
+        .ebony { background-color: #3a3a3a; }        /* Ebony Musk - charcoal */
 
         .product-header h4 {
             font-family: var(--font-heading);
@@ -1836,6 +1840,78 @@
                             <button class="add-to-cart" data-product="Vanilla Cinnamon">Add to Cart</button>
                         </div>
                     </div>
+
+                    <!-- New Product 8: Vintage Reserve -->
+                    <div class="product-card" data-product-id="8">
+                        <div class="product-image">
+                            <img src="VintageReserve.PNG" alt="Vintage Reserve Candle" onerror="this.src='SeaSpa.PNG'; this.alt='Vintage Reserve (placeholder)';">
+                        </div>
+                        <div class="product-header vintage">
+                            <h4>Vintage Reserve</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Rich, timeless, and elegantly smooth</p>
+                            <div class="product-sizes">
+                                <div class="size-option selected" data-size="8oz" data-price="15">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$15</span>
+                                </div>
+                                <div class="size-option" data-size="12oz" data-price="19">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$19</span>
+                                </div>
+                            </div>
+                            <button class="add-to-cart" data-product="Vintage Reserve">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- New Product 9: Timber Patchouli -->
+                    <div class="product-card" data-product-id="9">
+                        <div class="product-image">
+                            <img src="TimberPatchouli.PNG" alt="Timber Patchouli Candle" onerror="this.src='Blacksand&Cashmere.PNG'; this.alt='Timber Patchouli (placeholder)';">
+                        </div>
+                        <div class="product-header timber">
+                            <h4>Timber Patchouli</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Earthy, woody, and grounding</p>
+                            <div class="product-sizes">
+                                <div class="size-option selected" data-size="8oz" data-price="14">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$14</span>
+                                </div>
+                                <div class="size-option" data-size="12oz" data-price="18">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$18</span>
+                                </div>
+                            </div>
+                            <button class="add-to-cart" data-product="Timber Patchouli">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- New Product 10: Ebony Musk -->
+                    <div class="product-card" data-product-id="10">
+                        <div class="product-image">
+                            <img src="EbonyMusk.PNG" alt="Ebony Musk Candle" onerror="this.src='Coconutmilk&Patchouli.PNG'; this.alt='Ebony Musk (placeholder)';">
+                        </div>
+                        <div class="product-header ebony">
+                            <h4>Ebony Musk</h4>
+                        </div>
+                        <div class="product-details">
+                            <p class="product-desc">Bold, sensual, and deeply captivating</p>
+                            <div class="product-sizes">
+                                <div class="size-option selected" data-size="8oz" data-price="15">
+                                    <span class="size">8 oz</span>
+                                    <span class="price">$15</span>
+                                </div>
+                                <div class="size-option" data-size="12oz" data-price="19">
+                                    <span class="size">12 oz</span>
+                                    <span class="price">$19</span>
+                                </div>
+                            </div>
+                            <button class="add-to-cart" data-product="Ebony Musk">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -1869,6 +1945,19 @@
                     </div>
                     <div class="wax-item" data-product="Vanilla Cinnamon Wax Melt" data-price="4">
                         Vanilla Cinnamon
+                        <span class="wax-price">$4</span>
+                    </div>
+                    <!-- New wax melts for the three scents -->
+                    <div class="wax-item" data-product="Vintage Reserve Wax Melt" data-price="4">
+                        Vintage Reserve
+                        <span class="wax-price">$4</span>
+                    </div>
+                    <div class="wax-item" data-product="Timber Patchouli Wax Melt" data-price="4">
+                        Timber Patchouli
+                        <span class="wax-price">$4</span>
+                    </div>
+                    <div class="wax-item" data-product="Ebony Musk Wax Melt" data-price="4">
+                        Ebony Musk
                         <span class="wax-price">$4</span>
                     </div>
                 </div>
@@ -2121,7 +2210,10 @@
         { src: 'SunburstMelon.PNG', alt: 'Sunburst Melon Candle' },
         { src: 'Coconutmilk&Patchouli.PNG', alt: 'Coconut Milk & Patchouli Candle' },
         { src: 'PinkSand.PNG', alt: 'Pink Sand Candle' },
-        { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' }
+        { src: 'VanillaCinnamon.PNG', alt: 'Vanilla Cinnamon Candle' },
+        { src: 'VintageReserve.PNG', alt: 'Vintage Reserve Candle' },
+        { src: 'TimberPatchouli.PNG', alt: 'Timber Patchouli Candle' },
+        { src: 'EbonyMusk.PNG', alt: 'Ebony Musk Candle' }
     ];
 
     // Shopping Cart System
