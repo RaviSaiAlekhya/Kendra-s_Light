@@ -918,11 +918,11 @@
             font-size: 1.2rem;
         }
 
-        /* Checkout Section - NOW VISIBLE BY DEFAULT */
+        /* Checkout Section */
         .checkout-section {
             padding: 100px 0;
             background-color: #fff;
-            display: block; /* Changed from 'none' to 'block' */
+            display: block;
         }
 
         .checkout-form h3 {
@@ -974,109 +974,301 @@
             flex: 1;
         }
 
-        /* Payment Options */
-        .payment-options {
-            margin: 40px 0;
+        /* ===== NEW ENHANCED PAYMENT STYLES ===== */
+        .payment-options-enhanced {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .payment-option {
-            background-color: #f9f5f0;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
+        .payment-method-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            padding: 8px;
+            border-radius: 50px;
+        }
+
+        .method-tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px;
+            border: none;
+            background: transparent;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-gray);
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .payment-option.selected {
-            border-color: var(--color-secondary);
-            background-color: #ffecb3;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .method-tab i {
+            font-size: 1.2rem;
         }
 
-        .payment-option-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .payment-option-header i {
-            font-size: 2rem;
+        .method-tab.active {
+            background: white;
             color: var(--color-primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .payment-option-header h4 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .payment-instructions {
-            font-family: var(--font-body);
-            color: var(--color-gray);
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .payment-details {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
+        .payment-panel {
             display: none;
+            animation: fadeIn 0.3s;
         }
 
-        .payment-option.selected .payment-details {
+        .payment-panel.active {
             display: block;
         }
 
-        .payment-qr {
+        .payment-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .payment-header i {
+            font-size: 2.5rem;
+        }
+
+        .paypal-icon { color: #003087; }
+        .venmo-icon { color: #3d95ce; }
+        .cashapp-icon { color: #00d632; }
+
+        .payment-details-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+            background: #f9f5f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .qr-section {
             text-align: center;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            border: 2px dashed var(--color-secondary);
+        }
+
+        .qr-placeholder i {
+            font-size: 3rem;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+        }
+
+        .qr-note {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+        }
+
+        .details-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .detail-value code {
+            font-family: monospace;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .detail-value.highlight {
+            background: #fff3e0;
+            border: 2px solid var(--color-secondary);
+        }
+
+        .amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .copy-btn-small {
+            padding: 5px 12px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn-small:hover {
+            background: var(--color-secondary);
+        }
+
+        .verification-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f0f7ff;
+            border-radius: 15px;
+        }
+
+        .verify-note {
+            color: var(--color-gray);
+            margin: 10px 0 20px;
+            font-size: 0.95rem;
+        }
+
+        .verification-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             margin: 20px 0;
         }
 
-        .payment-qr img {
-            max-width: 200px;
-            border-radius: 10px;
-        }
-
-        .payment-info-box {
-            background-color: #f0f0f0;
+        .verify-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            text-align: center;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
         }
 
-        .payment-info-box .payment-tag {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .verify-option:hover {
+            border-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .verify-option.selected {
+            border-color: var(--color-secondary);
+            background: #fff3e0;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .verify-option.selected .radio-custom::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--color-secondary);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+
+        .option-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .option-content i {
+            font-size: 1.3rem;
             color: var(--color-primary);
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
         }
 
-        .copy-btn {
-            background-color: var(--color-primary);
+        .verification-input {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .verification-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .verify-submit {
+            padding: 12px 25px;
+            background: var(--color-primary);
             color: white;
             border: none;
-            padding: 8px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-left: 10px;
+            font-weight: 600;
         }
 
-        .copy-btn:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-primary);
+        .verify-submit:hover {
+            background: var(--color-secondary);
+        }
+
+        .complete-order-btn {
+            width: 100%;
+            padding: 18px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .complete-order-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Order Summary */
@@ -1129,7 +1321,7 @@
             padding: 100px 0;
             background-color: #fff;
             text-align: center;
-            display: none; /* Hidden until order is placed */
+            display: none;
         }
 
         .order-success.active {
@@ -1168,6 +1360,52 @@
             padding: 30px;
             margin: 30px 0;
             text-align: left;
+        }
+
+        .verification-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 20px 0;
+        }
+
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+
+        .timeline-step.active .step {
+            background: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+            position: relative;
         }
 
         /* Contact Section */
@@ -1389,6 +1627,10 @@
                 text-align: center;
                 gap: 40px;
             }
+            
+            .payment-details-card {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1559,7 +1801,7 @@
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation (unchanged) -->
     <header>
         <div class="container">
             <div class="logo">
@@ -1611,7 +1853,6 @@
                 <button class="close-cart" id="closeCart">&times;</button>
             </div>
             <div class="cart-items" id="cartItems">
-                <!-- Cart items will be added here dynamically -->
                 <p class="empty-cart-message" id="emptyCartMessage">Your cart is empty</p>
             </div>
             <div class="cart-total">
@@ -1641,17 +1882,11 @@
             <div class="story-content">
                 <div class="story-text">
                     <p class="story-intro">Just two sisters, one big one small, two different realms but still connected. Physical & spiritual.</p>
-                    
                     <p>My sister Kendra passed away September 10, 2020, and since that day I've never been the same. I guess we all haven't been the same. She was the glue leaving behind 3 beautiful daughters & 2 handsome sons, a brother & a mother.</p>
-                    
                     <p>To know Kendra is to love Kendra. She was bold, loud & real. She was unapologetically her. Most importantly she loved no matter what was thrown her way.</p>
-                    
                     <p>My sister was my best friend, my right hand. We did everything together. The strength she carried and all she endured was admirable.</p>
-                    
                     <p>Turning pain into positivity because of her, she's still my inspiration and this is just a continuation of dedication to her.</p>
-                    
                     <p class="signature">With love, Ashley</p>
-                    
                     <div class="memory-date">
                         <i class="fas fa-heart"></i>
                         <span>Forever in our hearts - September 10, 2020</span>
@@ -1965,7 +2200,7 @@
         </div>
     </section>
 
-    <!-- Order/Checkout Section - NOW VISIBLE -->
+    <!-- Order/Checkout Section with Enhanced Payment -->
     <section class="checkout-section" id="checkout">
         <div class="container">
             <h2 class="section-title">Complete Your Order</h2>
@@ -2014,65 +2249,296 @@
                         </div>
                     </div>
                     
-                    <div class="payment-options">
+                    <!-- REPLACED OLD PAYMENT OPTIONS WITH ENHANCED VERSION -->
+                    <div class="payment-options-enhanced">
                         <h3>Select Payment Method</h3>
                         
-                        <!-- PayPal Option -->
-                        <div class="payment-option" data-method="paypal">
-                            <div class="payment-option-header">
+                        <!-- Payment Method Tabs -->
+                        <div class="payment-method-tabs">
+                            <button class="method-tab active" onclick="switchPaymentTab('paypal', event)">
                                 <i class="fab fa-paypal"></i>
-                                <h4>PayPal</h4>
-                            </div>
-                            <p class="payment-instructions">Pay securely with your PayPal account</p>
-                            <div class="payment-details">
-                                <p>After placing your order, you'll receive an invoice via PayPal to complete your payment.</p>
-                                <div class="payment-info-box">
-                                    <p>PayPal Email:</p>
-                                    <span class="payment-tag">kendraslight@gmail.com</span>
-                                    <button class="copy-btn" onclick="copyToClipboard('kendraslight@gmail.com')">Copy</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Venmo Option -->
-                        <div class="payment-option" data-method="venmo">
-                            <div class="payment-option-header">
+                                PayPal
+                            </button>
+                            <button class="method-tab" onclick="switchPaymentTab('venmo', event)">
                                 <i class="fab fa-venmo"></i>
-                                <h4>Venmo</h4>
-                            </div>
-                            <p class="payment-instructions">Send payment via Venmo</p>
-                            <div class="payment-details">
-                                <p>Send payment to our Venmo account. Please include your order number in the note.</p>
-                                <div class="payment-info-box">
-                                    <p>Venmo Handle:</p>
-                                    <span class="payment-tag">@KendrasLight</span>
-                                    <button class="copy-btn" onclick="copyToClipboard('@KendrasLight')">Copy</button>
-                                </div>
-                            </div>
+                                Venmo
+                            </button>
+                            <button class="method-tab" onclick="switchPaymentTab('cashapp', event)">
+                                <i class="fas fa-money-bill-wave"></i>
+                                CashApp
+                            </button>
                         </div>
                         
-                        <!-- CashApp Option -->
-                        <div class="payment-option" data-method="cashapp">
-                            <div class="payment-option-header">
-                                <i class="fas fa-money-bill-wave"></i>
-                                <h4>CashApp</h4>
+                        <!-- PayPal Panel -->
+                        <div class="payment-panel active" id="paypal-panel">
+                            <div class="payment-header">
+                                <i class="fab fa-paypal paypal-icon"></i>
+                                <h4>Pay with PayPal</h4>
                             </div>
-                            <p class="payment-instructions">Send payment via CashApp</p>
-                            <div class="payment-details">
-                                <p>Send payment to our CashApp account. Include your order number in the memo.</p>
-                                <div class="payment-info-box">
-                                    <p>CashApp Tag:</p>
-                                    <span class="payment-tag">$KendrasLight</span>
-                                    <button class="copy-btn" onclick="copyToClipboard('$KendrasLight')">Copy</button>
+                            
+                            <div class="payment-details-card">
+                                <div class="qr-section">
+                                    <div class="qr-placeholder">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>Scan QR Code</span>
+                                    </div>
+                                    <p class="qr-note">Or use details below</p>
+                                </div>
+                                
+                                <div class="details-section">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Send to:</span>
+                                        <div class="detail-value">
+                                            <code>kendraslight@gmail.com</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('kendraslight@gmail.com')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Amount:</span>
+                                        <div class="detail-value highlight">
+                                            <span class="amount" id="paypalAmount">$0.00</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Reference:</span>
+                                        <div class="detail-value">
+                                            <code id="paypalRef">Order #KL123456</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard(document.getElementById('paypalRef').textContent)">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="verification-section">
+                                <h4>Verify Your Payment</h4>
+                                <p class="verify-note">After sending payment, please verify to complete your order</p>
+                                
+                                <div class="verification-options">
+                                    <div class="verify-option" onclick="selectVerification('paypal', 'screenshot', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-camera"></i>
+                                            <div>
+                                                <strong>Upload Screenshot</strong>
+                                                <p>Take a photo of your payment confirmation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="verify-option" onclick="selectVerification('paypal', 'transaction', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-hashtag"></i>
+                                            <div>
+                                                <strong>Enter Transaction ID</strong>
+                                                <p>Copy the transaction ID from PayPal</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="verify-option" onclick="selectVerification('paypal', 'email', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-envelope"></i>
+                                            <div>
+                                                <strong>Email Confirmation</strong>
+                                                <p>We'll verify with your email address</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="verification-input" id="paypalVerificationInput" style="display: none;">
+                                    <input type="text" placeholder="Paste transaction ID or upload screenshot">
+                                    <button class="verify-submit">Submit Verification</button>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="complete-order-btn" onclick="completeOrderWithVerification('paypal')">
+                                <i class="fas fa-check-circle"></i> Complete Order & Verify Payment
+                            </button>
+                        </div>
+                        
+                        <!-- Venmo Panel -->
+                        <div class="payment-panel" id="venmo-panel">
+                            <div class="payment-header">
+                                <i class="fab fa-venmo venmo-icon"></i>
+                                <h4>Pay with Venmo</h4>
+                            </div>
+                            
+                            <div class="payment-details-card">
+                                <div class="qr-section">
+                                    <div class="qr-placeholder">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>Scan QR Code</span>
+                                    </div>
+                                    <p class="qr-note">Or use details below</p>
+                                </div>
+                                
+                                <div class="details-section">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Send to:</span>
+                                        <div class="detail-value">
+                                            <code>@KendrasLight</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('@KendrasLight')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Amount:</span>
+                                        <div class="detail-value highlight">
+                                            <span class="amount" id="venmoAmount">$0.00</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Note:</span>
+                                        <div class="detail-value">
+                                            <code id="venmoRef">Order #KL123456</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard(document.getElementById('venmoRef').textContent)">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="verification-section">
+                                <h4>Verify Your Payment</h4>
+                                <p class="verify-note">After sending payment, please verify to complete your order</p>
+                                
+                                <div class="verification-options">
+                                    <div class="verify-option" onclick="selectVerification('venmo', 'screenshot', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-camera"></i>
+                                            <div>
+                                                <strong>Upload Screenshot</strong>
+                                                <p>Screenshot of your Venmo payment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="verify-option" onclick="selectVerification('venmo', 'username', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-user"></i>
+                                            <div>
+                                                <strong>Enter Your Venmo Username</strong>
+                                                <p>We'll verify the payment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="verification-input" id="venmoVerificationInput" style="display: none;">
+                                    <input type="text" placeholder="Enter your Venmo username">
+                                    <button class="verify-submit">Submit Verification</button>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="complete-order-btn" onclick="completeOrderWithVerification('venmo')">
+                                <i class="fas fa-check-circle"></i> Complete Order & Verify Payment
+                            </button>
+                        </div>
+                        
+                        <!-- CashApp Panel -->
+                        <div class="payment-panel" id="cashapp-panel">
+                            <div class="payment-header">
+                                <i class="fas fa-money-bill-wave cashapp-icon"></i>
+                                <h4>Pay with CashApp</h4>
+                            </div>
+                            
+                            <div class="payment-details-card">
+                                <div class="qr-section">
+                                    <div class="qr-placeholder">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>Scan QR Code</span>
+                                    </div>
+                                    <p class="qr-note">Or use details below</p>
+                                </div>
+                                
+                                <div class="details-section">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Send to:</span>
+                                        <div class="detail-value">
+                                            <code>$KendrasLight</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('$KendrasLight')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Amount:</span>
+                                        <div class="detail-value highlight">
+                                            <span class="amount" id="cashappAmount">$0.00</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Note:</span>
+                                        <div class="detail-value">
+                                            <code id="cashappRef">Order #KL123456</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard(document.getElementById('cashappRef').textContent)">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="verification-section">
+                                <h4>Verify Your Payment</h4>
+                                <p class="verify-note">After sending payment, please verify to complete your order</p>
+                                
+                                <div class="verification-options">
+                                    <div class="verify-option" onclick="selectVerification('cashapp', 'screenshot', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-camera"></i>
+                                            <div>
+                                                <strong>Upload Screenshot</strong>
+                                                <p>Screenshot of CashApp payment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="verify-option" onclick="selectVerification('cashapp', 'cashtag', event)">
+                                        <div class="radio-custom"></div>
+                                        <div class="option-content">
+                                            <i class="fas fa-tag"></i>
+                                            <div>
+                                                <strong>Enter Your Cashtag</strong>
+                                                <p>We'll verify the payment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="verification-input" id="cashappVerificationInput" style="display: none;">
+                                    <input type="text" placeholder="Enter your Cashtag (e.g., $username)">
+                                    <button class="verify-submit">Submit Verification</button>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="complete-order-btn" onclick="completeOrderWithVerification('cashapp')">
+                                <i class="fas fa-check-circle"></i> Complete Order & Verify Payment
+                            </button>
                         </div>
                     </div>
                     
                     <div class="order-summary">
                         <h3>Order Summary</h3>
                         <div id="orderSummary">
-                            <!-- Order items will be added here -->
                             <p class="empty-cart-message">Add items to your cart to see order summary</p>
                         </div>
                         <div class="summary-total">
@@ -2080,10 +2546,6 @@
                             <span class="total-price" id="orderTotal">$0.00</span>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn" style="width: 100%; padding: 15px; margin-top: 30px; font-size: 1.2rem;">
-                        Place Order
-                    </button>
                 </form>
             </div>
         </div>
@@ -2219,6 +2681,8 @@
     // Shopping Cart System
     let cart = [];
     let selectedPaymentMethod = '';
+    let selectedVerificationMethod = {};
+    let orderReference = '';
 
     // DOM Elements
     const cartIcon = document.getElementById('cartIcon');
@@ -2492,142 +2956,238 @@
         });
     };
 
-    function processOrder() {
+    // ===== NEW PAYMENT FUNCTIONS =====
+    
+    function switchPaymentTab(method, event) {
+        document.querySelectorAll('.method-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.payment-panel').forEach(panel => panel.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(`${method}-panel`).classList.add('active');
+        
+        updatePaymentAmounts();
+    }
+
+    function updatePaymentAmounts() {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        const paypalAmount = document.getElementById('paypalAmount');
+        const venmoAmount = document.getElementById('venmoAmount');
+        const cashappAmount = document.getElementById('cashappAmount');
+        
+        if (paypalAmount) paypalAmount.textContent = `$${total.toFixed(2)}`;
+        if (venmoAmount) venmoAmount.textContent = `$${total.toFixed(2)}`;
+        if (cashappAmount) cashappAmount.textContent = `$${total.toFixed(2)}`;
+        
+        // Generate unique order reference
+        orderReference = `KL${Date.now().toString().slice(-8)}`;
+        
+        const paypalRef = document.getElementById('paypalRef');
+        const venmoRef = document.getElementById('venmoRef');
+        const cashappRef = document.getElementById('cashappRef');
+        
+        if (paypalRef) paypalRef.textContent = `Order #${orderReference}`;
+        if (venmoRef) venmoRef.textContent = `Order #${orderReference}`;
+        if (cashappRef) cashappRef.textContent = `Order #${orderReference}`;
+    }
+
+    function selectVerification(method, type, event) {
+        // Remove selected class from all options in this panel
+        document.querySelectorAll(`#${method}-panel .verify-option`).forEach(opt => {
+            opt.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked option
+        event.currentTarget.classList.add('selected');
+        
+        // Store selection
+        if (!selectedVerificationMethod[method]) {
+            selectedVerificationMethod[method] = {};
+        }
+        selectedVerificationMethod[method].type = type;
+        
+        // Show input field based on type
+        const inputDiv = document.getElementById(`${method}VerificationInput`);
+        inputDiv.style.display = 'flex';
+        
+        // Update input placeholder
+        const input = inputDiv.querySelector('input');
+        if (type === 'screenshot') {
+            input.placeholder = 'Click to upload screenshot';
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                if (this.files && this.files[0]) {
+                    console.log('File selected:', this.files[0].name);
+                }
+            };
+        } else if (type === 'transaction') {
+            input.placeholder = 'Enter transaction ID (e.g., 2AB34567CD890123)';
+            input.type = 'text';
+        } else if (type === 'email') {
+            input.placeholder = 'Enter your PayPal email';
+            input.type = 'email';
+        } else if (type === 'username') {
+            input.placeholder = 'Enter your Venmo username';
+            input.type = 'text';
+        } else if (type === 'cashtag') {
+            input.placeholder = 'Enter your Cashtag (e.g., $username)';
+            input.type = 'text';
+        }
+    }
+
+    function completeOrderWithVerification(method) {
         if (cart.length === 0) {
-            alert('Your cart is empty!');
+            alert('Your cart is empty');
             return;
         }
         
-        // Validate form fields
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-        const city = document.getElementById('city').value;
-        const state = document.getElementById('state').value;
-        const zip = document.getElementById('zip').value;
+        // Check if verification method selected
+        if (!selectedVerificationMethod[method] || !selectedVerificationMethod[method].type) {
+            alert('Please select a verification method');
+            return;
+        }
+        
+        // Validate shipping info
+        const firstName = document.getElementById('firstName')?.value;
+        const lastName = document.getElementById('lastName')?.value;
+        const email = document.getElementById('email')?.value;
+        const phone = document.getElementById('phone')?.value;
+        const address = document.getElementById('address')?.value;
+        const city = document.getElementById('city')?.value;
+        const state = document.getElementById('state')?.value;
+        const zip = document.getElementById('zip')?.value;
         
         if (!firstName || !lastName || !email || !phone || !address || !city || !state || !zip) {
-            alert('Please fill in all shipping information fields');
+            alert('Please complete all shipping information fields');
             return;
         }
         
-        if (!selectedPaymentMethod) {
-            alert('Please select a payment method');
+        // Get verification input
+        const inputDiv = document.getElementById(`${method}VerificationInput`);
+        const input = inputDiv.querySelector('input');
+        
+        if (!input.value.trim()) {
+            alert('Please enter the requested information');
             return;
         }
         
-        // Get form data
-        const formData = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone,
-            address: address,
-            city: city,
-            state: state,
-            zip: zip,
-            paymentMethod: selectedPaymentMethod,
-            orderItems: [...cart],
-            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        // Calculate total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        // Store order with verification info
+        const orderData = {
+            orderNumber: orderReference,
+            paymentMethod: method,
+            verificationType: selectedVerificationMethod[method].type,
+            verificationValue: input.value,
+            customer: {
+                firstName, lastName, email, phone,
+                address, city, state, zip
+            },
+            items: [...cart],
+            total: total,
+            status: 'pending_verification',
+            date: new Date().toISOString()
         };
         
-        // Generate order number
-        const orderNumber = 'KL' + Date.now().toString().slice(-8);
+        // Save order to history
+        saveOrderToHistory(orderData);
         
-        // Display payment instructions based on selected method
-        let instructions = '';
-        switch(selectedPaymentMethod) {
-            case 'paypal':
-                instructions = `
-                    <h3>📧 PayPal Payment Instructions:</h3>
-                    <p><strong>Order #${orderNumber}</strong></p>
-                    <p>Please send $${formData.total.toFixed(2)} to:</p>
-                    <p><strong>PayPal Email:</strong> kendraslight@gmail.com</p>
-                    <p>Include your order number <strong>${orderNumber}</strong> in the payment note.</p>
-                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
-                `;
-                break;
-            case 'venmo':
-                instructions = `
-                    <h3>💚 Venmo Payment Instructions:</h3>
-                    <p><strong>Order #${orderNumber}</strong></p>
-                    <p>Please send $${formData.total.toFixed(2)} to:</p>
-                    <p><strong>Venmo Handle:</strong> @KendrasLight</p>
-                    <p>Include your order number <strong>${orderNumber}</strong> in the payment note.</p>
-                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
-                `;
-                break;
-            case 'cashapp':
-                instructions = `
-                    <h3>💵 CashApp Payment Instructions:</h3>
-                    <p><strong>Order #${orderNumber}</strong></p>
-                    <p>Please send $${formData.total.toFixed(2)} to:</p>
-                    <p><strong>CashApp Tag:</strong> $KendrasLight</p>
-                    <p>Include your order number <strong>${orderNumber}</strong> in the payment memo.</p>
-                    <p>Once payment is sent, we'll process your order within 1-2 business days.</p>
-                `;
-                break;
-        }
+        // Show success message with payment tracking
+        showVerificationSuccess(orderData);
         
-        // Display instructions on success page
-        if (paymentInstructions) {
-            paymentInstructions.innerHTML = instructions;
-        }
+        // Clear cart
+        cart = [];
+        updateCart();
+        updatePaymentAmounts();
         
-        // Send order email to owner (you)
-        sendOrderEmailToOwner(formData, orderNumber);
+        // Reset verification selections
+        selectedVerificationMethod = {};
+        document.querySelectorAll('.verify-option').forEach(opt => opt.classList.remove('selected'));
+        document.querySelectorAll('.verification-input').forEach(div => div.style.display = 'none');
         
-        // Show success message
+        // Hide checkout, show success
         checkoutSection.style.display = 'none';
         orderSuccess.style.display = 'block';
         orderSuccess.classList.add('active');
         orderSuccess.scrollIntoView({ behavior: 'smooth' });
         
-        // Clear cart
-        cart = [];
-        updateCart();
-        
-        // Reset form
-        if (orderForm) orderForm.reset();
-        selectedPaymentMethod = '';
-        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+        // Update success message
+        updateSuccessMessage(orderData);
     }
 
-    function sendOrderEmailToOwner(orderData, orderNumber) {
-        const orderDetails = `
-New Order Received! Order #${orderNumber}
-
-Customer Information:
-- Name: ${orderData.firstName} ${orderData.lastName}
-- Email: ${orderData.email}
-- Phone: ${orderData.phone}
-- Address: ${orderData.address}, ${orderData.city}, ${orderData.state} ${orderData.zip}
-
-Order Items:
-${orderData.orderItems.map(item => `- ${item.product} x${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
-
-Total Amount: $${orderData.total.toFixed(2)}
+    function showVerificationSuccess(orderData) {
+        const message = `
+✅ Order #${orderData.orderNumber} Submitted!
+        
 Payment Method: ${orderData.paymentMethod}
-
-Instructions for you (Ashley):
-1. Contact customer to confirm order
-2. Wait for payment via ${orderData.paymentMethod}
-3. Once payment received, prepare and ship order
-4. Update customer with tracking information
+Verification: ${orderData.verificationType}
+        
+Next steps:
+1️⃣ We'll verify your payment within 24 hours
+2️⃣ You'll get an email confirmation once verified
+3️⃣ We'll start crafting your candles
+        
+Thank you for choosing Kendra's Light! 💛
         `;
         
-        console.log('ORDER DETAILS (Email to owner):', orderDetails);
+        alert(message);
+    }
+
+    function updateSuccessMessage(orderData) {
+        if (!paymentInstructions) return;
         
-        // In a real application, you would send this via email
-        // For now, we'll show an alert
-        alert(`Order #${orderNumber} received! Check your email for details. Please wait for payment via ${orderData.paymentMethod} before shipping.`);
+        const methodIcons = {
+            paypal: '<i class="fab fa-paypal"></i>',
+            venmo: '<i class="fab fa-venmo"></i>',
+            cashapp: '<i class="fas fa-money-bill-wave"></i>'
+        };
+        
+        paymentInstructions.innerHTML = `
+            <div class="verification-status">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    ${methodIcons[orderData.paymentMethod]}
+                    <h4 style="color: #856404; margin:0;">⏳ Payment Pending Verification</h4>
+                </div>
+                <p><strong>Order #${orderData.orderNumber}</strong></p>
+                <p>Payment Method: ${orderData.paymentMethod}</p>
+                <p>Verification: ${orderData.verificationType}</p>
+                <p>Amount: $${orderData.total.toFixed(2)}</p>
+                <div class="verification-timeline">
+                    <div class="timeline-step active">
+                        <span class="step">1</span>
+                        <span>Payment Sent</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step">2</span>
+                        <span>Verifying (24h)</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step">3</span>
+                        <span>Processing</span>
+                    </div>
+                    <div class="timeline-step">
+                        <span class="step">4</span>
+                        <span>Shipped</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">We'll email you at ${orderData.customer.email} once verified.</p>
+            </div>
+        `;
+    }
+
+    function saveOrderToHistory(orderData) {
+        let orders = JSON.parse(localStorage.getItem('kendrasLightOrders') || '[]');
+        orders.unshift(orderData);
+        localStorage.setItem('kendrasLightOrders', JSON.stringify(orders));
+        
+        // Log to console for demo
+        console.log('Order saved:', orderData);
     }
 
     // Initialize Product Image Click Handlers
     function initProductImageClick() {
-        // Add click event to all product image containers
         const productImageContainers = document.querySelectorAll('.product-image');
         productImageContainers.forEach(container => {
             container.addEventListener('click', function(e) {
@@ -2638,23 +3198,18 @@ Instructions for you (Ashley):
                     const imageSrc = img.src;
                     const imageAlt = img.alt;
                     
-                    // Check if the image source is valid
                     if (imageSrc && imageSrc !== '' && !img.complete) {
-                        // Image hasn't loaded yet, wait for it
                         img.onload = function() {
                             openLightbox(imageSrc, imageAlt);
                         };
                         img.onerror = function() {
-                            // Image failed to load
                             const productCard = container.closest('.product-card');
                             const productName = productCard ? productCard.querySelector('.product-header h4').textContent : 'Product';
                             alert(`${productName} - Image preview coming soon!`);
                         };
                     } else if (imageSrc && imageSrc !== '' && img.naturalWidth > 0) {
-                        // Image has loaded successfully
                         openLightbox(imageSrc, imageAlt);
                     } else {
-                        // Image failed to load or is placeholder
                         const productCard = container.closest('.product-card');
                         const productName = productCard ? productCard.querySelector('.product-header h4').textContent : 'Product';
                         alert(`${productName} - Image preview coming soon!`);
@@ -2669,12 +3224,9 @@ Instructions for you (Ashley):
         const sizeOptions = document.querySelectorAll('.size-option');
         sizeOptions.forEach(option => {
             option.addEventListener('click', function() {
-                // Remove selected class from all options in this product
                 const productCard = this.closest('.product-card');
                 const allOptions = productCard.querySelectorAll('.size-option');
                 allOptions.forEach(opt => opt.classList.remove('selected'));
-                
-                // Add selected class to clicked option
                 this.classList.add('selected');
             });
         });
@@ -2694,21 +3246,6 @@ Instructions for you (Ashley):
         });
     }
 
-    // Initialize Payment Method Selection
-    function initPaymentMethods() {
-        const paymentOptions = document.querySelectorAll('.payment-option');
-        paymentOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from all options
-                paymentOptions.forEach(opt => opt.classList.remove('selected'));
-                
-                // Add selected class to clicked option
-                this.classList.add('selected');
-                selectedPaymentMethod = this.getAttribute('data-method');
-            });
-        });
-    }
-
     // Initialize Cart Functionality
     function initCart() {
         // Add to cart buttons for candles
@@ -2719,7 +3256,6 @@ Instructions for you (Ashley):
                 const productCard = this.closest('.product-card');
                 const product = this.getAttribute('data-product');
                 
-                // Get selected size
                 const selectedSize = productCard.querySelector('.size-option.selected');
                 
                 if (!selectedSize) {
@@ -2765,11 +3301,11 @@ Instructions for you (Ashley):
             });
         }
         
-        // Order form submission
+        // Prevent default form submission
         if (orderForm) {
             orderForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                processOrder();
+                // Don't do anything - payment is handled by the new buttons
             });
         }
     }
@@ -2789,7 +3325,6 @@ Instructions for you (Ashley):
                 }
             });
             
-            // Close menu when clicking on a link
             const navLinks = document.querySelectorAll('nav ul li a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2811,15 +3346,10 @@ Instructions for you (Ashley):
             messageForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Get form values
                 const name = this.querySelector('input[type="text"]').value;
                 const email = this.querySelector('input[type="email"]').value;
-                const message = this.querySelector('textarea').value;
                 
-                // In a real application, you would send this data to a server
                 alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
-                
-                // Reset the form
                 this.reset();
             });
         }
@@ -2844,7 +3374,6 @@ Instructions for you (Ashley):
             nextBtn.addEventListener('click', () => navigateLightbox(1));
         }
         
-        // Close lightbox when clicking outside the image
         if (lightbox) {
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox) {
@@ -2853,7 +3382,6 @@ Instructions for you (Ashley):
             });
         }
         
-        // Close lightbox with Escape key
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('lightbox');
             if (lightbox && lightbox.classList.contains('active')) {
@@ -2870,34 +3398,17 @@ Instructions for you (Ashley):
 
     // Initialize Everything When Page Loads
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize mobile menu
         initMobileMenu();
-        
-        // Initialize contact form
         initContactForm();
-        
-        // Initialize product size selection
         initProductSizeSelection();
-        
-        // Initialize wax melts click handlers
         initWaxMelts();
-        
-        // Initialize payment method selection
-        initPaymentMethods();
-        
-        // Initialize cart functionality
         initCart();
-        
-        // Initialize lightbox
         initLightbox();
-        
-        // Initialize product image click handlers
         initProductImageClick();
         
-        // Initialize cart display
         updateCart();
+        updatePaymentAmounts();
         
-        // Make sure checkout section is visible
         if (checkoutSection) {
             checkoutSection.style.display = 'block';
         }
