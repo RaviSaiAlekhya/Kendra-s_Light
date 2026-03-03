@@ -2873,141 +2873,135 @@
     }
 
     // Reviews Functionality
-    function initReviews() {
-        const reviewsContainer = document.getElementById('reviewsContainer');
-        const reviewForm = document.getElementById('reviewForm');
-        
-        let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
+function initReviews() {
+    const reviewsContainer = document.getElementById('reviewsContainer');
+    const reviewForm = document.getElementById('reviewForm');
+    
+    let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
+    
+    // Start with empty reviews - no fake data!
+    if (reviews.length === 0) {
+        reviews = [];
+        localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+    }
+    
+    function displayReviews() {
+        reviewsContainer.innerHTML = '';
         
         if (reviews.length === 0) {
-            reviews = [
-                {
-                    name: "Sarah M.",
-                    product: "Sea Spa",
-                    rating: 5,
-                    text: "This candle is absolutely amazing! The scent is calming and fills my entire living room. I've bought three already!",
-                    date: "2024-02-15"
-                },
-                {
-                    name: "Jennifer L.",
-                    product: "Vanilla Cinnamon",
-                    rating: 5,
-                    text: "Reminds me of baking with my grandmother. Such a warm, comforting scent. Perfect for chilly evenings.",
-                    date: "2024-02-10"
-                },
-                {
-                    name: "Michelle T.",
-                    product: "Coconut Milk & Patchouli",
-                    rating: 4,
-                    text: "Unique and exotic scent. Not what I expected but in the best way possible. Will definitely order again!",
-                    date: "2024-02-05"
-                }
-            ];
-            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+            // Show a nice message when there are no reviews
+            reviewsContainer.innerHTML = `
+                <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
+                    <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
+                    <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
+                </div>
+            `;
+            return;
         }
         
-        function displayReviews() {
-            reviewsContainer.innerHTML = '';
+        reviews.slice().reverse().forEach(review => {
+            const reviewCard = document.createElement('div');
+            reviewCard.className = 'review-card';
             
-            reviews.slice().reverse().forEach(review => {
-                const reviewCard = document.createElement('div');
-                reviewCard.className = 'review-card';
-                
-                let stars = '';
-                for (let i = 1; i <= 5; i++) {
-                    stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
-                }
-                
-                reviewCard.innerHTML = `
-                    <div class="review-header">
-                        <span class="reviewer-name">${review.name}</span>
-                        <span class="review-product">${review.product}</span>
-                    </div>
-                    <div class="review-rating">
-                        ${stars}
-                    </div>
-                    <p class="review-text">"${review.text}"</p>
-                    <div class="review-date">${review.date}</div>
-                `;
-                
-                reviewsContainer.appendChild(reviewCard);
-            });
-        }
-        
-        const stars = document.querySelectorAll('.stars i');
-        const ratingInput = document.getElementById('reviewRating');
-        
-        function highlightStars(rating) {
-            stars.forEach(star => {
-                const starRating = star.getAttribute('data-rating');
-                if (starRating <= rating) {
-                    star.classList.remove('far');
-                    star.classList.add('fas');
-                } else {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                }
-            });
-        }
-        
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
+            }
+            
+            reviewCard.innerHTML = `
+                <div class="review-header">
+                    <span class="reviewer-name">${review.name}</span>
+                    <span class="review-product">${review.product}</span>
+                </div>
+                <div class="review-rating">
+                    ${stars}
+                </div>
+                <p class="review-text">"${review.text}"</p>
+                <div class="review-date">${review.date}</div>
+            `;
+            
+            reviewsContainer.appendChild(reviewCard);
+        });
+    }
+    
+    // Star rating hover functionality
+    const stars = document.querySelectorAll('.stars i');
+    const ratingInput = document.getElementById('reviewRating');
+    
+    function highlightStars(rating) {
         stars.forEach(star => {
-            star.addEventListener('mouseover', function() {
-                const rating = this.getAttribute('data-rating');
-                highlightStars(rating);
-            });
-            
-            star.addEventListener('mouseout', function() {
-                const currentRating = ratingInput.value;
-                highlightStars(currentRating);
-            });
-            
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-rating');
-                ratingInput.value = rating;
-                highlightStars(rating);
-            });
+            const starRating = star.getAttribute('data-rating');
+            if (starRating <= rating) {
+                star.classList.remove('far');
+                star.classList.add('fas');
+            } else {
+                star.classList.remove('fas');
+                star.classList.add('far');
+            }
+        });
+    }
+    
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const rating = this.getAttribute('data-rating');
+            highlightStars(rating);
         });
         
-        if (reviewForm) {
-            reviewForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('reviewerName').value;
-                const product = document.getElementById('reviewProduct').value;
-                const rating = document.getElementById('reviewRating').value;
-                const text = document.getElementById('reviewText').value;
-                
-                if (!name || !product || !text) {
-                    alert('Please fill in all fields');
-                    return;
-                }
-                
-                const newReview = {
-                    name: name,
-                    product: product,
-                    rating: parseInt(rating),
-                    text: text,
-                    date: new Date().toISOString().split('T')[0]
-                };
-                
-                reviews.push(newReview);
-                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-                
-                displayReviews();
-                reviewForm.reset();
-                
-                stars.forEach(star => {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                });
-                ratingInput.value = '5';
-                
-                alert('Thank you for your review!');
-            });
-        }
+        star.addEventListener('mouseout', function() {
+            const currentRating = ratingInput.value;
+            highlightStars(currentRating);
+        });
         
-        displayReviews();
+        star.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            ratingInput.value = rating;
+            highlightStars(rating);
+        });
+    });
+    
+    // Handle review form submission
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewerName').value;
+            const product = document.getElementById('reviewProduct').value;
+            const rating = document.getElementById('reviewRating').value;
+            const text = document.getElementById('reviewText').value;
+            
+            if (!name || !product || !text) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const newReview = {
+                name: name,
+                product: product,
+                rating: parseInt(rating),
+                text: text,
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            reviews.push(newReview);
+            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+            
+            displayReviews();
+            reviewForm.reset();
+            
+            // Reset stars
+            stars.forEach(star => {
+                star.classList.remove('fas');
+                star.classList.add('far');
+            });
+            ratingInput.value = '5';
+            
+            alert('Thank you for your review!');
+        });
     }
+    
+    displayReviews();
+}
 
     // Mobile menu
     function initMobileMenu() {
