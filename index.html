@@ -1846,33 +1846,6 @@
             <h2 class="section-title">Our Handcrafted Candles</h2>
             <p class="section-subtitle">Each scent is carefully crafted to bring comfort, peace, and light</p>
             
-            <!-- Product Search and Filter -->
-            <div class="product-search-section">
-                <div class="search-container">
-                    <input type="text" id="productSearch" placeholder="🔍 Search candles by name or scent..." class="search-input">
-                    <div class="filter-container">
-                        <select id="scentFilter" class="filter-select">
-                            <option value="all">All Scents</option>
-                            <option value="sea">Sea/Ocean</option>
-                            <option value="woody">Woody/Earthy</option>
-                            <option value="sweet">Sweet/Fruity</option>
-                            <option value="spicy">Spicy/Warm</option>
-                            <option value="floral">Floral</option>
-                        </select>
-                        
-                        <select id="priceFilter" class="filter-select">
-                            <option value="all">All Prices</option>
-                            <option value="under15">Under $15</option>
-                            <option value="15to20">$15 - $20</option>
-                            <option value="over20">Over $20</option>
-                        </select>
-                        
-                        <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
-                    </div>
-                    <div id="searchResultsCount" class="search-results-count"></div>
-                </div>
-            </div>
-            
             <div class="product-category">
                 <h3><i class="fas fa-fire"></i> Original Scent Candles</h3>
                 <div class="products-grid" id="productsGrid">
@@ -2055,13 +2028,13 @@
                         <div class="product-details">
                             <p class="product-desc">Rich, timeless, and elegantly smooth</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="15">
+                                <div class="size-option" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
-                                    <span class="price">$15</span>
+                                    <span class="price">$14</span>
                                 </div>
-                                <div class="size-option" data-size="12oz" data-price="19">
+                                <div class="size-option" data-size="12oz" data-price="18">
                                     <span class="size">12 oz</span>
-                                    <span class="price">$19</span>
+                                    <span class="price">$18</span>
                                 </div>
                             </div>
                             <button class="add-to-cart" data-product="Vintage Reserve">Add to Cart</button>
@@ -2103,13 +2076,13 @@
                         <div class="product-details">
                             <p class="product-desc">Bold, sensual, and deeply captivating</p>
                             <div class="product-sizes">
-                                <div class="size-option" data-size="8oz" data-price="15">
+                                <div class="size-option" data-size="8oz" data-price="14">
                                     <span class="size">8 oz</span>
-                                    <span class="price">$15</span>
+                                    <span class="price">$14</span>
                                 </div>
-                                <div class="size-option" data-size="12oz" data-price="19">
+                                <div class="size-option" data-size="12oz" data-price="18">
                                     <span class="size">12 oz</span>
-                                    <span class="price">$19</span>
+                                    <span class="price">$18</span>
                                 </div>
                             </div>
                             <button class="add-to-cart" data-product="Ebony Musk">Add to Cart</button>
@@ -2988,106 +2961,6 @@ function initProductSizeSelection() {
         });
     }
 
-    // Product Search and Filter
-    function initProductSearch() {
-        const searchInput = document.getElementById('productSearch');
-        const scentFilter = document.getElementById('scentFilter');
-        const priceFilter = document.getElementById('priceFilter');
-        const clearBtn = document.getElementById('clearFilters');
-        const resultsCount = document.getElementById('searchResultsCount');
-        const productsGrid = document.getElementById('productsGrid');
-        const allProducts = Array.from(document.querySelectorAll('.product-card'));
-        
-        allProducts.forEach(product => {
-            const name = product.querySelector('.product-header h4').textContent.toLowerCase();
-            const desc = product.querySelector('.product-desc').textContent.toLowerCase();
-            const text = (name + ' ' + desc).toLowerCase();
-            
-            let scentCategory = 'other';
-            if (text.includes('sea') || text.includes('ocean') || text.includes('sand')) {
-                scentCategory = 'sea';
-            } else if (text.includes('wood') || text.includes('patchouli') || text.includes('timber') || text.includes('earthy')) {
-                scentCategory = 'woody';
-            } else if (text.includes('melon') || text.includes('coconut') || text.includes('vanilla') || text.includes('sweet')) {
-                scentCategory = 'sweet';
-            } else if (text.includes('cinnamon') || text.includes('spice') || text.includes('warm')) {
-                scentCategory = 'spicy';
-            } else if (text.includes('floral') || text.includes('flower')) {
-                scentCategory = 'floral';
-            }
-            
-            product.setAttribute('data-scent', scentCategory);
-        });
-        
-        function filterProducts() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const scentValue = scentFilter.value;
-            const priceValue = priceFilter.value;
-            
-            let visibleCount = 0;
-            
-            allProducts.forEach(product => {
-                const name = product.querySelector('.product-header h4').textContent.toLowerCase();
-                const desc = product.querySelector('.product-desc').textContent.toLowerCase();
-                const scent = product.getAttribute('data-scent');
-                
-                let priceMatch = true;
-                if (priceValue !== 'all') {
-                    const priceElements = product.querySelectorAll('.size-option');
-                    let productMinPrice = Infinity;
-                    priceElements.forEach(el => {
-                        const price = parseFloat(el.getAttribute('data-price'));
-                        if (price < productMinPrice) productMinPrice = price;
-                    });
-                    
-                    if (priceValue === 'under15' && productMinPrice >= 15) priceMatch = false;
-                    else if (priceValue === '15to20' && (productMinPrice < 15 || productMinPrice > 20)) priceMatch = false;
-                    else if (priceValue === 'over20' && productMinPrice <= 20) priceMatch = false;
-                }
-                
-                const searchMatch = searchTerm === '' || 
-                    name.includes(searchTerm) || 
-                    desc.includes(searchTerm);
-                
-                const scentMatch = scentValue === 'all' || scent === scentValue;
-                
-                if (searchMatch && scentMatch && priceMatch) {
-                    product.style.display = '';
-                    visibleCount++;
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-            
-            resultsCount.textContent = `Showing ${visibleCount} of ${allProducts.length} products`;
-            
-            let noResultsMsg = document.querySelector('.no-products-message');
-            if (visibleCount === 0) {
-                if (!noResultsMsg) {
-                    noResultsMsg = document.createElement('div');
-                    noResultsMsg.className = 'no-products-message';
-                    noResultsMsg.innerHTML = '😔 No products match your filters. Try adjusting your search!';
-                    productsGrid.appendChild(noResultsMsg);
-                }
-            } else if (noResultsMsg) {
-                noResultsMsg.remove();
-            }
-        }
-        
-        searchInput.addEventListener('input', filterProducts);
-        scentFilter.addEventListener('change', filterProducts);
-        priceFilter.addEventListener('change', filterProducts);
-        
-        clearBtn.addEventListener('click', function() {
-            searchInput.value = '';
-            scentFilter.value = 'all';
-            priceFilter.value = 'all';
-            filterProducts();
-        });
-        
-        resultsCount.textContent = `Showing ${allProducts.length} of ${allProducts.length} products`;
-    }
-
     // Reviews Functionality
     function initReviews() {
         const reviewsContainer = document.getElementById('reviewsContainer');
@@ -3278,7 +3151,6 @@ function initProductSizeSelection() {
         initWaxMelts();
         initCart();
         initLightbox();
-        initProductSearch();
         initReviews();
         loadCartFromLocalStorage();
         
