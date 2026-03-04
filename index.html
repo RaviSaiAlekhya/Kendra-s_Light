@@ -910,6 +910,53 @@
             font-size: 1.2rem;
         }
 
+        /* Cart breakdown styles */
+        .cart-breakdown {
+            padding: 15px 25px;
+            background-color: #f9f5f0;
+            border-top: 1px solid #eee;
+            font-family: var(--font-body);
+        }
+
+        .cart-breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .cart-breakdown-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid var(--color-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+        }
+
+        .free-shipping-note {
+            color: green;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .shipping-note {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .shipping-upsell {
+            color: #e67e22;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
         /* Checkout Section */
         .checkout-section {
             padding: 100px 0;
@@ -1678,9 +1725,8 @@
             <div class="cart-items" id="cartItems">
                 <p class="empty-cart-message" id="emptyCartMessage">Your cart is empty</p>
             </div>
-            <div class="cart-total">
-                <span>Total:</span>
-                <span class="total-amount" id="cartTotal">$0.00</span>
+            <div class="cart-total" id="cartTotal">
+                <!-- Will be dynamically updated with shipping breakdown -->
             </div>
             <div class="cart-actions">
                 <button class="btn" id="continueShopping">Continue Shopping</button>
@@ -2512,8 +2558,34 @@
             }
         }
         
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        if (cartTotal) cartTotal.textContent = `$${total.toFixed(2)}`;
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+        
+        // Update cart total display with shipping breakdown
+        if (cartTotal) {
+            cartTotal.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
+                        <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}:</span>
+                        <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
+                    </div>
+                    ${shipping > 0 ? `
+                    <div style="font-size: 0.85rem; color: #e67e22; text-align: right; font-style: italic;">
+                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                    </div>
+                    ` : ''}
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 5px; margin-top: 5px;">
+                        <span>Total:</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
         
         updateOrderSummary();
         updatePaymentAmounts();
@@ -2629,7 +2701,7 @@
         document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
     }
 
-    // Update updateOrderSummary to show shipping breakdown
+    // Update updateOrderSummary to show shipping breakdown clearly
     function updateOrderSummary() {
         if (!orderSummary) return;
         
@@ -2645,6 +2717,10 @@
         const shipping = calculateShipping(subtotal);
         const total = subtotal + shipping;
         
+        // Create a table-like structure for items
+        const itemsContainer = document.createElement('div');
+        itemsContainer.style.marginBottom = '20px';
+        
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
             
@@ -2655,30 +2731,75 @@
                 <span>$${itemTotal.toFixed(2)}</span>
             `;
             
-            orderSummary.appendChild(summaryItem);
+            itemsContainer.appendChild(summaryItem);
         });
         
-        // Add shipping line
-        const shippingRow = document.createElement('div');
-        shippingRow.className = 'summary-item';
-        shippingRow.innerHTML = `
-            <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}</span>
-            <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
-        `;
-        orderSummary.appendChild(shippingRow);
+        orderSummary.appendChild(itemsContainer);
         
-        // Add free shipping message if applicable
-        if (subtotal >= 100) {
-            const freeShippingMsg = document.createElement('div');
-            freeShippingMsg.style.cssText = 'color: green; text-align: right; font-size: 0.9rem; margin-top: 5px;';
-            freeShippingMsg.innerHTML = '🎉 Free shipping applied!';
-            orderSummary.appendChild(freeShippingMsg);
+        // Add shipping section with clear explanation
+        const shippingSection = document.createElement('div');
+        shippingSection.style.marginTop = '15px';
+        shippingSection.style.padding = '15px 0';
+        shippingSection.style.borderTop = '1px solid #ddd';
+        shippingSection.style.borderBottom = '1px solid #ddd';
+        
+        // Subtotal
+        const subtotalRow = document.createElement('div');
+        subtotalRow.style.display = 'flex';
+        subtotalRow.style.justifyContent = 'space-between';
+        subtotalRow.style.marginBottom = '10px';
+        subtotalRow.innerHTML = `
+            <span>Subtotal:</span>
+            <span>$${subtotal.toFixed(2)}</span>
+        `;
+        shippingSection.appendChild(subtotalRow);
+        
+        // Shipping row with explanation
+        const shippingRow = document.createElement('div');
+        shippingRow.style.display = 'flex';
+        shippingRow.style.justifyContent = 'space-between';
+        shippingRow.style.marginBottom = '5px';
+        
+        if (shipping === 0) {
+            shippingRow.innerHTML = `
+                <span>
+                    Shipping: 
+                    <span style="color: green; font-weight: 600;">FREE</span>
+                    <div style="font-size: 0.85rem; color: var(--color-gray);">(Orders over $100)</div>
+                </span>
+                <span style="color: green;">$0.00</span>
+            `;
         } else {
-            const shippingMsg = document.createElement('div');
-            shippingMsg.style.cssText = 'color: var(--color-gray); text-align: right; font-size: 0.9rem; margin-top: 5px;';
-            shippingMsg.innerHTML = 'Add $' + (100 - subtotal).toFixed(2) + ' more for free shipping!';
-            orderSummary.appendChild(shippingMsg);
+            shippingRow.innerHTML = `
+                <span>
+                    Shipping: 
+                    <span style="font-weight: 600;">$10.00</span>
+                    <div style="font-size: 0.85rem; color: var(--color-gray);">Flat rate domestic shipping</div>
+                    <div style="font-size: 0.85rem; color: #e67e22; font-style: italic;">
+                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                    </div>
+                </span>
+                <span>$10.00</span>
+            `;
         }
+        shippingSection.appendChild(shippingRow);
+        
+        orderSummary.appendChild(shippingSection);
+        
+        // Total
+        const totalRow = document.createElement('div');
+        totalRow.style.display = 'flex';
+        totalRow.style.justifyContent = 'space-between';
+        totalRow.style.padding = '15px 0 0';
+        totalRow.style.fontFamily = 'var(--font-body)';
+        totalRow.style.fontSize = '1.3rem';
+        totalRow.style.fontWeight = '600';
+        totalRow.style.color = 'var(--color-primary)';
+        totalRow.innerHTML = `
+            <span>Total Amount:</span>
+            <span style="color: #ff9800; font-size: 1.8rem;">$${total.toFixed(2)}</span>
+        `;
+        orderSummary.appendChild(totalRow);
         
         if (orderTotal) {
             orderTotal.textContent = `$${total.toFixed(2)}`;
