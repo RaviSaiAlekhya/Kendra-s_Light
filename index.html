@@ -497,7 +497,7 @@
             padding: 20px 25px 15px;
             color: white;
             text-align: center;
-            background-color: var(--color-primary); /* Same warm brown for ALL products */
+            background-color: var(--color-primary);
         }
 
         .product-header h4 {
@@ -2179,8 +2179,8 @@
                                     <div class="payment-detail-row">
                                         <span class="detail-label">Send to:</span>
                                         <div class="detail-value">
-                                            <code>kendraslight@gmail.com</code>
-                                            <button class="copy-btn-small" onclick="copyToClipboard('kendraslight@gmail.com')">Copy</button>
+                                            <code>kendraslight26@gmail.com</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('kendraslight26@gmail.com')">Copy</button>
                                         </div>
                                     </div>
                                     <div class="payment-detail-row">
@@ -2203,8 +2203,8 @@
                                     <div class="payment-detail-row">
                                         <span class="detail-label">Send to:</span>
                                         <div class="detail-value">
-                                            <code>@KendrasLight</code>
-                                            <button class="copy-btn-small" onclick="copyToClipboard('@KendrasLight')">Copy</button>
+                                            <code>@Ashley-Fortes-Terry</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('@Ashley-Fortes-Terry')">Copy</button>
                                         </div>
                                     </div>
                                     <div class="payment-detail-row">
@@ -2227,8 +2227,8 @@
                                     <div class="payment-detail-row">
                                         <span class="detail-label">Send to:</span>
                                         <div class="detail-value">
-                                            <code>$KendrasLight</code>
-                                            <button class="copy-btn-small" onclick="copyToClipboard('$KendrasLight')">Copy</button>
+                                            <code>$ashleyfortesterry</code>
+                                            <button class="copy-btn-small" onclick="copyToClipboard('$ashleyfortesterry')">Copy</button>
                                         </div>
                                     </div>
                                     <div class="payment-detail-row">
@@ -2317,21 +2317,27 @@
                             <i class="fab fa-instagram"></i>
                             <div>
                                 <h4>Instagram</h4>
-                                <p>@KendrasLight</p>
+                                <a href="https://www.instagram.com/kendraslight" target="_blank" style="text-decoration: none; color: inherit;">
+                                    <p>@KendrasLight</p>
+                                </a>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fab fa-facebook"></i>
                             <div>
                                 <h4>Facebook</h4>
-                                <p>Kendra's Light Candles</p>
+                                <a href="https://www.facebook.com/profile.php?id=61588179597877" target="_blank" style="text-decoration: none; color: inherit;">
+                                    <p>Kendra's Light Candles</p>
+                                </a>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>kendraslight@gmail.com</p>
+                                <a href="mailto:kendraslight26@gmail.com" style="text-decoration: none; color: inherit;">
+                                    <p>kendraslight26@gmail.com</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -2598,6 +2604,32 @@
         }, 100);
     }
 
+    // Calculate shipping based on order total
+    function calculateShipping(subtotal) {
+        if (subtotal >= 100) {
+            return 0; // Free shipping for orders $100+
+        } else {
+            return 10; // $10 flat rate shipping
+        }
+    }
+
+    // Update the updatePaymentAmounts function to include shipping
+    function updatePaymentAmounts() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+        
+        document.getElementById('paypalAmount').textContent = total.toFixed(2);
+        document.getElementById('venmoAmount').textContent = total.toFixed(2);
+        document.getElementById('cashappAmount').textContent = total.toFixed(2);
+        
+        orderReference = `KL${Date.now().toString().slice(-8)}`;
+        document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
+        document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
+        document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
+    }
+
+    // Update updateOrderSummary to show shipping breakdown
     function updateOrderSummary() {
         if (!orderSummary) return;
         
@@ -2608,6 +2640,10 @@
             if (orderTotal) orderTotal.textContent = '$0.00';
             return;
         }
+        
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
         
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
@@ -2622,7 +2658,28 @@
             orderSummary.appendChild(summaryItem);
         });
         
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        // Add shipping line
+        const shippingRow = document.createElement('div');
+        shippingRow.className = 'summary-item';
+        shippingRow.innerHTML = `
+            <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}</span>
+            <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
+        `;
+        orderSummary.appendChild(shippingRow);
+        
+        // Add free shipping message if applicable
+        if (subtotal >= 100) {
+            const freeShippingMsg = document.createElement('div');
+            freeShippingMsg.style.cssText = 'color: green; text-align: right; font-size: 0.9rem; margin-top: 5px;';
+            freeShippingMsg.innerHTML = '🎉 Free shipping applied!';
+            orderSummary.appendChild(freeShippingMsg);
+        } else {
+            const shippingMsg = document.createElement('div');
+            shippingMsg.style.cssText = 'color: var(--color-gray); text-align: right; font-size: 0.9rem; margin-top: 5px;';
+            shippingMsg.innerHTML = 'Add $' + (100 - subtotal).toFixed(2) + ' more for free shipping!';
+            orderSummary.appendChild(shippingMsg);
+        }
+        
         if (orderTotal) {
             orderTotal.textContent = `$${total.toFixed(2)}`;
         }
@@ -2649,20 +2706,6 @@
         document.getElementById(method + '-details').style.display = 'block';
     }
 
-    // Update payment amounts based on cart
-    function updatePaymentAmounts() {
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        document.getElementById('paypalAmount').textContent = total.toFixed(2);
-        document.getElementById('venmoAmount').textContent = total.toFixed(2);
-        document.getElementById('cashappAmount').textContent = total.toFixed(2);
-        
-        orderReference = `KL${Date.now().toString().slice(-8)}`;
-        document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
-        document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
-        document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
-    }
-
     // Prepare order data before form submission
     function prepareOrderData() {
         if (cart.length === 0) {
@@ -2673,25 +2716,42 @@
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
         
         if (!firstName || !lastName || !email) {
             alert('Please fill in all shipping information');
             return false;
         }
         
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+        
         const cartItemsString = cart.map(item => 
             `${item.product} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
         ).join('\n');
         
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+        // Add shipping to the email
+        const fullOrderString = cartItemsString + 
+            `\nShipping: $${shipping.toFixed(2)}` +
+            `\nTotal: $${total.toFixed(2)}`;
         
-        // Here you would integrate EmailJS or Formspree
         console.log('Order placed:', {
             orderNumber: orderReference,
             customerName: `${firstName} ${lastName}`,
             customerEmail: email,
-            items: cartItemsString,
-            total: total
+            customerPhone: phone,
+            shippingAddress: `${address}, ${city}, ${state} ${zip}`,
+            paymentMethod: paymentMethod,
+            items: fullOrderString,
+            subtotal: subtotal.toFixed(2),
+            shipping: shipping.toFixed(2),
+            total: total.toFixed(2)
         });
         
         // Show success message
@@ -2873,135 +2933,132 @@
     }
 
     // Reviews Functionality
-function initReviews() {
-    const reviewsContainer = document.getElementById('reviewsContainer');
-    const reviewForm = document.getElementById('reviewForm');
-    
-    let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
-    
-    // Start with empty reviews - no fake data!
-    if (reviews.length === 0) {
-        reviews = [];
-        localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-    }
-    
-    function displayReviews() {
-        reviewsContainer.innerHTML = '';
+    function initReviews() {
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        const reviewForm = document.getElementById('reviewForm');
         
+        let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
+        
+        // Start with empty reviews - no fake data!
         if (reviews.length === 0) {
-            // Show a nice message when there are no reviews
-            reviewsContainer.innerHTML = `
-                <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
-                    <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
-                    <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
-                </div>
-            `;
-            return;
+            reviews = [];
+            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
         }
         
-        reviews.slice().reverse().forEach(review => {
-            const reviewCard = document.createElement('div');
-            reviewCard.className = 'review-card';
+        function displayReviews() {
+            reviewsContainer.innerHTML = '';
             
-            let stars = '';
-            for (let i = 1; i <= 5; i++) {
-                stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
-            }
-            
-            reviewCard.innerHTML = `
-                <div class="review-header">
-                    <span class="reviewer-name">${review.name}</span>
-                    <span class="review-product">${review.product}</span>
-                </div>
-                <div class="review-rating">
-                    ${stars}
-                </div>
-                <p class="review-text">"${review.text}"</p>
-                <div class="review-date">${review.date}</div>
-            `;
-            
-            reviewsContainer.appendChild(reviewCard);
-        });
-    }
-    
-    // Star rating hover functionality
-    const stars = document.querySelectorAll('.stars i');
-    const ratingInput = document.getElementById('reviewRating');
-    
-    function highlightStars(rating) {
-        stars.forEach(star => {
-            const starRating = star.getAttribute('data-rating');
-            if (starRating <= rating) {
-                star.classList.remove('far');
-                star.classList.add('fas');
-            } else {
-                star.classList.remove('fas');
-                star.classList.add('far');
-            }
-        });
-    }
-    
-    stars.forEach(star => {
-        star.addEventListener('mouseover', function() {
-            const rating = this.getAttribute('data-rating');
-            highlightStars(rating);
-        });
-        
-        star.addEventListener('mouseout', function() {
-            const currentRating = ratingInput.value;
-            highlightStars(currentRating);
-        });
-        
-        star.addEventListener('click', function() {
-            const rating = this.getAttribute('data-rating');
-            ratingInput.value = rating;
-            highlightStars(rating);
-        });
-    });
-    
-    // Handle review form submission
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('reviewerName').value;
-            const product = document.getElementById('reviewProduct').value;
-            const rating = document.getElementById('reviewRating').value;
-            const text = document.getElementById('reviewText').value;
-            
-            if (!name || !product || !text) {
-                alert('Please fill in all fields');
+            if (reviews.length === 0) {
+                // Show a nice message when there are no reviews
+                reviewsContainer.innerHTML = `
+                    <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
+                        <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
+                        <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
+                    </div>
+                `;
                 return;
             }
             
-            const newReview = {
-                name: name,
-                product: product,
-                rating: parseInt(rating),
-                text: text,
-                date: new Date().toISOString().split('T')[0]
-            };
-            
-            reviews.push(newReview);
-            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-            
-            displayReviews();
-            reviewForm.reset();
-            
-            // Reset stars
-            stars.forEach(star => {
-                star.classList.remove('fas');
-                star.classList.add('far');
+            reviews.slice().reverse().forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'review-card';
+                
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
+                }
+                
+                reviewCard.innerHTML = `
+                    <div class="review-header">
+                        <span class="reviewer-name">${review.name}</span>
+                        <span class="review-product">${review.product}</span>
+                    </div>
+                    <div class="review-rating">
+                        ${stars}
+                    </div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-date">${review.date}</div>
+                `;
+                
+                reviewsContainer.appendChild(reviewCard);
             });
-            ratingInput.value = '5';
+        }
+        
+        const stars = document.querySelectorAll('.stars i');
+        const ratingInput = document.getElementById('reviewRating');
+        
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                const starRating = star.getAttribute('data-rating');
+                if (starRating <= rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+        
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const rating = this.getAttribute('data-rating');
+                highlightStars(rating);
+            });
             
-            alert('Thank you for your review!');
+            star.addEventListener('mouseout', function() {
+                const currentRating = ratingInput.value;
+                highlightStars(currentRating);
+            });
+            
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-rating');
+                ratingInput.value = rating;
+                highlightStars(rating);
+            });
         });
+        
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('reviewerName').value;
+                const product = document.getElementById('reviewProduct').value;
+                const rating = document.getElementById('reviewRating').value;
+                const text = document.getElementById('reviewText').value;
+                
+                if (!name || !product || !text) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                const newReview = {
+                    name: name,
+                    product: product,
+                    rating: parseInt(rating),
+                    text: text,
+                    date: new Date().toISOString().split('T')[0]
+                };
+                
+                reviews.push(newReview);
+                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+                
+                displayReviews();
+                reviewForm.reset();
+                
+                stars.forEach(star => {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                });
+                ratingInput.value = '5';
+                
+                alert('Thank you for your review!');
+            });
+        }
+        
+        displayReviews();
     }
-    
-    displayReviews();
-}
 
     // Mobile menu
     function initMobileMenu() {
