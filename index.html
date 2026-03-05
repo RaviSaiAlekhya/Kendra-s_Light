@@ -380,14 +380,14 @@
             display: flex;
             justify-content: center;
         }
-        
+
         .story-photo {
             width: 450px;
             height: auto;
             object-fit: contain;
             display: block;
         }
-        
+
         /* Products Section */
         .products-section {
             padding: 100px 0;
@@ -508,7 +508,7 @@
             letter-spacing: 0.5px;
             color: white;
         }
-        
+
         .product-details {
             padding: 25px;
             flex-grow: 1;
@@ -1053,9 +1053,17 @@
             margin-bottom: 10px;
         }
 
-        .paypal-icon { color: #003087; }
-        .venmo-icon { color: #3d95ce; }
-        .cashapp-icon { color: #00d632; }
+        .paypal-icon {
+            color: #003087;
+        }
+
+        .venmo-icon {
+            color: #3d95ce;
+        }
+
+        .cashapp-icon {
+            color: #00d632;
+        }
 
         .qr-display-area {
             text-align: center;
@@ -1238,11 +1246,13 @@
             margin-top: 50px;
         }
 
-        .contact-info, .contact-form {
+        .contact-info,
+        .contact-form {
             flex: 1;
         }
 
-        .contact-info h3, .contact-form h3 {
+        .contact-info h3,
+        .contact-form h3 {
             font-family: var(--font-heading);
             font-size: 2rem;
             color: var(--color-primary);
@@ -1306,7 +1316,9 @@
             margin-bottom: 50px;
         }
 
-        .footer-logo, .footer-links, .footer-social {
+        .footer-logo,
+        .footer-links,
+        .footer-social {
             flex: 1;
         }
 
@@ -1349,7 +1361,8 @@
             margin: 0;
         }
 
-        .footer-links h4, .footer-social h4 {
+        .footer-links h4,
+        .footer-social h4 {
             font-family: var(--font-heading);
             color: #ffcc80;
             font-weight: 600;
@@ -1535,7 +1548,7 @@
             .menu-toggle {
                 display: block;
             }
-            
+
             nav ul {
                 display: none;
                 position: absolute;
@@ -1548,86 +1561,86 @@
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 z-index: 999;
             }
-            
+
             nav ul.active {
                 display: flex;
             }
-            
+
             nav ul li {
                 margin: 10px 0;
             }
-            
+
             .hero-content h2 {
                 font-size: 2.2rem;
             }
-            
+
             .hero-content p {
                 font-size: 1.1rem;
             }
-            
+
             .hero .btn {
                 padding: 15px 30px;
                 font-size: 1rem;
             }
-            
+
             .story-content {
                 flex-direction: column;
             }
-            
+
             .story-photo {
                 width: 100%;
                 max-width: 400px;
                 margin-top: 30px;
             }
-            
+
             .story-intro {
                 font-size: 1.5rem;
             }
-            
+
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .section-title {
                 font-size: 2.2rem;
             }
-            
+
             .product-category h3 {
                 font-size: 1.8rem;
             }
-            
+
             .contact-content {
                 flex-direction: column;
                 gap: 40px;
             }
-            
+
             .payment-method-selector {
                 flex-direction: column;
             }
-            
+
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
-            
+
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .footer-logo .logo-container {
                 justify-content: center;
             }
-            
+
             .social-icons {
                 justify-content: center;
             }
-            
+
             .reviews-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .review-header {
                 flex-direction: column;
                 gap: 10px;
@@ -1639,42 +1652,42 @@
             .hero-content h2 {
                 font-size: 1.8rem;
             }
-            
+
             .hero-content p {
                 font-size: 1rem;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .product-image {
                 height: 250px;
             }
-            
+
             .product-header h4 {
                 font-size: 1.3rem;
             }
-            
+
             .cart-content {
                 width: 95%;
             }
-            
+
             .cart-item {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
             }
-            
+
             .cart-item-quantity {
                 justify-content: center;
             }
-            
+
             .qr-placeholder {
                 width: 150px;
                 height: 150px;
             }
-            
+
             .payment-detail-row {
                 flex-direction: column;
                 gap: 10px;
@@ -1682,6 +1695,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -1786,7 +1800,7 @@
         <div class="container">
             <h2 class="section-title">Our Handcrafted Candles</h2>
             <p class="section-subtitle">Each scent is carefully crafted to bring comfort, peace, and light</p>
-            
+
             <div class="product-category">
                 <h3><i class="fas fa-fire"></i> Original Scent Candles</h3>
                 <div class="products-grid" id="productsGrid">
@@ -1813,7 +1827,7 @@
                             <button class="add-to-cart" data-product="Sea Spa">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 2 -->
                     <div class="product-card" data-product-id="2">
                         <div class="product-image">
@@ -1837,7 +1851,7 @@
                             <button class="add-to-cart" data-product="Blacksand & Cashmere">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 3 -->
                     <div class="product-card" data-product-id="3">
                         <div class="product-image">
@@ -1861,7 +1875,7 @@
                             <button class="add-to-cart" data-product="Spearmint & Sandalwood">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 4 -->
                     <div class="product-card" data-product-id="4">
                         <div class="product-image">
@@ -1885,7 +1899,7 @@
                             <button class="add-to-cart" data-product="Sunburst Melon">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 5 -->
                     <div class="product-card" data-product-id="5">
                         <div class="product-image">
@@ -1909,7 +1923,7 @@
                             <button class="add-to-cart" data-product="Coconut Milk & Patchouli">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 6 -->
                     <div class="product-card" data-product-id="6">
                         <div class="product-image">
@@ -1933,7 +1947,7 @@
                             <button class="add-to-cart" data-product="Pink Sand">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 7 -->
                     <div class="product-card" data-product-id="7">
                         <div class="product-image">
@@ -1957,7 +1971,7 @@
                             <button class="add-to-cart" data-product="Vanilla Cinnamon">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 8 -->
                     <div class="product-card" data-product-id="8">
                         <div class="product-image">
@@ -1981,7 +1995,7 @@
                             <button class="add-to-cart" data-product="Vintage Reserve">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 9 -->
                     <div class="product-card" data-product-id="9">
                         <div class="product-image">
@@ -2005,7 +2019,7 @@
                             <button class="add-to-cart" data-product="Timber Patchouli">Add to Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product 10 -->
                     <div class="product-card" data-product-id="10">
                         <div class="product-image">
@@ -2031,7 +2045,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="product-category">
                 <h3><i class="fas fa-snowflake"></i> Wax Melts</h3>
                 <p class="category-subtitle">All original scents available as wax melts - $4 each</p>
@@ -2087,7 +2101,7 @@
             <h2 class="section-title">Complete Your Order</h2>
             <div class="checkout-form">
                 <h3>Shipping Information</h3>
-                
+
                 <form id="orderForm" onsubmit="return prepareOrderData()">
                     <div class="form-row">
                         <div class="form-group">
@@ -2099,7 +2113,7 @@
                             <input type="text" id="lastName" name="lastName" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">Email Address *</label>
@@ -2110,12 +2124,12 @@
                             <input type="tel" id="phone" name="phone" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="address">Street Address *</label>
                         <input type="text" id="address" name="address" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="city">City *</label>
@@ -2130,11 +2144,11 @@
                             <input type="text" id="zip" name="zip" required>
                         </div>
                     </div>
-                    
+
                     <!-- Payment Method Selection -->
                     <div class="payment-email-section">
                         <h3>Choose Payment Method</h3>
-                        
+
                         <div class="payment-method-selector">
                             <div class="payment-option-card selected" onclick="selectPaymentMethod('paypal')" id="paypal-card">
                                 <i class="fab fa-paypal paypal-icon"></i>
@@ -2149,17 +2163,17 @@
                                 <h4>CashApp</h4>
                             </div>
                         </div>
-                        
+
                         <!-- Hidden input for payment method -->
                         <input type="hidden" id="paymentMethod" name="paymentMethod" value="paypal">
-                        
+
                         <!-- QR Code Display Area -->
                         <div class="qr-display-area">
                             <div class="qr-placeholder" id="qrCode">
                                 <i class="fas fa-qrcode"></i>
                                 <span>Scan QR Code</span>
                             </div>
-                            
+
                             <div class="payment-details-box" id="paymentDetails">
                                 <!-- PayPal Details -->
                                 <div id="paypal-details">
@@ -2184,7 +2198,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Venmo Details -->
                                 <div id="venmo-details" style="display: none;">
                                     <div class="payment-detail-row">
@@ -2208,7 +2222,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- CashApp Details -->
                                 <div id="cashapp-details" style="display: none;">
                                     <div class="payment-detail-row">
@@ -2234,7 +2248,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Email Notification Box -->
                         <div class="email-notice">
                             <i class="fas fa-envelope-open-text"></i>
@@ -2248,7 +2262,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <!-- Order Summary -->
                     <div class="order-summary">
                         <h3>Order Summary</h3>
@@ -2260,7 +2274,7 @@
                             <span class="total-price" id="orderTotal">$0.00</span>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="place-order-btn">
                         <i class="fas fa-check-circle"></i> Place Order & Get Email Confirmation
                     </button>
@@ -2277,14 +2291,14 @@
             </div>
             <h2>Order Placed Successfully!</h2>
             <p>Thank you for your order from Kendra's Light!</p>
-            
+
             <div class="payment-instructions-box" id="paymentInstructions">
                 <!-- Will be filled dynamically -->
             </div>
-            
+
             <p>We've sent a confirmation email with your order details and payment instructions.</p>
             <p>Ashley has been notified and will begin preparing your candles.</p>
-            
+
             <a href="#products" class="btn" id="continueShoppingBtn">Continue Shopping</a>
         </div>
     </section>
@@ -2294,11 +2308,11 @@
         <div class="container">
             <h2 class="section-title">Customer Love</h2>
             <p class="section-subtitle">What our customers are saying about Kendra's Light</p>
-            
+
             <div class="reviews-container" id="reviewsContainer">
                 <!-- Reviews will be loaded here -->
             </div>
-            
+
             <!-- Add Review Form -->
             <div class="add-review-section">
                 <h3>Share Your Experience</h3>
@@ -2323,7 +2337,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="rating-selector">
                             <label>Your Rating:</label>
@@ -2337,76 +2351,74 @@
                             <input type="hidden" id="reviewRating" value="5">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <textarea id="reviewText" placeholder="Tell us about your experience..." rows="4" required></textarea>
                     </div>
-                    
-                    <button type="submit" style="width: 100%; padding: 15px; background-color: #5d4037; color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" 
-onmouseover="this.style.backgroundColor='#ffb74d'; this.style.color='#5d4037';" 
-onmouseout="this.style.backgroundColor='#5d4037'; this.style.color='white';">
-    Submit Review
-</button>
+
+                    <button type="submit" style="width: 100%; padding: 15px; background-color: #5d4037; color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.backgroundColor='#ffb74d'; this.style.color='#5d4037';" onmouseout="this.style.backgroundColor='#5d4037'; this.style.color='white';">
+                        Submit Review
+                    </button>
                 </form>
             </div>
         </div>
     </section>
-    
+
     <!-- Contact Section -->
-<section class="contact-section" id="contact">
-    <div class="container">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content" style="justify-content: center;">
-            <div class="contact-info" style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <h3 style="text-align: center;">Connect With Us</h3>
-                <p style="text-align: center; max-width: 500px; margin-left: auto; margin-right: auto;">We'd love to hear from you! Reach out to place an order or just to share how Kendra's Light has touched you.</p>
-                
-                <div class="contact-methods" style="display: flex; flex-direction: column; align-items: center; gap: 25px;">
-                    <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
-                        <i class="fab fa-instagram" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
-                        <div style="text-align: left;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Instagram</h4>
-                            <a href="https://www.instagram.com/kendraslight" target="_blank" style="text-decoration: none; color: inherit;">
-                                <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">@KendrasLight</p>
-                            </a>
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content" style="justify-content: center;">
+                <div class="contact-info" style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <h3 style="text-align: center;">Connect With Us</h3>
+                    <p style="text-align: center; max-width: 500px; margin-left: auto; margin-right: auto;">We'd love to hear from you! Reach out to place an order or just to share how Kendra's Light has touched you.</p>
+
+                    <div class="contact-methods" style="display: flex; flex-direction: column; align-items: center; gap: 25px;">
+                        <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
+                            <i class="fab fa-instagram" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
+                            <div style="text-align: left;">
+                                <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Instagram</h4>
+                                <a href="https://www.instagram.com/kendraslight" target="_blank" style="text-decoration: none; color: inherit;">
+                                    <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">@KendrasLight</p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
-                        <i class="fab fa-facebook" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
-                        <div style="text-align: left;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Facebook</h4>
-                            <a href="https://www.facebook.com/profile.php?id=61588179597877" target="_blank" style="text-decoration: none; color: inherit;">
-                                <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">Kendra's Light Candles</p>
-                            </a>
+
+                        <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
+                            <i class="fab fa-facebook" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
+                            <div style="text-align: left;">
+                                <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Facebook</h4>
+                                <a href="https://www.facebook.com/profile.php?id=61588179597877" target="_blank" style="text-decoration: none; color: inherit;">
+                                    <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">Kendra's Light Candles</p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
-                        <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
-                        <div style="text-align: left;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Phone</h4>
-                            <a href="tel:+15083458272" style="text-decoration: none; color: inherit;">
-                                <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">(508) 345-8272</p>
-                            </a>
-                            <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Call or text for order updates</p>
+
+                        <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
+                            <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
+                            <div style="text-align: left;">
+                                <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Phone</h4>
+                                <a href="tel:+15083458272" style="text-decoration: none; color: inherit;">
+                                    <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">(508) 345-8272</p>
+                                </a>
+                                <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Call or text for order updates</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
-                        <i class="fas fa-envelope" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
-                        <div style="text-align: left;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Email</h4>
-                            <a href="mailto:kendraslight26@gmail.com" style="text-decoration: none; color: inherit;">
-                                <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">kendraslight26@gmail.com</p>
-                            </a>
+
+                        <div class="contact-item" style="display: flex; align-items: center; gap: 20px; width: auto; justify-content: center;">
+                            <i class="fas fa-envelope" style="font-size: 2rem; color: var(--color-secondary); width: 40px;"></i>
+                            <div style="text-align: left;">
+                                <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); margin-bottom: 5px; font-weight: 600;">Email</h4>
+                                <a href="mailto:kendraslight26@gmail.com" style="text-decoration: none; color: inherit;">
+                                    <p style="font-family: var(--font-body); color: var(--color-gray); margin: 0; font-weight: 400;">kendraslight26@gmail.com</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -2447,790 +2459,792 @@ onmouseout="this.style.backgroundColor='#5d4037'; this.style.color='white';">
     </footer>
 
     <script>
-    // Shopping Cart System
-    let cart = [];
-    let orderReference = '';
+        // Shopping Cart System
+        let cart = [];
+        let orderReference = '';
 
-    // DOM Elements
-    const cartIcon = document.getElementById('cartIcon');
-    const cartModal = document.getElementById('cartModal');
-    const closeCart = document.getElementById('closeCart');
-    const cartItems = document.getElementById('cartItems');
-    const cartCount = document.getElementById('cartCount');
-    const cartTotal = document.getElementById('cartTotal');
-    const continueShopping = document.getElementById('continueShopping');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const emptyCartMessage = document.getElementById('emptyCartMessage');
-    const checkoutSection = document.getElementById('checkout');
-    const orderSuccess = document.getElementById('orderSuccess');
-    const orderForm = document.getElementById('orderForm');
-    const orderSummary = document.getElementById('orderSummary');
-    const orderTotal = document.getElementById('orderTotal');
-    const continueShoppingBtn = document.getElementById('continueShoppingBtn');
-    const paymentInstructions = document.getElementById('paymentInstructions');
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const continueShopping = document.getElementById('continueShopping');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const checkoutSection = document.getElementById('checkout');
+        const orderSuccess = document.getElementById('orderSuccess');
+        const orderForm = document.getElementById('orderForm');
+        const orderSummary = document.getElementById('orderSummary');
+        const orderTotal = document.getElementById('orderTotal');
+        const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+        const paymentInstructions = document.getElementById('paymentInstructions');
 
-    // Local Storage Functions
-    function saveCartToLocalStorage() {
-        localStorage.setItem('kendrasLightCart', JSON.stringify(cart));
-    }
+        // Local Storage Functions
+        function saveCartToLocalStorage() {
+            localStorage.setItem('kendrasLightCart', JSON.stringify(cart));
+        }
 
-    function loadCartFromLocalStorage() {
-        const savedCart = localStorage.getItem('kendrasLightCart');
-        if (savedCart) {
-            try {
-                cart = JSON.parse(savedCart);
-                updateCart();
-            } catch (e) {
-                console.log('Error loading cart', e);
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('kendrasLightCart');
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    updateCart();
+                } catch (e) {
+                    console.log('Error loading cart', e);
+                }
             }
         }
-    }
 
-    function clearCart() {
-        cart = [];
-        updateCart();
-        saveCartToLocalStorage();
-    }
-
-    // Cart Functions
-    function addToCart(product, price, type) {
-        const existingItem = cart.find(item => item.product === product);
-        
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                product: product,
-                price: price,
-                quantity: 1,
-                type: type
-            });
+        function clearCart() {
+            cart = [];
+            updateCart();
+            saveCartToLocalStorage();
         }
-        
-        updateCart();
-        saveCartToLocalStorage();
-        showNotification(`${product} added to cart!`);
-    }
 
-    function updateCart() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCount.textContent = totalItems;
-        
-        if (cartItems) {
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                if (emptyCartMessage) emptyCartMessage.style.display = 'block';
-                if (checkoutBtn) checkoutBtn.disabled = true;
-                
-                const emptyMsg = document.createElement('p');
-                emptyMsg.className = 'empty-cart-message';
-                emptyMsg.textContent = 'Your cart is empty';
-                cartItems.appendChild(emptyMsg);
+        // Cart Functions
+        function addToCart(product, price, type) {
+            const existingItem = cart.find(item => item.product === product);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                if (emptyCartMessage) emptyCartMessage.style.display = 'none';
-                if (checkoutBtn) checkoutBtn.disabled = false;
-                
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <div class="cart-item-info">
-                            <h4>${item.product}</h4>
-                            <p>${item.type}</p>
-                        </div>
-                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                        <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                            <button class="remove-item" onclick="removeFromCart(${index})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    `;
-                    
-                    cartItems.appendChild(cartItem);
+                cart.push({
+                    product: product,
+                    price: price,
+                    quantity: 1,
+                    type: type
                 });
             }
+
+            updateCart();
+            saveCartToLocalStorage();
+            showNotification(`${product} added to cart!`);
         }
-        
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = calculateShipping(subtotal);
-        const total = subtotal + shipping;
-        
-        // Update cart total display with shipping breakdown
-        if (cartTotal) {
-            cartTotal.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Subtotal:</span>
-                        <span>$${subtotal.toFixed(2)}</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
-                        <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}:</span>
-                        <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
-                    </div>
-                    ${shipping > 0 ? `
-                    <div style="font-size: 0.85rem; color: #e67e22; text-align: right; font-style: italic;">
-                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
-                    </div>
-                    ` : ''}
-                    <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 5px; margin-top: 5px;">
-                        <span>Total:</span>
-                        <span>$${total.toFixed(2)}</span>
-                    </div>
-                </div>
-            `;
-        }
-        
-        updateOrderSummary();
-        updatePaymentAmounts();
-    }
 
-    window.updateQuantity = function(index, change) {
-        cart[index].quantity += change;
-        
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
-        }
-        
-        updateCart();
-        saveCartToLocalStorage();
-    };
+        function updateCart() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
 
-    window.removeFromCart = function(index) {
-        cart.splice(index, 1);
-        updateCart();
-        saveCartToLocalStorage();
-    };
+            if (cartItems) {
+                cartItems.innerHTML = '';
 
-    function showCart() {
-        if (cartModal) {
-            cartModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-    }
+                if (cart.length === 0) {
+                    if (emptyCartMessage) emptyCartMessage.style.display = 'block';
+                    if (checkoutBtn) checkoutBtn.disabled = true;
 
-    function hideCart() {
-        if (cartModal) {
-            cartModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background-color: #5d4037;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 3000;
-            animation: slideIn 0.3s ease;
-            font-weight: 500;
-        `;
-        
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-                document.head.removeChild(style);
-            }, 300);
-        }, 3000);
-    }
-
-    function proceedToCheckout() {
-        if (cart.length === 0) {
-            alert('Your cart is empty!');
-            return;
-        }
-        
-        hideCart();
-        
-        setTimeout(() => {
-            checkoutSection.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-    }
-
-    // Calculate shipping based on order total
-    function calculateShipping(subtotal) {
-        if (subtotal >= 100) {
-            return 0; // Free shipping for orders $100+
-        } else {
-            return 10; // $10 flat rate shipping
-        }
-    }
-
-    // Update the updatePaymentAmounts function to include shipping
-    function updatePaymentAmounts() {
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = calculateShipping(subtotal);
-        const total = subtotal + shipping;
-        
-        document.getElementById('paypalAmount').textContent = total.toFixed(2);
-        document.getElementById('venmoAmount').textContent = total.toFixed(2);
-        document.getElementById('cashappAmount').textContent = total.toFixed(2);
-        
-        orderReference = `KL${Date.now().toString().slice(-8)}`;
-        document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
-        document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
-        document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
-    }
-
-    // Update updateOrderSummary to show shipping breakdown clearly
-    function updateOrderSummary() {
-        if (!orderSummary) return;
-        
-        orderSummary.innerHTML = '';
-        
-        if (cart.length === 0) {
-            orderSummary.innerHTML = '<p class="empty-cart-message">Add items to your cart to see order summary</p>';
-            if (orderTotal) orderTotal.textContent = '$0.00';
-            return;
-        }
-        
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = calculateShipping(subtotal);
-        const total = subtotal + shipping;
-        
-        // Create a table-like structure for items
-        const itemsContainer = document.createElement('div');
-        itemsContainer.style.marginBottom = '20px';
-        
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            
-            const summaryItem = document.createElement('div');
-            summaryItem.className = 'summary-item';
-            summaryItem.innerHTML = `
-                <span>${item.product} x${item.quantity}</span>
-                <span>$${itemTotal.toFixed(2)}</span>
-            `;
-            
-            itemsContainer.appendChild(summaryItem);
-        });
-        
-        orderSummary.appendChild(itemsContainer);
-        
-        // Add shipping section with clear explanation
-        const shippingSection = document.createElement('div');
-        shippingSection.style.marginTop = '15px';
-        shippingSection.style.padding = '15px 0';
-        shippingSection.style.borderTop = '1px solid #ddd';
-        shippingSection.style.borderBottom = '1px solid #ddd';
-        
-        // Subtotal
-        const subtotalRow = document.createElement('div');
-        subtotalRow.style.display = 'flex';
-        subtotalRow.style.justifyContent = 'space-between';
-        subtotalRow.style.marginBottom = '10px';
-        subtotalRow.innerHTML = `
-            <span>Subtotal:</span>
-            <span>$${subtotal.toFixed(2)}</span>
-        `;
-        shippingSection.appendChild(subtotalRow);
-        
-        // Shipping row with explanation
-        const shippingRow = document.createElement('div');
-        shippingRow.style.display = 'flex';
-        shippingRow.style.justifyContent = 'space-between';
-        shippingRow.style.marginBottom = '5px';
-        
-        if (shipping === 0) {
-            shippingRow.innerHTML = `
-                <span>
-                    Shipping: 
-                    <span style="color: green; font-weight: 600;">FREE</span>
-                    <div style="font-size: 0.85rem; color: var(--color-gray);">(Orders over $100)</div>
-                </span>
-                <span style="color: green;">$0.00</span>
-            `;
-        } else {
-            shippingRow.innerHTML = `
-                <span>
-                    Shipping: 
-                    <span style="font-weight: 600;">$10.00</span>
-                    <div style="font-size: 0.85rem; color: var(--color-gray);">Flat rate domestic shipping</div>
-                    <div style="font-size: 0.85rem; color: #e67e22; font-style: italic;">
-                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
-                    </div>
-                </span>
-                <span>$10.00</span>
-            `;
-        }
-        shippingSection.appendChild(shippingRow);
-        
-        orderSummary.appendChild(shippingSection);
-        
-        // Total
-        const totalRow = document.createElement('div');
-        totalRow.style.display = 'flex';
-        totalRow.style.justifyContent = 'space-between';
-        totalRow.style.padding = '15px 0 0';
-        totalRow.style.fontFamily = 'var(--font-body)';
-        totalRow.style.fontSize = '1.3rem';
-        totalRow.style.fontWeight = '600';
-        totalRow.style.color = 'var(--color-primary)';
-        totalRow.innerHTML = `
-            <span>Total Amount:</span>
-            <span style="color: #ff9800; font-size: 1.8rem;">$${total.toFixed(2)}</span>
-        `;
-        orderSummary.appendChild(totalRow);
-        
-        if (orderTotal) {
-            orderTotal.textContent = `$${total.toFixed(2)}`;
-        }
-    }
-
-    window.copyToClipboard = function(text) {
-        navigator.clipboard.writeText(text).then(function() {
-            alert('Copied to clipboard!');
-        });
-    };
-
-    // Payment Method Selection
-    function selectPaymentMethod(method) {
-        document.getElementById('paypal-card').classList.remove('selected');
-        document.getElementById('venmo-card').classList.remove('selected');
-        document.getElementById('cashapp-card').classList.remove('selected');
-        document.getElementById(method + '-card').classList.add('selected');
-        
-        document.getElementById('paymentMethod').value = method;
-        
-        document.getElementById('paypal-details').style.display = 'none';
-        document.getElementById('venmo-details').style.display = 'none';
-        document.getElementById('cashapp-details').style.display = 'none';
-        document.getElementById(method + '-details').style.display = 'block';
-    }
-
-    // Prepare order data before form submission
-    function prepareOrderData() {
-        if (cart.length === 0) {
-            alert('Your cart is empty');
-            return false;
-        }
-        
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-        const city = document.getElementById('city').value;
-        const state = document.getElementById('state').value;
-        const zip = document.getElementById('zip').value;
-        const paymentMethod = document.getElementById('paymentMethod').value;
-        
-        if (!firstName || !lastName || !email) {
-            alert('Please fill in all shipping information');
-            return false;
-        }
-        
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = calculateShipping(subtotal);
-        const total = subtotal + shipping;
-        
-        const cartItemsString = cart.map(item => 
-            `${item.product} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
-        ).join('\n');
-        
-        // Add shipping to the email
-        const fullOrderString = cartItemsString + 
-            `\nShipping: $${shipping.toFixed(2)}` +
-            `\nTotal: $${total.toFixed(2)}`;
-        
-        console.log('Order placed:', {
-            orderNumber: orderReference,
-            customerName: `${firstName} ${lastName}`,
-            customerEmail: email,
-            customerPhone: phone,
-            shippingAddress: `${address}, ${city}, ${state} ${zip}`,
-            paymentMethod: paymentMethod,
-            items: fullOrderString,
-            subtotal: subtotal.toFixed(2),
-            shipping: shipping.toFixed(2),
-            total: total.toFixed(2)
-        });
-        
-        // Show success message
-        alert(`Order placed successfully! Order #${orderReference}\nCheck your email for confirmation.`);
-        
-        checkoutSection.style.display = 'none';
-        orderSuccess.style.display = 'block';
-        clearCart();
-        
-        return false;
-    }
-
-    // Product size selection with toggle functionality
-    function initProductSizeSelection() {
-        const sizeOptions = document.querySelectorAll('.size-option');
-        sizeOptions.forEach(option => {
-            option.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const productCard = this.closest('.product-card');
-                
-                // Check if this option is already selected
-                const isSelected = this.classList.contains('selected');
-                
-                if (isSelected) {
-                    // If it's selected, remove selection (toggle off)
-                    this.classList.remove('selected');
+                    const emptyMsg = document.createElement('p');
+                    emptyMsg.className = 'empty-cart-message';
+                    emptyMsg.textContent = 'Your cart is empty';
+                    cartItems.appendChild(emptyMsg);
                 } else {
-                    // If not selected, remove selection from all options in this product
-                    const allOptions = productCard.querySelectorAll('.size-option');
-                    allOptions.forEach(opt => opt.classList.remove('selected'));
-                    // Then select this one
-                    this.classList.add('selected');
-                }
-            });
-        });
-    }
+                    if (emptyCartMessage) emptyCartMessage.style.display = 'none';
+                    if (checkoutBtn) checkoutBtn.disabled = false;
 
-    // Wax melts click handlers
-    function initWaxMelts() {
-        const waxItems = document.querySelectorAll('.wax-item');
-        waxItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const product = this.getAttribute('data-product');
-                const price = parseFloat(this.getAttribute('data-price'));
-                
-                addToCart(product, price, 'Wax Melt');
-                showCart();
-            });
-        });
-    }
+                    cart.forEach((item, index) => {
+                        const itemTotal = item.price * item.quantity;
 
-    // Cart functionality
-    function initCart() {
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const productCard = this.closest('.product-card');
-                const product = this.getAttribute('data-product');
-                
-                const selectedSize = productCard.querySelector('.size-option.selected');
-                
-                if (!selectedSize) {
-                    alert('👆 Please select a size (8oz or 12oz) before adding to cart');
-                    return;
-                }
-                
-                const size = selectedSize.getAttribute('data-size');
-                const price = parseFloat(selectedSize.getAttribute('data-price'));
-                const productName = `${product} (${size})`;
-                
-                addToCart(productName, price, 'Candle');
-                showCart();
-            });
-        });
-        
-        if (cartIcon) {
-            cartIcon.addEventListener('click', showCart);
-        }
-        
-        if (closeCart) {
-            closeCart.addEventListener('click', hideCart);
-        }
-        
-        if (continueShopping) {
-            continueShopping.addEventListener('click', hideCart);
-        }
-        
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', proceedToCheckout);
-        }
-        
-        if (continueShoppingBtn) {
-            continueShoppingBtn.addEventListener('click', function() {
-                orderSuccess.style.display = 'none';
-                checkoutSection.style.display = 'block';
-                window.location.href = '#products';
-            });
-        }
-    }
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'cart-item';
+                        cartItem.innerHTML = `
+                            <div class="cart-item-info">
+                                <h4>${item.product}</h4>
+                                <p>${item.type}</p>
+                            </div>
+                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                                <button class="remove-item" onclick="removeFromCart(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
 
-    // Lightbox Functionality
-    function initLightbox() {
-        let currentImageIndex = 0;
-        let productImages = [];
-        
-        const productImageContainers = document.querySelectorAll('.product-image');
-        const lightbox = document.getElementById('productLightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        const closeBtn = document.getElementById('closeLightbox');
-        const prevBtn = document.getElementById('prevImage');
-        const nextBtn = document.getElementById('nextImage');
-        
-        productImageContainers.forEach((container, index) => {
-            container.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                productImages = [];
-                document.querySelectorAll('.product-image').forEach((imgContainer, i) => {
-                    const img = imgContainer.querySelector('img');
-                    const productCard = imgContainer.closest('.product-card');
-                    const productName = productCard.querySelector('.product-header h4').textContent;
-                    
-                    productImages.push({
-                        src: img.src,
-                        name: productName
+                        cartItems.appendChild(cartItem);
                     });
-                });
-                
-                currentImageIndex = index;
-                lightboxImg.src = productImages[currentImageIndex].src;
-                lightboxCaption.textContent = productImages[currentImageIndex].name;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        function changeImage(direction) {
-            currentImageIndex = (currentImageIndex + direction + productImages.length) % productImages.length;
-            lightboxImg.src = productImages[currentImageIndex].src;
-            lightboxCaption.textContent = productImages[currentImageIndex].name;
-        }
-        
-        closeBtn.addEventListener('click', function() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        prevBtn.addEventListener('click', function() {
-            changeImage(-1);
-        });
-        
-        nextBtn.addEventListener('click', function() {
-            changeImage(1);
-        });
-        
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                }
             }
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (!lightbox.classList.contains('active')) return;
-            
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            } else if (e.key === 'ArrowLeft') {
-                changeImage(-1);
-            } else if (e.key === 'ArrowRight') {
-                changeImage(1);
-            }
-        });
-    }
 
-    // Reviews Functionality
-    function initReviews() {
-        const reviewsContainer = document.getElementById('reviewsContainer');
-        const reviewForm = document.getElementById('reviewForm');
-        
-        let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
-        
-        // Start with empty reviews - no fake data!
-        if (reviews.length === 0) {
-            reviews = [];
-            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-        }
-        
-        function displayReviews() {
-            reviewsContainer.innerHTML = '';
-            
-            if (reviews.length === 0) {
-                // Show a nice message when there are no reviews
-                reviewsContainer.innerHTML = `
-                    <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
-                        <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
-                        <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
-                        <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = calculateShipping(subtotal);
+            const total = subtotal + shipping;
+
+            // Update cart total display with shipping breakdown
+            if (cartTotal) {
+                cartTotal.innerHTML = `
+                    <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Subtotal:</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
+                            <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}:</span>
+                            <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
+                        </div>
+                        ${shipping > 0 ? `
+                        <div style="font-size: 0.85rem; color: #e67e22; text-align: right; font-style: italic;">
+                            Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                        </div>
+                        ` : ''}
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 5px; margin-top: 5px;">
+                            <span>Total:</span>
+                            <span>$${total.toFixed(2)}</span>
+                        </div>
                     </div>
                 `;
+            }
+
+            updateOrderSummary();
+            updatePaymentAmounts();
+        }
+
+        window.updateQuantity = function(index, change) {
+            cart[index].quantity += change;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            updateCart();
+            saveCartToLocalStorage();
+        };
+
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
+            updateCart();
+            saveCartToLocalStorage();
+        };
+
+        function showCart() {
+            if (cartModal) {
+                cartModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideCart() {
+            if (cartModal) {
+                cartModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background-color: #5d4037;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 3000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                    document.head.removeChild(style);
+                }, 300);
+            }, 3000);
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
                 return;
             }
-            
-            reviews.slice().reverse().forEach(review => {
-                const reviewCard = document.createElement('div');
-                reviewCard.className = 'review-card';
-                
-                let stars = '';
-                for (let i = 1; i <= 5; i++) {
-                    stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
-                }
-                
-                reviewCard.innerHTML = `
-                    <div class="review-header">
-                        <span class="reviewer-name">${review.name}</span>
-                        <span class="review-product">${review.product}</span>
-                    </div>
-                    <div class="review-rating">
-                        ${stars}
-                    </div>
-                    <p class="review-text">"${review.text}"</p>
-                    <div class="review-date">${review.date}</div>
-                `;
-                
-                reviewsContainer.appendChild(reviewCard);
-            });
-        }
-        
-        const stars = document.querySelectorAll('.stars i');
-        const ratingInput = document.getElementById('reviewRating');
-        
-        function highlightStars(rating) {
-            stars.forEach(star => {
-                const starRating = star.getAttribute('data-rating');
-                if (starRating <= rating) {
-                    star.classList.remove('far');
-                    star.classList.add('fas');
-                } else {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                }
-            });
-        }
-        
-        stars.forEach(star => {
-            star.addEventListener('mouseover', function() {
-                const rating = this.getAttribute('data-rating');
-                highlightStars(rating);
-            });
-            
-            star.addEventListener('mouseout', function() {
-                const currentRating = ratingInput.value;
-                highlightStars(currentRating);
-            });
-            
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-rating');
-                ratingInput.value = rating;
-                highlightStars(rating);
-            });
-        });
-        
-        if (reviewForm) {
-            reviewForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('reviewerName').value;
-                const product = document.getElementById('reviewProduct').value;
-                const rating = document.getElementById('reviewRating').value;
-                const text = document.getElementById('reviewText').value;
-                
-                if (!name || !product || !text) {
-                    alert('Please fill in all fields');
-                    return;
-                }
-                
-                const newReview = {
-                    name: name,
-                    product: product,
-                    rating: parseInt(rating),
-                    text: text,
-                    date: new Date().toISOString().split('T')[0]
-                };
-                
-                reviews.push(newReview);
-                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-                
-                displayReviews();
-                reviewForm.reset();
-                
-                stars.forEach(star => {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                });
-                ratingInput.value = '5';
-                
-                alert('Thank you for your review!');
-            });
-        }
-        
-        displayReviews();
-    }
 
-    // Mobile menu
-    function initMobileMenu() {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('nav ul');
-        
-        if (menuToggle && nav) {
-            menuToggle.addEventListener('click', function() {
-                nav.classList.toggle('active');
-                const icon = this.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                }
+            hideCart();
+
+            setTimeout(() => {
+                checkoutSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+
+        // Calculate shipping based on order total
+        function calculateShipping(subtotal) {
+            if (subtotal >= 100) {
+                return 0; // Free shipping for orders $100+
+            } else {
+                return 10; // $10 flat rate shipping
+            }
+        }
+
+        // Update the updatePaymentAmounts function to include shipping
+        function updatePaymentAmounts() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = calculateShipping(subtotal);
+            const total = subtotal + shipping;
+
+            document.getElementById('paypalAmount').textContent = total.toFixed(2);
+            document.getElementById('venmoAmount').textContent = total.toFixed(2);
+            document.getElementById('cashappAmount').textContent = total.toFixed(2);
+
+            orderReference = `KL${Date.now().toString().slice(-8)}`;
+            document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
+            document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
+            document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
+        }
+
+        // Update updateOrderSummary to show shipping breakdown clearly
+        function updateOrderSummary() {
+            if (!orderSummary) return;
+
+            orderSummary.innerHTML = '';
+
+            if (cart.length === 0) {
+                orderSummary.innerHTML = '<p class="empty-cart-message">Add items to your cart to see order summary</p>';
+                if (orderTotal) orderTotal.textContent = '$0.00';
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = calculateShipping(subtotal);
+            const total = subtotal + shipping;
+
+            // Create a table-like structure for items
+            const itemsContainer = document.createElement('div');
+            itemsContainer.style.marginBottom = '20px';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+
+                const summaryItem = document.createElement('div');
+                summaryItem.className = 'summary-item';
+                summaryItem.innerHTML = `
+                    <span>${item.product} x${item.quantity}</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                `;
+
+                itemsContainer.appendChild(summaryItem);
             });
-            
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('active');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.add('fa-bars');
-                        icon.classList.remove('fa-times');
+
+            orderSummary.appendChild(itemsContainer);
+
+            // Add shipping section with clear explanation
+            const shippingSection = document.createElement('div');
+            shippingSection.style.marginTop = '15px';
+            shippingSection.style.padding = '15px 0';
+            shippingSection.style.borderTop = '1px solid #ddd';
+            shippingSection.style.borderBottom = '1px solid #ddd';
+
+            // Subtotal
+            const subtotalRow = document.createElement('div');
+            subtotalRow.style.display = 'flex';
+            subtotalRow.style.justifyContent = 'space-between';
+            subtotalRow.style.marginBottom = '10px';
+            subtotalRow.innerHTML = `
+                <span>Subtotal:</span>
+                <span>$${subtotal.toFixed(2)}</span>
+            `;
+            shippingSection.appendChild(subtotalRow);
+
+            // Shipping row with explanation
+            const shippingRow = document.createElement('div');
+            shippingRow.style.display = 'flex';
+            shippingRow.style.justifyContent = 'space-between';
+            shippingRow.style.marginBottom = '5px';
+
+            if (shipping === 0) {
+                shippingRow.innerHTML = `
+                    <span>
+                        Shipping: 
+                        <span style="color: green; font-weight: 600;">FREE</span>
+                        <div style="font-size: 0.85rem; color: var(--color-gray);">(Orders over $100)</div>
+                    </span>
+                    <span style="color: green;">$0.00</span>
+                `;
+            } else {
+                shippingRow.innerHTML = `
+                    <span>
+                        Shipping: 
+                        <span style="font-weight: 600;">$10.00</span>
+                        <div style="font-size: 0.85rem; color: var(--color-gray);">Flat rate domestic shipping</div>
+                        <div style="font-size: 0.85rem; color: #e67e22; font-style: italic;">
+                            Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                        </div>
+                    </span>
+                    <span>$10.00</span>
+                `;
+            }
+            shippingSection.appendChild(shippingRow);
+
+            orderSummary.appendChild(shippingSection);
+
+            // Total
+            const totalRow = document.createElement('div');
+            totalRow.style.display = 'flex';
+            totalRow.style.justifyContent = 'space-between';
+            totalRow.style.padding = '15px 0 0';
+            totalRow.style.fontFamily = 'var(--font-body)';
+            totalRow.style.fontSize = '1.3rem';
+            totalRow.style.fontWeight = '600';
+            totalRow.style.color = 'var(--color-primary)';
+            totalRow.innerHTML = `
+                <span>Total Amount:</span>
+                <span style="color: #ff9800; font-size: 1.8rem;">$${total.toFixed(2)}</span>
+            `;
+            orderSummary.appendChild(totalRow);
+
+            if (orderTotal) {
+                orderTotal.textContent = `$${total.toFixed(2)}`;
+            }
+        }
+
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Copied to clipboard!');
+            });
+        };
+
+        // Payment Method Selection
+        function selectPaymentMethod(method) {
+            document.getElementById('paypal-card').classList.remove('selected');
+            document.getElementById('venmo-card').classList.remove('selected');
+            document.getElementById('cashapp-card').classList.remove('selected');
+            document.getElementById(method + '-card').classList.add('selected');
+
+            document.getElementById('paymentMethod').value = method;
+
+            document.getElementById('paypal-details').style.display = 'none';
+            document.getElementById('venmo-details').style.display = 'none';
+            document.getElementById('cashapp-details').style.display = 'none';
+            document.getElementById(method + '-details').style.display = 'block';
+        }
+
+        // Prepare order data before form submission
+        function prepareOrderData() {
+            if (cart.length === 0) {
+                alert('Your cart is empty');
+                return false;
+            }
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const zip = document.getElementById('zip').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            if (!firstName || !lastName || !email) {
+                alert('Please fill in all shipping information');
+                return false;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = calculateShipping(subtotal);
+            const total = subtotal + shipping;
+
+            const cartItemsString = cart.map(item =>
+                `${item.product} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
+            ).join('\n');
+
+            // Add shipping to the email
+            const fullOrderString = cartItemsString +
+                `\nShipping: $${shipping.toFixed(2)}` +
+                `\nTotal: $${total.toFixed(2)}`;
+
+            console.log('Order placed:', {
+                orderNumber: orderReference,
+                customerName: `${firstName} ${lastName}`,
+                customerEmail: email,
+                customerPhone: phone,
+                shippingAddress: `${address}, ${city}, ${state} ${zip}`,
+                paymentMethod: paymentMethod,
+                items: fullOrderString,
+                subtotal: subtotal.toFixed(2),
+                shipping: shipping.toFixed(2),
+                total: total.toFixed(2)
+            });
+
+            // Show success message
+            alert(`Order placed successfully! Order #${orderReference}\nCheck your email for confirmation.`);
+
+            checkoutSection.style.display = 'none';
+            orderSuccess.style.display = 'block';
+            clearCart();
+
+            return false;
+        }
+
+        // Product size selection with toggle functionality
+        function initProductSizeSelection() {
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productCard = this.closest('.product-card');
+
+                    // Check if this option is already selected
+                    const isSelected = this.classList.contains('selected');
+
+                    if (isSelected) {
+                        // If it's selected, remove selection (toggle off)
+                        this.classList.remove('selected');
+                    } else {
+                        // If not selected, remove selection from all options in this product
+                        const allOptions = productCard.querySelectorAll('.size-option');
+                        allOptions.forEach(opt => opt.classList.remove('selected'));
+                        // Then select this one
+                        this.classList.add('selected');
                     }
                 });
             });
         }
-    }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-        initMobileMenu();
-        initProductSizeSelection();
-        initWaxMelts();
-        initCart();
-        initLightbox();
-        initReviews();
-        loadCartFromLocalStorage();
-        
-        updateCart();
-        updatePaymentAmounts();
-        
-        selectPaymentMethod('paypal');
-        
-        if (checkoutSection) {
-            checkoutSection.style.display = 'block';
+        // Wax melts click handlers
+        function initWaxMelts() {
+            const waxItems = document.querySelectorAll('.wax-item');
+            waxItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const product = this.getAttribute('data-product');
+                    const price = parseFloat(this.getAttribute('data-price'));
+
+                    addToCart(product, price, 'Wax Melt');
+                    showCart();
+                });
+            });
         }
-        if (orderSuccess) {
-            orderSuccess.style.display = 'none';
+
+        // Cart functionality
+        function initCart() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const productCard = this.closest('.product-card');
+                    const product = this.getAttribute('data-product');
+
+                    const selectedSize = productCard.querySelector('.size-option.selected');
+
+                    if (!selectedSize) {
+                        alert('👆 Please select a size (8oz or 12oz) before adding to cart');
+                        return;
+                    }
+
+                    const size = selectedSize.getAttribute('data-size');
+                    const price = parseFloat(selectedSize.getAttribute('data-price'));
+                    const productName = `${product} (${size})`;
+
+                    addToCart(productName, price, 'Candle');
+                    showCart();
+                });
+            });
+
+            if (cartIcon) {
+                cartIcon.addEventListener('click', showCart);
+            }
+
+            if (closeCart) {
+                closeCart.addEventListener('click', hideCart);
+            }
+
+            if (continueShopping) {
+                continueShopping.addEventListener('click', hideCart);
+            }
+
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', proceedToCheckout);
+            }
+
+            if (continueShoppingBtn) {
+                continueShoppingBtn.addEventListener('click', function() {
+                    orderSuccess.style.display = 'none';
+                    checkoutSection.style.display = 'block';
+                    window.location.href = '#products';
+                });
+            }
         }
-    });
+
+        // Lightbox Functionality
+        function initLightbox() {
+            let currentImageIndex = 0;
+            let productImages = [];
+
+            const productImageContainers = document.querySelectorAll('.product-image');
+            const lightbox = document.getElementById('productLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const closeBtn = document.getElementById('closeLightbox');
+            const prevBtn = document.getElementById('prevImage');
+            const nextBtn = document.getElementById('nextImage');
+
+            productImageContainers.forEach((container, index) => {
+                container.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    productImages = [];
+                    document.querySelectorAll('.product-image').forEach((imgContainer, i) => {
+                        const img = imgContainer.querySelector('img');
+                        const productCard = imgContainer.closest('.product-card');
+                        const productName = productCard.querySelector('.product-header h4').textContent;
+
+                        productImages.push({
+                            src: img.src,
+                            name: productName
+                        });
+                    });
+
+                    currentImageIndex = index;
+                    lightboxImg.src = productImages[currentImageIndex].src;
+                    lightboxCaption.textContent = productImages[currentImageIndex].name;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function changeImage(direction) {
+                currentImageIndex = (currentImageIndex + direction + productImages.length) % productImages.length;
+                lightboxImg.src = productImages[currentImageIndex].src;
+                lightboxCaption.textContent = productImages[currentImageIndex].name;
+            }
+
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            prevBtn.addEventListener('click', function() {
+                changeImage(-1);
+            });
+
+            nextBtn.addEventListener('click', function() {
+                changeImage(1);
+            });
+
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            });
+        }
+
+        // Reviews Functionality
+        function initReviews() {
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            const reviewForm = document.getElementById('reviewForm');
+
+            let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
+
+            // Start with empty reviews - no fake data!
+            if (reviews.length === 0) {
+                reviews = [];
+                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+            }
+
+            function displayReviews() {
+                reviewsContainer.innerHTML = '';
+
+                if (reviews.length === 0) {
+                    // Show a nice message when there are no reviews
+                    reviewsContainer.innerHTML = `
+                        <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
+                            <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
+                            <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
+                            <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                reviews.slice().reverse().forEach(review => {
+                    const reviewCard = document.createElement('div');
+                    reviewCard.className = 'review-card';
+
+                    let stars = '';
+                    for (let i = 1; i <= 5; i++) {
+                        stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
+                    }
+
+                    reviewCard.innerHTML = `
+                        <div class="review-header">
+                            <span class="reviewer-name">${review.name}</span>
+                            <span class="review-product">${review.product}</span>
+                        </div>
+                        <div class="review-rating">
+                            ${stars}
+                        </div>
+                        <p class="review-text">"${review.text}"</p>
+                        <div class="review-date">${review.date}</div>
+                    `;
+
+                    reviewsContainer.appendChild(reviewCard);
+                });
+            }
+
+            const stars = document.querySelectorAll('.stars i');
+            const ratingInput = document.getElementById('reviewRating');
+
+            function highlightStars(rating) {
+                stars.forEach(star => {
+                    const starRating = star.getAttribute('data-rating');
+                    if (starRating <= rating) {
+                        star.classList.remove('far');
+                        star.classList.add('fas');
+                    } else {
+                        star.classList.remove('fas');
+                        star.classList.add('far');
+                    }
+                });
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = this.getAttribute('data-rating');
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    const currentRating = ratingInput.value;
+                    highlightStars(currentRating);
+                });
+
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    ratingInput.value = rating;
+                    highlightStars(rating);
+                });
+            });
+
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('reviewerName').value;
+                    const product = document.getElementById('reviewProduct').value;
+                    const rating = document.getElementById('reviewRating').value;
+                    const text = document.getElementById('reviewText').value;
+
+                    if (!name || !product || !text) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+
+                    const newReview = {
+                        name: name,
+                        product: product,
+                        rating: parseInt(rating),
+                        text: text,
+                        date: new Date().toISOString().split('T')[0]
+                    };
+
+                    reviews.push(newReview);
+                    localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+
+                    displayReviews();
+                    reviewForm.reset();
+
+                    stars.forEach(star => {
+                        star.classList.remove('fas');
+                        star.classList.add('far');
+                    });
+                    ratingInput.value = '5';
+
+                    alert('Thank you for your review!');
+                });
+            }
+
+            displayReviews();
+        }
+
+        // Mobile menu
+        function initMobileMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav ul');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+
+                const navLinks = document.querySelectorAll('nav ul li a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-times');
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
+            initProductSizeSelection();
+            initWaxMelts();
+            initCart();
+            initLightbox();
+            initReviews();
+            loadCartFromLocalStorage();
+
+            updateCart();
+            updatePaymentAmounts();
+
+            selectPaymentMethod('paypal');
+
+            if (checkoutSection) {
+                checkoutSection.style.display = 'block';
+            }
+            if (orderSuccess) {
+                orderSuccess.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
