@@ -1701,8 +1701,8 @@
                     <li><a href="#story">Our Story</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#checkout">Checkout</a></li>
-                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="cart-icon" id="cartIcon">
@@ -2081,65 +2081,6 @@
         </div>
     </section>
 
-    <!-- Customer Reviews Section -->
-    <section class="reviews-section" id="reviews">
-        <div class="container">
-            <h2 class="section-title">Customer Love</h2>
-            <p class="section-subtitle">What our customers are saying about Kendra's Light</p>
-            
-            <div class="reviews-container" id="reviewsContainer">
-                <!-- Reviews will be loaded here -->
-            </div>
-            
-            <!-- Add Review Form -->
-            <div class="add-review-section">
-                <h3>Share Your Experience</h3>
-                <form id="reviewForm" class="review-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" id="reviewerName" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <select id="reviewProduct" required>
-                                <option value="">Select Product</option>
-                                <option value="Sea Spa">Sea Spa</option>
-                                <option value="Blacksand & Cashmere">Blacksand & Cashmere</option>
-                                <option value="Spearmint & Sandalwood">Spearmint & Sandalwood</option>
-                                <option value="Sunburst Melon">Sunburst Melon</option>
-                                <option value="Coconut Milk & Patchouli">Coconut Milk & Patchouli</option>
-                                <option value="Pink Sand">Pink Sand</option>
-                                <option value="Vanilla Cinnamon">Vanilla Cinnamon</option>
-                                <option value="Vintage Reserve">Vintage Reserve</option>
-                                <option value="Timber Patchouli">Timber Patchouli</option>
-                                <option value="Ebony Musk">Ebony Musk</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="rating-selector">
-                            <label>Your Rating:</label>
-                            <div class="stars">
-                                <i class="fas fa-star" data-rating="1"></i>
-                                <i class="fas fa-star" data-rating="2"></i>
-                                <i class="fas fa-star" data-rating="3"></i>
-                                <i class="fas fa-star" data-rating="4"></i>
-                                <i class="fas fa-star" data-rating="5"></i>
-                            </div>
-                            <input type="hidden" id="reviewRating" value="5">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="reviewText" placeholder="Tell us about your experience..." rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Submit Review</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Checkout Section -->
     <section class="checkout-section" id="checkout">
         <div class="container">
@@ -2348,6 +2289,65 @@
         </div>
     </section>
 
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2 class="section-title">Customer Love</h2>
+            <p class="section-subtitle">What our customers are saying about Kendra's Light</p>
+            
+            <div class="reviews-container" id="reviewsContainer">
+                <!-- Reviews will be loaded here -->
+            </div>
+            
+            <!-- Add Review Form -->
+            <div class="add-review-section">
+                <h3>Share Your Experience</h3>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="reviewerName" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="reviewProduct" required>
+                                <option value="">Select Product</option>
+                                <option value="Sea Spa">Sea Spa</option>
+                                <option value="Blacksand & Cashmere">Blacksand & Cashmere</option>
+                                <option value="Spearmint & Sandalwood">Spearmint & Sandalwood</option>
+                                <option value="Sunburst Melon">Sunburst Melon</option>
+                                <option value="Coconut Milk & Patchouli">Coconut Milk & Patchouli</option>
+                                <option value="Pink Sand">Pink Sand</option>
+                                <option value="Vanilla Cinnamon">Vanilla Cinnamon</option>
+                                <option value="Vintage Reserve">Vintage Reserve</option>
+                                <option value="Timber Patchouli">Timber Patchouli</option>
+                                <option value="Ebony Musk">Ebony Musk</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="rating-selector">
+                            <label>Your Rating:</label>
+                            <div class="stars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="5">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="reviewText" placeholder="Tell us about your experience..." rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
@@ -2377,6 +2377,16 @@
                             </div>
                         </div>
                         <div class="contact-item">
+    <i class="fas fa-phone-alt"></i>
+    <div>
+        <h4>Phone</h4>
+        <a href="tel:+15083458272" style="text-decoration: none; color: inherit;">
+            <p>(508) 345-8272</p>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Call or text for order updates</p>
+    </div>
+</div>
+                        <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
@@ -2386,22 +2396,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="messageForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -2426,8 +2420,8 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#story">Our Story</a></li>
                         <li><a href="#products">Products</a></li>
-                        <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#checkout">Checkout</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -3208,26 +3202,9 @@
         }
     }
 
-    // Contact form
-    function initContactForm() {
-        const messageForm = document.getElementById('messageForm');
-        if (messageForm) {
-            messageForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = this.querySelector('input[type="text"]').value;
-                const email = this.querySelector('input[type="email"]').value;
-                
-                alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
-                this.reset();
-            });
-        }
-    }
-
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initMobileMenu();
-        initContactForm();
         initProductSizeSelection();
         initWaxMelts();
         initCart();
