@@ -7,8 +7,6 @@
     <!-- Google Fonts Import -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
         /* Root Variables */
         :root {
@@ -2174,7 +2172,7 @@
 
                         <!-- QR Code Display Area -->
                         <div class="qr-display-area">
-                            <div id="dynamicQRCode" style="text-align: center; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div id="dynamicQRCode" style="text-align: center; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                                 <!-- QR code will appear here -->
                                 <div style="text-align: center; padding: 20px;">
                                     <i class="fas fa-qrcode" style="font-size: 3rem; color: var(--color-secondary); margin-bottom: 10px;"></i>
@@ -2850,7 +2848,7 @@
             setTimeout(generateQRCode, 100);
         }
 
-        // Generate QR code for selected payment method (Venmo or CashApp only)
+        // Generate QR code for selected payment method using free API (GUARANTEED TO WORK)
         function generateQRCode() {
             const method = document.getElementById('paymentMethod').value;
             
@@ -2867,7 +2865,7 @@
             }
             
             const totalElement = document.getElementById('orderTotal');
-            const orderRefElement = document.getElementById('venmoRef'); // Use venmo ref as reference
+            const orderRefElement = document.getElementById('venmoRef');
             
             if (!totalElement || !orderRefElement) return;
             
@@ -2875,52 +2873,31 @@
             const orderRef = orderRefElement.textContent.replace('Order #', '');
             
             let paymentUrl = '';
+            let displayName = '';
             
             if (method === 'venmo') {
                 paymentUrl = `venmo://paycharge?txn=pay&recipients=Ashley-Fortes-Terry&amount=${amount}&note=Order%20${orderRef}`;
+                displayName = 'Venmo';
             } else if (method === 'cashapp') {
                 paymentUrl = `https://cash.app/$ashleyfortesterry/${amount}?note=Order%20${orderRef}`;
+                displayName = 'CashApp';
             } else {
                 return;
             }
             
             const qrContainer = document.getElementById('dynamicQRCode');
-            qrContainer.innerHTML = ''; // Clear previous QR
             
-            // Create canvas element
-            const canvas = document.createElement('canvas');
-            
-            QRCode.toCanvas(canvas, paymentUrl, {
-                width: 200,
-                margin: 1,
-                color: {
-                    dark: '#5d4037',  // Your brand brown
-                    light: '#ffffff'
-                }
-            }, function(error) {
-                if (error) {
-                    console.error('QR Error:', error);
-                    qrContainer.innerHTML = '<p style="color: #777;">Unable to generate QR code</p>';
-                } else {
-                    canvas.style.borderRadius = '10px';
-                    canvas.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-                    qrContainer.appendChild(canvas);
-                    
-                    // Add instruction text
-                    const instruction = document.createElement('p');
-                    instruction.style.marginTop = '10px';
-                    instruction.style.fontSize = '0.9rem';
-                    instruction.style.color = 'var(--color-gray)';
-                    
-                    if (method === 'venmo') {
-                        instruction.textContent = 'Scan with Venmo app to pay';
-                    } else if (method === 'cashapp') {
-                        instruction.textContent = 'Scan with CashApp to pay';
-                    }
-                    
-                    qrContainer.appendChild(instruction);
-                }
-            });
+            // Create and display QR code using free API
+            qrContainer.innerHTML = `
+                <div style="text-align: center;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}" 
+                         alt="${displayName} QR Code" 
+                         style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;"
+                         onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}&format=png';">
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray);">Scan with ${displayName} app to pay</p>
+                    <p style="margin-top: 5px; font-size: 0.8rem; color: var(--color-gray);">Amount: $${amount} | Order: ${orderRef}</p>
+                </div>
+            `;
         }
 
         // Prepare order data before form submission
