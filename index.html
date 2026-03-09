@@ -2455,6 +2455,14 @@
         </div>
     </footer>
 
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("NHaM7e5kmrF3plM6V");
+        })();
+    </script>
+
     <script>
         // Shopping Cart System
         let cart = [];
@@ -2852,7 +2860,7 @@
             setTimeout(generateQRCode, 100);
         }
 
-        // Generate QR code for selected payment method using free API (GUARANTEED TO WORK)
+        // Generate QR code for selected payment method using free API
         function generateQRCode() {
             const method = document.getElementById('paymentMethod').value;
 
@@ -2876,12 +2884,8 @@
             const amount = totalElement.textContent.replace('$', '');
             const orderRef = orderRefElement.textContent.replace('Order #', '');
 
-            let paymentUrl = '';
-            let displayName = '';
-
             if (method === 'venmo') {
-                paymentUrl = `venmo://paycharge?txn=pay&recipients=Ashley-Fortes-Terry&amount=${amount}&note=Order%20${orderRef}`;
-                displayName = 'Venmo';
+                const paymentUrl = `venmo://paycharge?txn=pay&recipients=Ashley-Fortes-Terry&amount=${amount}&note=Order%20${orderRef}`;
 
                 const qrContainer = document.getElementById('dynamicQRCode');
                 qrContainer.innerHTML = `
@@ -2890,7 +2894,6 @@
                              alt="Venmo QR Code" 
                              style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
 
-                        <!-- Simple success message (no warning) -->
                         <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
                             <p style="margin: 0; color: #2e7d32; font-weight: 600;">
                                 <i class="fas fa-check-circle" style="margin-right: 8px; color: #4caf50;"></i>
@@ -2905,9 +2908,7 @@
                 return;
 
             } else if (method === 'cashapp') {
-                // CashApp QR with pre-filled amount - this WILL work!
-                paymentUrl = `https://cash.app/$ashleyfortesterry/${amount}?note=Order%20${orderRef}`;
-                displayName = 'CashApp';
+                const paymentUrl = `https://cash.app/$ashleyfortesterry/${amount}?note=Order%20${orderRef}`;
 
                 const qrContainer = document.getElementById('dynamicQRCode');
                 qrContainer.innerHTML = `
@@ -2916,7 +2917,6 @@
                              alt="CashApp QR Code" 
                              style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
 
-                        <!-- CashApp Success Message -->
                         <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
                             <p style="margin: 0; color: #2e7d32; font-weight: 600;">
                                 <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
@@ -2932,7 +2932,7 @@
             }
         }
 
-        // Prepare order data before form submission
+        // Prepare order data before form submission - UPDATED WITH EMAILJS
         function prepareOrderData() {
             if (cart.length === 0) {
                 alert('Your cart is empty');
@@ -2958,36 +2958,106 @@
             const shipping = calculateShipping(subtotal);
             const total = subtotal + shipping;
 
-            const cartItemsString = cart.map(item =>
-                `${item.product} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
-            ).join('\n');
-
-            // Add shipping to the email
-            const fullOrderString = cartItemsString +
-                `\nShipping: $${shipping.toFixed(2)}` +
-                `\nTotal: $${total.toFixed(2)}`;
-
-            console.log('Order placed:', {
-                orderNumber: orderReference,
-                customerName: `${firstName} ${lastName}`,
-                customerEmail: email,
-                customerPhone: phone,
-                shippingAddress: `${address}, ${city}, ${state} ${zip}`,
-                paymentMethod: paymentMethod,
-                items: fullOrderString,
-                subtotal: subtotal.toFixed(2),
-                shipping: shipping.toFixed(2),
-                total: total.toFixed(2)
+            // Format order items for email
+            let orderItemsHtml = '';
+            cart.forEach(item => {
+                orderItemsHtml += `
+                    <div style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <strong>${item.product}</strong> x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                `;
             });
 
-            // Show success message
-            alert(`Order placed successfully! Order #${orderReference}\nCheck your email for confirmation.`);
+            // Get payment handle based on method
+            let paymentHandle = '';
+            if (paymentMethod === 'venmo') paymentHandle = '@Ashley-Fortes-Terry';
+            else if (paymentMethod === 'cashapp') paymentHandle = '$ashleyfortesterry';
+            else paymentHandle = 'Coming Soon';
 
-            checkoutSection.style.display = 'none';
-            orderSuccess.style.display = 'block';
-            clearCart();
+            // EmailJS template parameters
+            const templateParams = {
+                order_number: orderReference,
+                customer_name: `${firstName} ${lastName}`,
+                customer_email: email,
+                customer_phone: phone,
+                payment_method: paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1),
+                payment_handle: paymentHandle,
+                total_amount: total.toFixed(2),
+                order_items: orderItemsHtml,
+                subtotal: subtotal.toFixed(2),
+                shipping: shipping.toFixed(2),
+                total: total.toFixed(2),
+                shipping_name: `${firstName} ${lastName}`,
+                shipping_address: address,
+                shipping_city: city,
+                shipping_state: state,
+                shipping_zip: zip
+            };
 
-            return false;
+            // Show loading message
+            const submitBtn = document.querySelector('.place-order-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Send email via EmailJS
+            emailjs.send('service_fiwtotm', 'template_g3sw7jv', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    alert(`✅ Order placed successfully! Order #${orderReference}\nCheck your email (${email}) for confirmation.`);
+
+                    // Hide checkout, show success
+                    document.getElementById('checkout').style.display = 'none';
+                    document.getElementById('orderSuccess').style.display = 'block';
+                    
+                    // Update payment instructions in success message
+                    const paymentInstructions = document.getElementById('paymentInstructions');
+                    if (paymentInstructions) {
+                        paymentInstructions.innerHTML = `
+                            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                                <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
+                                <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
+                                <p>To: <strong>${paymentHandle}</strong></p>
+                                <p>Reference: <strong>${orderReference}</strong></p>
+                                <p style="color: #e67e22; margin-top: 15px;">Please include the reference number with your payment!</p>
+                            </div>
+                        `;
+                    }
+                    
+                    clearCart();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('❌ Order placed but email failed to send. Please save this order number: ' + orderReference + '\nContact us at kendraslight26@gmail.com');
+                    
+                    // Still show success but note email issue
+                    document.getElementById('checkout').style.display = 'none';
+                    document.getElementById('orderSuccess').style.display = 'block';
+                    
+                    // Show payment instructions anyway
+                    const paymentInstructions = document.getElementById('paymentInstructions');
+                    if (paymentInstructions) {
+                        paymentInstructions.innerHTML = `
+                            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                                <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
+                                <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
+                                <p>To: <strong>${paymentHandle}</strong></p>
+                                <p>Reference: <strong>${orderReference}</strong></p>
+                                <p style="color: #e67e22; margin-top: 15px;">Note: Email confirmation failed. Please save this order number!</p>
+                            </div>
+                        `;
+                    }
+                    
+                    clearCart();
+                })
+                .finally(function() {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
+
+            return false; // Prevent form submission
         }
 
         // Product size selection with toggle functionality
