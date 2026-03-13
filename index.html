@@ -188,9 +188,14 @@
             width: 100%;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .cart-icon {
             position: relative;
-            margin-left: 20px;
             cursor: pointer;
         }
 
@@ -1544,14 +1549,56 @@
         }
 
         @media (max-width: 768px) {
+            header .container {
+                padding: 10px 15px;
+            }
+
+            .logo-container {
+                gap: 10px;
+            }
+
+            .logo-image {
+                height: 60px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.4rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .logo-text .tagline {
+                font-size: 0.7rem;
+            }
+
+            .header-actions {
+                gap: 15px;
+            }
+
             .menu-toggle {
                 display: block;
+                font-size: 1.5rem;
+                padding: 5px;
+            }
+
+            .cart-icon {
+                font-size: 1.3rem;
+                padding: 5px;
+            }
+
+            .cart-count {
+                top: -5px;
+                right: -5px;
+                width: 18px;
+                height: 18px;
+                font-size: 11px;
             }
 
             nav ul {
                 display: none;
                 position: absolute;
-                top: 110px;
+                top: 80px;
                 left: 0;
                 width: 100%;
                 background-color: white;
@@ -1655,6 +1702,30 @@
         }
 
         @media (max-width: 480px) {
+            .logo-image {
+                height: 50px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo-text .tagline {
+                font-size: 0.65rem;
+            }
+
+            .header-actions {
+                gap: 12px;
+            }
+
+            .cart-icon {
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle {
+                font-size: 1.3rem;
+            }
+
             .hero-content h2 {
                 font-size: 1.8rem;
             }
@@ -1725,12 +1796,15 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
+            <!-- Wrap cart and menu in header-actions for proper spacing -->
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </header>
