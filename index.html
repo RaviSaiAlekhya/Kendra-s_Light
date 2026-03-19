@@ -1259,6 +1259,38 @@
             justify-content: center;
         }
 
+        /* Target the 5th item (email) and make it span both columns, centered */
+.contact-box:nth-child(5) {
+    grid-column: 1 / -1;  /* Span from first to last column */
+    justify-self: center;  /* Center horizontally */
+    width: auto;           /* Auto width based on content */
+    min-width: 300px;      /* Minimum width - adjust as needed */
+    max-width: 400px;      /* Maximum width - adjust as needed */
+}
+
+/* Optional: Make the centered email box stand out a bit */
+.contact-box:nth-child(5) {
+    background-color: #fff9f0;  /* Slightly different background */
+    border: 2px solid var(--color-secondary);  /* Highlight with your accent color */
+}
+
+/* Remove the special background on hover to maintain consistency */
+.contact-box:nth-child(5):hover {
+    background-color: #ffecb3;  /* Match the other hover states */
+    border-color: var(--color-secondary);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-box:nth-child(5) {
+        grid-column: auto;  /* Reset to normal on mobile */
+        justify-self: stretch;
+        max-width: 100%;
+        background-color: #fff;  /* Reset to normal background on mobile */
+        border: 2px solid rgba(0,0,0,0.06);  /* Reset to normal border */
+    }
+}
+
         .contact-box {
             background: #fff;
             border-radius: 14px;
