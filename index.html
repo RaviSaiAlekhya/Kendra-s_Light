@@ -1259,19 +1259,13 @@
             justify-content: center;
         }
 
-        /* Target the 5th item (email) and make it span both columns, centered */
+/* Target the 5th item (email) and make it span both columns, centered */
 .contact-box:nth-child(5) {
     grid-column: 1 / -1;  /* Span from first to last column */
     justify-self: center;  /* Center horizontally */
     width: auto;           /* Auto width based on content */
     min-width: 300px;      /* Minimum width - adjust as needed */
     max-width: 400px;      /* Maximum width - adjust as needed */
-}
-
-/* Optional: Make the centered email box stand out a bit */
-.contact-box:nth-child(5) {
-    background-color: #fff9f0;  /* Slightly different background */
-    border: 2px solid var(--color-secondary);  /* Highlight with your accent color */
 }
 
 /* Remove the special background on hover to maintain consistency */
