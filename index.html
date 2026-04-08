@@ -190,6 +190,58 @@
             width: 100%;
         }
 
+        /* Dropdown Menu Styles */
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 12px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    list-style: none;
+    flex-direction: column;
+    gap: 0;
+}
+
+.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    width: 100%;
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f9f5f0;
+    color: var(--color-secondary);
+}
+
+.dropdown-menu li a::after {
+    display: none;
+}
+
         .header-actions {
             display: flex;
             align-items: center;
@@ -1826,7 +1878,14 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#story">Our Story</a></li>
-                    <li><a href="#products">Products</a></li>
+                    <li class="has-dropdown">
+    <a href="#products">Products <i class="fas fa-chevron-down" style="font-size:0.8rem;"></i></a>
+    <ul class="dropdown-menu">
+        <li><a href="#scented-candles">Scented Candles</a></li>
+        <li><a href="#wickless-candles">Wickless Candles</a></li>
+        <li><a href="#wax-melts">Wax Melts</a></li>
+    </ul>
+</li>
                     <li><a href="#checkout">Checkout</a></li>
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -1912,7 +1971,7 @@
     </section>
 
     <!-- Products Section -->
-    <section class="products-section" id="products">
+    <div class="product-category" id="scented-candles">
         <div class="container">
             <h2 class="section-title">Our Handcrafted Candles</h2>
             <p class="section-subtitle">Each scent is carefully crafted to bring comfort, peace, and light</p>
@@ -2162,7 +2221,256 @@
                 </div>
             </div>
 
-            <div class="product-category">
+            <!-- WICKLESS CANDLES SECTION -->
+<div class="product-category" id="wickless-candles">
+    <h3><i class="fas fa-temperature-low"></i> Wickless Candles</h3>
+    <p class="category-subtitle">Same amazing scents, no wick — designed for electric warmers or lamp melters. (Warmer sold separately)</p>
+    <div class="products-grid" id="wicklessGrid">
+        
+        <!-- Wickless Product 1 -->
+        <div class="product-card" data-product-id="11">
+            <div class="product-image">
+                <img src="SeaSpaWickless.PNG" alt="Sea Spa Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Sea Spa (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our calming Sea Spa blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Sea Spa (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 2 -->
+        <div class="product-card" data-product-id="12">
+            <div class="product-image">
+                <img src="Blacksand&CashmereWickless.PNG" alt="Blacksand & Cashmere Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Blacksand & Cashmere (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our warm, sophisticated blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Blacksand & Cashmere (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 3 -->
+        <div class="product-card" data-product-id="13">
+            <div class="product-image">
+                <img src="Spearmint&SandalwoodWickless.PNG" alt="Spearmint & Sandalwood Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Spearmint & Sandalwood (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our refreshing earthy blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Spearmint & Sandalwood (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 4 -->
+        <div class="product-card" data-product-id="14">
+            <div class="product-image">
+                <img src="SunburstMelonWickless.PNG" alt="Sunburst Melon Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Sunburst Melon (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our bright, fruity blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Sunburst Melon (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 5 -->
+        <div class="product-card" data-product-id="15">
+            <div class="product-image">
+                <img src="Coconutmilk&PatchouliWickless.PNG" alt="Coconut Milk & Patchouli Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Coconut Milk & Patchouli (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our creamy exotic blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Coconut Milk & Patchouli (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 6 -->
+        <div class="product-card" data-product-id="16">
+            <div class="product-image">
+                <img src="PinkSandWickless.PNG" alt="Pink Sand Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Pink Sand (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our subtle, beachy blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Pink Sand (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 7 -->
+        <div class="product-card" data-product-id="17">
+            <div class="product-image">
+                <img src="VanillaCinnamonWickless.PNG" alt="Vanilla Cinnamon Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Vanilla Cinnamon (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our warm, cozy blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Vanilla Cinnamon (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 8 -->
+        <div class="product-card" data-product-id="18">
+            <div class="product-image">
+                <img src="VintageReserveWickless.PNG" alt="Vintage Reserve Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Vintage Reserve (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our rich, timeless blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Vintage Reserve (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 9 -->
+        <div class="product-card" data-product-id="19">
+            <div class="product-image">
+                <img src="TimberPatchouliWickless.PNG" alt="Timber Patchouli Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Timber Patchouli (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our earthy, woody blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Timber Patchouli (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Wickless Product 10 -->
+        <div class="product-card" data-product-id="20">
+            <div class="product-image">
+                <img src="EbonyMuskWickless.PNG" alt="Ebony Musk Wickless Candle">
+            </div>
+            <div class="product-header">
+                <h4>Ebony Musk (Wickless)</h4>
+            </div>
+            <div class="product-details">
+                <p class="product-desc">Flame-free version of our bold, sensual blend</p>
+                <div class="product-sizes">
+                    <div class="size-option" data-size="8oz" data-price="14">
+                        <span class="size">8 oz</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <div class="size-option" data-size="12oz" data-price="18">
+                        <span class="size">12 oz</span>
+                        <span class="price">$18</span>
+                    </div>
+                </div>
+                <button class="add-to-cart" data-product="Ebony Musk (Wickless)">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+            <div class="product-category" id="wax-melts">
                 <h3><i class="fas fa-snowflake"></i> Wax Melts</h3>
                 <p class="category-subtitle">All original scents available as wax melts - $4 each</p>
                 <div class="wax-melts">
