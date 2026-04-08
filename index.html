@@ -2921,940 +2921,898 @@
     </script>
 
     <script>
-        // Shopping Cart System
-        let cart = [];
-        let orderReference = '';
-
-        // DOM Elements
-        const cartIcon = document.getElementById('cartIcon');
-        const cartModal = document.getElementById('cartModal');
-        const closeCart = document.getElementById('closeCart');
-        const cartItems = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        const cartTotal = document.getElementById('cartTotal');
-        const continueShopping = document.getElementById('continueShopping');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const emptyCartMessage = document.getElementById('emptyCartMessage');
-        const checkoutSection = document.getElementById('checkout');
-        const orderSuccess = document.getElementById('orderSuccess');
-        const orderForm = document.getElementById('orderForm');
-        const orderSummary = document.getElementById('orderSummary');
-        const orderTotal = document.getElementById('orderTotal');
-        const continueShoppingBtn = document.getElementById('continueShoppingBtn');
-        const paymentInstructions = document.getElementById('paymentInstructions');
-
-        // Local Storage Functions
-        function saveCartToLocalStorage() {
-            localStorage.setItem('kendrasLightCart', JSON.stringify(cart));
-        }
-
-        function loadCartFromLocalStorage() {
-            const savedCart = localStorage.getItem('kendrasLightCart');
-            if (savedCart) {
-                try {
-                    cart = JSON.parse(savedCart);
-                    updateCart();
-                } catch (e) {
-                    console.log('Error loading cart', e);
-                }
-            }
-        }
-
-        function clearCart() {
-            cart = [];
-            updateCart();
-            saveCartToLocalStorage();
-        }
-
-        // Cart Functions
-        function addToCart(product, price, type) {
-            const existingItem = cart.find(item => item.product === product);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    product: product,
-                    price: price,
-                    quantity: 1,
-                    type: type
-                });
-            }
-
-            updateCart();
-            saveCartToLocalStorage();
-            showNotification(`${product} added to cart!`);
-        }
-
-        function updateCart() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-
-            if (cartItems) {
-                cartItems.innerHTML = '';
-
-                if (cart.length === 0) {
-                    if (emptyCartMessage) emptyCartMessage.style.display = 'block';
-                    if (checkoutBtn) checkoutBtn.disabled = true;
-
-                    const emptyMsg = document.createElement('p');
-                    emptyMsg.className = 'empty-cart-message';
-                    emptyMsg.textContent = 'Your cart is empty';
-                    cartItems.appendChild(emptyMsg);
-                } else {
-                    if (emptyCartMessage) emptyCartMessage.style.display = 'none';
-                    if (checkoutBtn) checkoutBtn.disabled = false;
-
-                    cart.forEach((item, index) => {
-                        const itemTotal = item.price * item.quantity;
-
-                        const cartItem = document.createElement('div');
-                        cartItem.className = 'cart-item';
-                        cartItem.innerHTML = `
-                            <div class="cart-item-info">
-                                <h4>${item.product}</h4>
-                                <p>${item.type}</p>
-                            </div>
-                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                            <div class="cart-item-quantity">
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                                <button class="remove-item" onclick="removeFromCart(${index})">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        `;
-
-                        cartItems.appendChild(cartItem);
-                    });
-                }
-            }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = calculateShipping(subtotal);
-            const total = subtotal + shipping;
-
-            // Update cart total display with shipping breakdown
-            if (cartTotal) {
-                cartTotal.innerHTML = `
-                    <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Subtotal:</span>
-                            <span>$${subtotal.toFixed(2)}</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
-                            <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}:</span>
-                            <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
-                        </div>
-                        ${shipping > 0 ? `
-                        <div style="font-size: 0.85rem; color: #e67e22; text-align: right; font-style: italic;">
-                            Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
-                        </div>
-                        ` : ''}
-                        <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 5px; margin-top: 5px;">
-                            <span>Total:</span>
-                            <span>$${total.toFixed(2)}</span>
-                        </div>
-                    </div>
-                `;
-            }
-
-            updateOrderSummary();
-            updatePaymentAmounts();
-        }
-
-        window.updateQuantity = function(index, change) {
-            cart[index].quantity += change;
-
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
-
-            updateCart();
-            saveCartToLocalStorage();
-        };
-
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            updateCart();
-            saveCartToLocalStorage();
-        };
-
-        function showCart() {
-            if (cartModal) {
-                cartModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function hideCart() {
-            if (cartModal) {
-                cartModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background-color: #5d4037;
-                color: white;
-                padding: 15px 25px;
-                border-radius: 5px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                z-index: 3000;
-                animation: slideIn 0.3s ease;
-                font-weight: 500;
-            `;
-
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                    document.head.removeChild(style);
-                }, 300);
-            }, 3000);
-        }
-
-        function proceedToCheckout() {
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
-
-            hideCart();
-
-            setTimeout(() => {
-                checkoutSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }, 100);
-        }
-
-        // Calculate shipping based on order total
-        function calculateShipping(subtotal) {
-            if (subtotal >= 100) {
-                return 0; // Free shipping for orders $100+
-            } else {
-                return 10; // $10 flat rate shipping
-            }
-        }
-
-        // Update payment amounts based on cart
-        function updatePaymentAmounts() {
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = calculateShipping(subtotal);
-            const total = subtotal + shipping;
-
-            document.getElementById('paypalAmount').textContent = total.toFixed(2);
-            document.getElementById('venmoAmount').textContent = total.toFixed(2);
-            document.getElementById('cashappAmount').textContent = total.toFixed(2);
-
-            orderReference = `KL${Date.now().toString().slice(-8)}`;
-            document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
-            document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
-            document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
-
-            // Generate QR code
-            setTimeout(generateQRCode, 100);
-        }
-
-        // Update order summary with shipping breakdown
-        function updateOrderSummary() {
-            if (!orderSummary) return;
-
-            orderSummary.innerHTML = '';
-
-            if (cart.length === 0) {
-                orderSummary.innerHTML = '<p class="empty-cart-message">Add items to your cart to see order summary</p>';
-                if (orderTotal) orderTotal.textContent = '$0.00';
-                return;
-            }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = calculateShipping(subtotal);
-            const total = subtotal + shipping;
-
-            // Create a table-like structure for items
-            const itemsContainer = document.createElement('div');
-            itemsContainer.style.marginBottom = '20px';
-
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-
-                const summaryItem = document.createElement('div');
-                summaryItem.className = 'summary-item';
-                summaryItem.innerHTML = `
-                    <span>${item.product} x${item.quantity}</span>
-                    <span>$${itemTotal.toFixed(2)}</span>
-                `;
-
-                itemsContainer.appendChild(summaryItem);
-            });
-
-            orderSummary.appendChild(itemsContainer);
-
-            // Add shipping section with clear explanation
-            const shippingSection = document.createElement('div');
-            shippingSection.style.marginTop = '15px';
-            shippingSection.style.padding = '15px 0';
-            shippingSection.style.borderTop = '1px solid #ddd';
-            shippingSection.style.borderBottom = '1px solid #ddd';
-
-            // Subtotal
-            const subtotalRow = document.createElement('div');
-            subtotalRow.style.display = 'flex';
-            subtotalRow.style.justifyContent = 'space-between';
-            subtotalRow.style.marginBottom = '10px';
-            subtotalRow.innerHTML = `
-                <span>Subtotal:</span>
-                <span>$${subtotal.toFixed(2)}</span>
-            `;
-            shippingSection.appendChild(subtotalRow);
-
-            // Shipping row with explanation
-            const shippingRow = document.createElement('div');
-            shippingRow.style.display = 'flex';
-            shippingRow.style.justifyContent = 'space-between';
-            shippingRow.style.marginBottom = '5px';
-
-            if (shipping === 0) {
-                shippingRow.innerHTML = `
-                    <span>
-                        Shipping: 
-                        <span style="color: green; font-weight: 600;">FREE</span>
-                        <div style="font-size: 0.85rem; color: var(--color-gray);">(Orders over $100)</div>
-                    </span>
-                    <span style="color: green;">$0.00</span>
-                `;
-            } else {
-                shippingRow.innerHTML = `
-                    <span>
-                        Shipping: 
-                        <span style="font-weight: 600;">$10.00</span>
-                        <div style="font-size: 0.85rem; color: var(--color-gray);">Flat rate domestic shipping</div>
-                        <div style="font-size: 0.85rem; color: #e67e22; font-style: italic;">
-                            Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
-                        </div>
-                    </span>
-                    <span>$10.00</span>
-                `;
-            }
-            shippingSection.appendChild(shippingRow);
-
-            orderSummary.appendChild(shippingSection);
-
-            // Total
-            const totalRow = document.createElement('div');
-            totalRow.style.display = 'flex';
-            totalRow.style.justifyContent = 'space-between';
-            totalRow.style.padding = '15px 0 0';
-            totalRow.style.fontFamily = 'var(--font-body)';
-            totalRow.style.fontSize = '1.3rem';
-            totalRow.style.fontWeight = '600';
-            totalRow.style.color = 'var(--color-primary)';
-            totalRow.innerHTML = `
-                <span>Total Amount:</span>
-                <span style="color: #ff9800; font-size: 1.8rem;">$${total.toFixed(2)}</span>
-            `;
-            orderSummary.appendChild(totalRow);
-
-            if (orderTotal) {
-                orderTotal.textContent = `$${total.toFixed(2)}`;
-            }
-        }
-
-        window.copyToClipboard = function(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                alert('Copied to clipboard!');
-            });
-        };
-
-        // Payment Method Selection
-        function selectPaymentMethod(method) {
-            document.getElementById('paypal-card').classList.remove('selected');
-            document.getElementById('venmo-card').classList.remove('selected');
-            document.getElementById('cashapp-card').classList.remove('selected');
-            document.getElementById(method + '-card').classList.add('selected');
-
-            document.getElementById('paymentMethod').value = method;
-
-            // Hide all payment details first
-            document.getElementById('paypal-details').style.display = 'none';
-            document.getElementById('venmo-details').style.display = 'none';
-            document.getElementById('cashapp-details').style.display = 'none';
-
-            // Show selected payment details
-            if (method === 'paypal') {
-                document.getElementById('paypal-details').style.display = 'block';
-            } else if (method === 'venmo') {
-                document.getElementById('venmo-details').style.display = 'block';
-            } else if (method === 'cashapp') {
-                document.getElementById('cashapp-details').style.display = 'block';
-            }
-
-            // Generate QR code
-            setTimeout(generateQRCode, 100);
-        }
-
-        // Generate QR code for selected payment method using free API
-        function generateQRCode() {
-            const method = document.getElementById('paymentMethod').value;
-
-            // Don't generate for PayPal (not ready yet)
-            if (method === 'paypal') {
-                document.getElementById('dynamicQRCode').innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <i class="fas fa-clock" style="font-size: 3rem; color: var(--color-secondary); margin-bottom: 10px;"></i>
-                        <p style="color: var(--color-gray);">PayPal coming soon!</p>
-                        <p style="color: var(--color-gray); font-size: 0.9rem;">Please use Venmo or CashApp for now</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const totalElement = document.getElementById('orderTotal');
-            const orderRefElement = document.getElementById('venmoRef');
-
-            if (!totalElement || !orderRefElement) return;
-
-            const amount = totalElement.textContent.replace('$', '');
-            const orderRef = orderRefElement.textContent.replace('Order #', '');
-
-            if (method === 'venmo') {
-                const paymentUrl = `venmo://paycharge?txn=pay&recipients=Ashley-Fortes-Terry&amount=${amount}&note=Order%20${orderRef}`;
-
-                const qrContainer = document.getElementById('dynamicQRCode');
-                qrContainer.innerHTML = `
-                    <div style="text-align: center;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}" 
-                             alt="Venmo QR Code" 
-                             style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
-
-                        <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
-                            <p style="margin: 0; color: #2e7d32; font-weight: 600;">
-                                <i class="fas fa-check-circle" style="margin-right: 8px; color: #4caf50;"></i>
-                                ✓ Amount $${amount} will be pre-filled automatically!
-                            </p>
-                        </div>
-
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray);">Scan with Venmo app to pay</p>
-                        <p style="margin-top: 5px; font-size: 0.8rem; color: var(--color-gray);">Amount: $${amount} | Order: ${orderRef}</p>
-                    </div>
-                `;
-                return;
-
-            } else if (method === 'cashapp') {
-                const paymentUrl = `https://cash.app/$ashleyfortesterry/${amount}?note=Order%20${orderRef}`;
-
-                const qrContainer = document.getElementById('dynamicQRCode');
-                qrContainer.innerHTML = `
-                    <div style="text-align: center;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}" 
-                             alt="CashApp QR Code" 
-                             style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
-
-                        <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
-                            <p style="margin: 0; color: #2e7d32; font-weight: 600;">
-                                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
-                                Amount $${amount} will be pre-filled automatically!
-                            </p>
-                        </div>
-
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray);">Scan with CashApp to pay</p>
-                        <p style="margin-top: 5px; font-size: 0.8rem; color: var(--color-gray);">Amount: $${amount} | Order: ${orderRef}</p>
-                    </div>
-                `;
-                return;
-            }
-        }
-
-        // Prepare order data before form submission - UPDATED WITH EMAILJS
-        function prepareOrderData() {
-            if (cart.length === 0) {
-                alert('Your cart is empty');
-                return false;
-            }
-
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-            const zip = document.getElementById('zip').value;
-            const paymentMethod = document.getElementById('paymentMethod').value;
-
-            if (!firstName || !lastName || !email) {
-                alert('Please fill in all shipping information');
-                return false;
-            }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = calculateShipping(subtotal);
-            const total = subtotal + shipping;
-
-            // Format order items for email
-            let orderItemsHtml = '';
-            cart.forEach(item => {
-                orderItemsHtml += `
-                    <div style="padding: 10px 0; border-bottom: 1px solid #eee;">
-                        <strong>${item.product}</strong> x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}
-                    </div>
-                `;
-            });
-
-            // Get payment handle based on method
-            let paymentHandle = '';
-            if (paymentMethod === 'venmo') paymentHandle = '@Ashley-Fortes-Terry';
-            else if (paymentMethod === 'cashapp') paymentHandle = '$ashleyfortesterry';
-            else paymentHandle = 'Coming Soon';
-
-            // EmailJS template parameters
-            const templateParams = {
-                order_number: orderReference,
-                customer_name: `${firstName} ${lastName}`,
-                customer_email: email,
-                customer_phone: phone,
-                payment_method: paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1),
-                payment_handle: paymentHandle,
-                total_amount: total.toFixed(2),
-                order_items: orderItemsHtml,
-                subtotal: subtotal.toFixed(2),
-                shipping: shipping.toFixed(2),
-                total: total.toFixed(2),
-                shipping_name: `${firstName} ${lastName}`,
-                shipping_address: address,
-                shipping_city: city,
-                shipping_state: state,
-                shipping_zip: zip
-            };
-
-            // Show loading message
-            const submitBtn = document.querySelector('.place-order-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
-            // Send email via EmailJS
-            emailjs.send('service_fiwtotm', 'template_g3sw7jv', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    
-                    // Show success message
-                    alert(`✅ Order placed successfully! Order #${orderReference}\nCheck your email (${email}) for confirmation.`);
-
-                    // Hide checkout, show success
-                    document.getElementById('checkout').style.display = 'none';
-                    document.getElementById('orderSuccess').style.display = 'block';
-                    
-                    // Update payment instructions in success message
-                    const paymentInstructions = document.getElementById('paymentInstructions');
-                    if (paymentInstructions) {
-                        paymentInstructions.innerHTML = `
-                            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                                <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
-                                <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
-                                <p>To: <strong>${paymentHandle}</strong></p>
-                                <p>Reference: <strong>${orderReference}</strong></p>
-                                <p style="color: #e67e22; margin-top: 15px;">Please include the reference number with your payment!</p>
-                            </div>
-                        `;
-                    }
-                    
-                    clearCart();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    alert('❌ Order placed but email failed to send. Please save this order number: ' + orderReference + '\nContact us at kendraslight26@gmail.com');
-                    
-                    // Still show success but note email issue
-                    document.getElementById('checkout').style.display = 'none';
-                    document.getElementById('orderSuccess').style.display = 'block';
-                    
-                    // Show payment instructions anyway
-                    const paymentInstructions = document.getElementById('paymentInstructions');
-                    if (paymentInstructions) {
-                        paymentInstructions.innerHTML = `
-                            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                                <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
-                                <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
-                                <p>To: <strong>${paymentHandle}</strong></p>
-                                <p>Reference: <strong>${orderReference}</strong></p>
-                                <p style="color: #e67e22; margin-top: 15px;">Note: Email confirmation failed. Please save this order number!</p>
-                            </div>
-                        `;
-                    }
-                    
-                    clearCart();
-                })
-                .finally(function() {
-                    // Reset button
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
-
-            return false; // Prevent form submission
-        }
-        // Make Products dropdown work on mobile (no page jump)
-function fixMobileDropdown() {
-    const productsLink = document.querySelector('.has-dropdown > a');
-    if (productsLink) {
-        productsLink.addEventListener('click', function(e) {
-            // Only on mobile screens
-            if (window.innerWidth <= 768) {
-                e.preventDefault();  // Stops the page from jumping to #products
-                e.stopPropagation(); // Prevents the click from bubbling up
-                this.parentElement.classList.toggle('open');
-                return false;
-            }
-        });
+    // Shopping Cart System
+    let cart = [];
+    let orderReference = '';
+
+    // DOM Elements
+    const cartIcon = document.getElementById('cartIcon');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartItems = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const continueShopping = document.getElementById('continueShopping');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const checkoutSection = document.getElementById('checkout');
+    const orderSuccess = document.getElementById('orderSuccess');
+    const orderForm = document.getElementById('orderForm');
+    const orderSummary = document.getElementById('orderSummary');
+    const orderTotal = document.getElementById('orderTotal');
+    const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+    const paymentInstructions = document.getElementById('paymentInstructions');
+
+    // Local Storage Functions
+    function saveCartToLocalStorage() {
+        localStorage.setItem('kendrasLightCart', JSON.stringify(cart));
     }
-}
-        // Wax melts click handlers
-        function initWaxMelts() {
-            const waxItems = document.querySelectorAll('.wax-item');
-            waxItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const product = this.getAttribute('data-product');
-                    const price = parseFloat(this.getAttribute('data-price'));
 
-                    addToCart(product, price, 'Wax Melt');
-                    showCart();
-                });
+    function loadCartFromLocalStorage() {
+        const savedCart = localStorage.getItem('kendrasLightCart');
+        if (savedCart) {
+            try {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            } catch (e) {
+                console.log('Error loading cart', e);
+            }
+        }
+    }
+
+    function clearCart() {
+        cart = [];
+        updateCart();
+        saveCartToLocalStorage();
+    }
+
+    // Cart Functions
+    function addToCart(product, price, type) {
+        const existingItem = cart.find(item => item.product === product);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                product: product,
+                price: price,
+                quantity: 1,
+                type: type
             });
         }
 
-        // Cart functionality
-        function initCart() {
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+        updateCart();
+        saveCartToLocalStorage();
+        showNotification(`${product} added to cart!`);
+    }
 
-                    const productCard = this.closest('.product-card');
-                    const product = this.getAttribute('data-product');
+    function updateCart() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
 
-                    const selectedSize = productCard.querySelector('.size-option.selected');
+        if (cartItems) {
+            cartItems.innerHTML = '';
 
-                    if (!selectedSize) {
-                        alert('👆 Please select a size (8oz or 12oz) before adding to cart');
-                        return;
-                    }
+            if (cart.length === 0) {
+                if (emptyCartMessage) emptyCartMessage.style.display = 'block';
+                if (checkoutBtn) checkoutBtn.disabled = true;
 
-                    const size = selectedSize.getAttribute('data-size');
-                    const price = parseFloat(selectedSize.getAttribute('data-price'));
-                    const productName = `${product} (${size})`;
+                const emptyMsg = document.createElement('p');
+                emptyMsg.className = 'empty-cart-message';
+                emptyMsg.textContent = 'Your cart is empty';
+                cartItems.appendChild(emptyMsg);
+            } else {
+                if (emptyCartMessage) emptyCartMessage.style.display = 'none';
+                if (checkoutBtn) checkoutBtn.disabled = false;
 
-                    addToCart(productName, price, 'Candle');
-                    showCart();
-                });
-            });
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
 
-            if (cartIcon) {
-                cartIcon.addEventListener('click', showCart);
-            }
-
-            if (closeCart) {
-                closeCart.addEventListener('click', hideCart);
-            }
-
-            if (continueShopping) {
-                continueShopping.addEventListener('click', hideCart);
-            }
-
-            if (checkoutBtn) {
-                checkoutBtn.addEventListener('click', proceedToCheckout);
-            }
-
-            if (continueShoppingBtn) {
-                continueShoppingBtn.addEventListener('click', function() {
-                    orderSuccess.style.display = 'none';
-                    checkoutSection.style.display = 'block';
-                    window.location.href = '#products';
-                });
-            }
-        }
-
-        // Lightbox Functionality
-        function initLightbox() {
-            let currentImageIndex = 0;
-            let productImages = [];
-
-            const productImageContainers = document.querySelectorAll('.product-image');
-            const lightbox = document.getElementById('productLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxCaption = document.getElementById('lightboxCaption');
-            const closeBtn = document.getElementById('closeLightbox');
-            const prevBtn = document.getElementById('prevImage');
-            const nextBtn = document.getElementById('nextImage');
-
-            productImageContainers.forEach((container, index) => {
-                container.addEventListener('click', function(e) {
-                    e.stopPropagation();
-
-                    productImages = [];
-                    document.querySelectorAll('.product-image').forEach((imgContainer, i) => {
-                        const img = imgContainer.querySelector('img');
-                        const productCard = imgContainer.closest('.product-card');
-                        const productName = productCard.querySelector('.product-header h4').textContent;
-
-                        productImages.push({
-                            src: img.src,
-                            name: productName
-                        });
-                    });
-
-                    currentImageIndex = index;
-                    lightboxImg.src = productImages[currentImageIndex].src;
-                    lightboxCaption.textContent = productImages[currentImageIndex].name;
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            function changeImage(direction) {
-                currentImageIndex = (currentImageIndex + direction + productImages.length) % productImages.length;
-                lightboxImg.src = productImages[currentImageIndex].src;
-                lightboxCaption.textContent = productImages[currentImageIndex].name;
-            }
-
-            closeBtn.addEventListener('click', function() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            prevBtn.addEventListener('click', function() {
-                changeImage(-1);
-            });
-
-            nextBtn.addEventListener('click', function() {
-                changeImage(1);
-            });
-
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (!lightbox.classList.contains('active')) return;
-
-                if (e.key === 'Escape') {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                } else if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            });
-        }
-
-        // Reviews Functionality
-        function initReviews() {
-            const reviewsContainer = document.getElementById('reviewsContainer');
-            const reviewForm = document.getElementById('reviewForm');
-
-            let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
-
-            // Start with empty reviews - no fake data!
-            if (reviews.length === 0) {
-                reviews = [];
-                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-            }
-
-            function displayReviews() {
-                reviewsContainer.innerHTML = '';
-
-                if (reviews.length === 0) {
-                    // Show a nice message when there are no reviews
-                    reviewsContainer.innerHTML = `
-                        <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
-                            <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
-                            <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
-                            <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below. Your feedback helps others discover the light of Kendra's candles.</p>
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.product}</h4>
+                            <p>${item.type}</p>
+                        </div>
+                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     `;
+
+                    cartItems.appendChild(cartItem);
+                });
+            }
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+
+        if (cartTotal) {
+            cartTotal.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
+                        <span>Shipping ${shipping === 0 ? '<span style="color: green;">(Free)</span>' : ''}:</span>
+                        <span>${shipping === 0 ? '$0.00' : '$10.00'}</span>
+                    </div>
+                    ${shipping > 0 ? `
+                    <div style="font-size: 0.85rem; color: #e67e22; text-align: right; font-style: italic;">
+                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                    </div>
+                    ` : ''}
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid #ddd; padding-top: 5px; margin-top: 5px;">
+                        <span>Total:</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        updateOrderSummary();
+        updatePaymentAmounts();
+    }
+
+    window.updateQuantity = function(index, change) {
+        cart[index].quantity += change;
+
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+
+        updateCart();
+        saveCartToLocalStorage();
+    };
+
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        updateCart();
+        saveCartToLocalStorage();
+    };
+
+    function showCart() {
+        if (cartModal) {
+            cartModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function hideCart() {
+        if (cartModal) {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: #5d4037;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
+            font-weight: 500;
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+                document.head.removeChild(style);
+            }, 300);
+        }, 3000);
+    }
+
+    function proceedToCheckout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+
+        hideCart();
+
+        setTimeout(() => {
+            checkoutSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+
+    function calculateShipping(subtotal) {
+        if (subtotal >= 100) {
+            return 0;
+        } else {
+            return 10;
+        }
+    }
+
+    function updatePaymentAmounts() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+
+        document.getElementById('paypalAmount').textContent = total.toFixed(2);
+        document.getElementById('venmoAmount').textContent = total.toFixed(2);
+        document.getElementById('cashappAmount').textContent = total.toFixed(2);
+
+        orderReference = `KL${Date.now().toString().slice(-8)}`;
+        document.getElementById('paypalRef').textContent = `Order #${orderReference}`;
+        document.getElementById('venmoRef').textContent = `Order #${orderReference}`;
+        document.getElementById('cashappRef').textContent = `Order #${orderReference}`;
+
+        setTimeout(generateQRCode, 100);
+    }
+
+    function updateOrderSummary() {
+        if (!orderSummary) return;
+
+        orderSummary.innerHTML = '';
+
+        if (cart.length === 0) {
+            orderSummary.innerHTML = '<p class="empty-cart-message">Add items to your cart to see order summary</p>';
+            if (orderTotal) orderTotal.textContent = '$0.00';
+            return;
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+
+        const itemsContainer = document.createElement('div');
+        itemsContainer.style.marginBottom = '20px';
+
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+
+            const summaryItem = document.createElement('div');
+            summaryItem.className = 'summary-item';
+            summaryItem.innerHTML = `
+                <span>${item.product} x${item.quantity}</span>
+                <span>$${itemTotal.toFixed(2)}</span>
+            `;
+
+            itemsContainer.appendChild(summaryItem);
+        });
+
+        orderSummary.appendChild(itemsContainer);
+
+        const shippingSection = document.createElement('div');
+        shippingSection.style.marginTop = '15px';
+        shippingSection.style.padding = '15px 0';
+        shippingSection.style.borderTop = '1px solid #ddd';
+        shippingSection.style.borderBottom = '1px solid #ddd';
+
+        const subtotalRow = document.createElement('div');
+        subtotalRow.style.display = 'flex';
+        subtotalRow.style.justifyContent = 'space-between';
+        subtotalRow.style.marginBottom = '10px';
+        subtotalRow.innerHTML = `
+            <span>Subtotal:</span>
+            <span>$${subtotal.toFixed(2)}</span>
+        `;
+        shippingSection.appendChild(subtotalRow);
+
+        const shippingRow = document.createElement('div');
+        shippingRow.style.display = 'flex';
+        shippingRow.style.justifyContent = 'space-between';
+        shippingRow.style.marginBottom = '5px';
+
+        if (shipping === 0) {
+            shippingRow.innerHTML = `
+                <span>
+                    Shipping: 
+                    <span style="color: green; font-weight: 600;">FREE</span>
+                    <div style="font-size: 0.85rem; color: var(--color-gray);">(Orders over $100)</div>
+                </span>
+                <span style="color: green;">$0.00</span>
+            `;
+        } else {
+            shippingRow.innerHTML = `
+                <span>
+                    Shipping: 
+                    <span style="font-weight: 600;">$10.00</span>
+                    <div style="font-size: 0.85rem; color: var(--color-gray);">Flat rate domestic shipping</div>
+                    <div style="font-size: 0.85rem; color: #e67e22; font-style: italic;">
+                        Add $${(100 - subtotal).toFixed(2)} more for FREE shipping!
+                    </div>
+                </span>
+                <span>$10.00</span>
+            `;
+        }
+        shippingSection.appendChild(shippingRow);
+
+        orderSummary.appendChild(shippingSection);
+
+        const totalRow = document.createElement('div');
+        totalRow.style.display = 'flex';
+        totalRow.style.justifyContent = 'space-between';
+        totalRow.style.padding = '15px 0 0';
+        totalRow.style.fontFamily = 'var(--font-body)';
+        totalRow.style.fontSize = '1.3rem';
+        totalRow.style.fontWeight = '600';
+        totalRow.style.color = 'var(--color-primary)';
+        totalRow.innerHTML = `
+            <span>Total Amount:</span>
+            <span style="color: #ff9800; font-size: 1.8rem;">$${total.toFixed(2)}</span>
+        `;
+        orderSummary.appendChild(totalRow);
+
+        if (orderTotal) {
+            orderTotal.textContent = `$${total.toFixed(2)}`;
+        }
+    }
+
+    window.copyToClipboard = function(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert('Copied to clipboard!');
+        });
+    };
+
+    function selectPaymentMethod(method) {
+        document.getElementById('paypal-card').classList.remove('selected');
+        document.getElementById('venmo-card').classList.remove('selected');
+        document.getElementById('cashapp-card').classList.remove('selected');
+        document.getElementById(method + '-card').classList.add('selected');
+
+        document.getElementById('paymentMethod').value = method;
+
+        document.getElementById('paypal-details').style.display = 'none';
+        document.getElementById('venmo-details').style.display = 'none';
+        document.getElementById('cashapp-details').style.display = 'none';
+
+        if (method === 'paypal') {
+            document.getElementById('paypal-details').style.display = 'block';
+        } else if (method === 'venmo') {
+            document.getElementById('venmo-details').style.display = 'block';
+        } else if (method === 'cashapp') {
+            document.getElementById('cashapp-details').style.display = 'block';
+        }
+
+        setTimeout(generateQRCode, 100);
+    }
+
+    function generateQRCode() {
+        const method = document.getElementById('paymentMethod').value;
+
+        if (method === 'paypal') {
+            document.getElementById('dynamicQRCode').innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-clock" style="font-size: 3rem; color: var(--color-secondary); margin-bottom: 10px;"></i>
+                    <p style="color: var(--color-gray);">PayPal coming soon!</p>
+                    <p style="color: var(--color-gray); font-size: 0.9rem;">Please use Venmo or CashApp for now</p>
+                </div>
+            `;
+            return;
+        }
+
+        const totalElement = document.getElementById('orderTotal');
+        const orderRefElement = document.getElementById('venmoRef');
+
+        if (!totalElement || !orderRefElement) return;
+
+        const amount = totalElement.textContent.replace('$', '');
+        const orderRef = orderRefElement.textContent.replace('Order #', '');
+
+        if (method === 'venmo') {
+            const paymentUrl = `venmo://paycharge?txn=pay&recipients=Ashley-Fortes-Terry&amount=${amount}&note=Order%20${orderRef}`;
+
+            document.getElementById('dynamicQRCode').innerHTML = `
+                <div style="text-align: center;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}" 
+                         alt="Venmo QR Code" 
+                         style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
+                    <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                        <p style="margin: 0; color: #2e7d32; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="margin-right: 8px; color: #4caf50;"></i>
+                            ✓ Amount $${amount} will be pre-filled automatically!
+                        </p>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray);">Scan with Venmo app to pay</p>
+                    <p style="margin-top: 5px; font-size: 0.8rem; color: var(--color-gray);">Amount: $${amount} | Order: ${orderRef}</p>
+                </div>
+            `;
+            return;
+
+        } else if (method === 'cashapp') {
+            const paymentUrl = `https://cash.app/$ashleyfortesterry/${amount}?note=Order%20${orderRef}`;
+
+            document.getElementById('dynamicQRCode').innerHTML = `
+                <div style="text-align: center;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(paymentUrl)}" 
+                         alt="CashApp QR Code" 
+                         style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 200px; height: 200px;">
+                    <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                        <p style="margin: 0; color: #2e7d32; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                            Amount $${amount} will be pre-filled automatically!
+                        </p>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray);">Scan with CashApp to pay</p>
+                    <p style="margin-top: 5px; font-size: 0.8rem; color: var(--color-gray);">Amount: $${amount} | Order: ${orderRef}</p>
+                </div>
+            `;
+            return;
+        }
+    }
+
+    function prepareOrderData() {
+        if (cart.length === 0) {
+            alert('Your cart is empty');
+            return false;
+        }
+
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+
+        if (!firstName || !lastName || !email) {
+            alert('Please fill in all shipping information');
+            return false;
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = calculateShipping(subtotal);
+        const total = subtotal + shipping;
+
+        let orderItemsHtml = '';
+        cart.forEach(item => {
+            orderItemsHtml += `
+                <div style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                    <strong>${item.product}</strong> x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}
+                </div>
+            `;
+        });
+
+        let paymentHandle = '';
+        if (paymentMethod === 'venmo') paymentHandle = '@Ashley-Fortes-Terry';
+        else if (paymentMethod === 'cashapp') paymentHandle = '$ashleyfortesterry';
+        else paymentHandle = 'Coming Soon';
+
+        const templateParams = {
+            order_number: orderReference,
+            customer_name: `${firstName} ${lastName}`,
+            customer_email: email,
+            customer_phone: phone,
+            payment_method: paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1),
+            payment_handle: paymentHandle,
+            total_amount: total.toFixed(2),
+            order_items: orderItemsHtml,
+            subtotal: subtotal.toFixed(2),
+            shipping: shipping.toFixed(2),
+            total: total.toFixed(2),
+            shipping_name: `${firstName} ${lastName}`,
+            shipping_address: address,
+            shipping_city: city,
+            shipping_state: state,
+            shipping_zip: zip
+        };
+
+        const submitBtn = document.querySelector('.place-order-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        emailjs.send('service_fiwtotm', 'template_g3sw7jv', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                
+                alert(`✅ Order placed successfully! Order #${orderReference}\nCheck your email (${email}) for confirmation.`);
+
+                document.getElementById('checkout').style.display = 'none';
+                document.getElementById('orderSuccess').style.display = 'block';
+                
+                const paymentInstructions = document.getElementById('paymentInstructions');
+                if (paymentInstructions) {
+                    paymentInstructions.innerHTML = `
+                        <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                            <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
+                            <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
+                            <p>To: <strong>${paymentHandle}</strong></p>
+                            <p>Reference: <strong>${orderReference}</strong></p>
+                            <p style="color: #e67e22; margin-top: 15px;">Please include the reference number with your payment!</p>
+                        </div>
+                    `;
+                }
+                
+                clearCart();
+            }, function(error) {
+                console.log('FAILED...', error);
+                alert('❌ Order placed but email failed to send. Please save this order number: ' + orderReference + '\nContact us at kendraslight26@gmail.com');
+                
+                document.getElementById('checkout').style.display = 'none';
+                document.getElementById('orderSuccess').style.display = 'block';
+                
+                const paymentInstructions = document.getElementById('paymentInstructions');
+                if (paymentInstructions) {
+                    paymentInstructions.innerHTML = `
+                        <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                            <h3 style="margin-top: 0; color: #5d4037;">💰 Payment Instructions</h3>
+                            <p><strong>Send $${total.toFixed(2)} via ${paymentMethod}</strong></p>
+                            <p>To: <strong>${paymentHandle}</strong></p>
+                            <p>Reference: <strong>${orderReference}</strong></p>
+                            <p style="color: #e67e22; margin-top: 15px;">Note: Email confirmation failed. Please save this order number!</p>
+                        </div>
+                    `;
+                }
+                
+                clearCart();
+            })
+            .finally(function() {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+
+        return false;
+    }
+
+    function fixMobileDropdown() {
+        const productsLink = document.querySelector('.has-dropdown > a');
+        if (productsLink) {
+            productsLink.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.parentElement.classList.toggle('open');
+                    return false;
+                }
+            });
+        }
+    }
+
+    function initProductSizeSelection() {
+        const sizeOptions = document.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productCard = this.closest('.product-card');
+                const isSelected = this.classList.contains('selected');
+
+                if (isSelected) {
+                    this.classList.remove('selected');
+                } else {
+                    const allOptions = productCard.querySelectorAll('.size-option');
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                }
+            });
+        });
+    }
+
+    function initWaxMelts() {
+        const waxItems = document.querySelectorAll('.wax-item');
+        waxItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const product = this.getAttribute('data-product');
+                const price = parseFloat(this.getAttribute('data-price'));
+                addToCart(product, price, 'Wax Melt');
+                showCart();
+            });
+        });
+    }
+
+    function initCart() {
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const productCard = this.closest('.product-card');
+                const product = this.getAttribute('data-product');
+                const selectedSize = productCard.querySelector('.size-option.selected');
+
+                if (!selectedSize) {
+                    alert('👆 Please select a size (8oz or 12oz) before adding to cart');
                     return;
                 }
 
-                reviews.slice().reverse().forEach(review => {
-                    const reviewCard = document.createElement('div');
-                    reviewCard.className = 'review-card';
+                const size = selectedSize.getAttribute('data-size');
+                const price = parseFloat(selectedSize.getAttribute('data-price'));
+                const productName = `${product} (${size})`;
 
-                    let stars = '';
-                    for (let i = 1; i <= 5; i++) {
-                        stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
-                    }
-
-                    reviewCard.innerHTML = `
-                        <div class="review-header">
-                            <span class="reviewer-name">${review.name}</span>
-                            <span class="review-product">${review.product}</span>
-                        </div>
-                        <div class="review-rating">
-                            ${stars}
-                        </div>
-                        <p class="review-text">"${review.text}"</p>
-                        <div class="review-date">${review.date}</div>
-                    `;
-
-                    reviewsContainer.appendChild(reviewCard);
-                });
-            }
-
-            const stars = document.querySelectorAll('.stars i');
-            const ratingInput = document.getElementById('reviewRating');
-
-            function highlightStars(rating) {
-                stars.forEach(star => {
-                    const starRating = star.getAttribute('data-rating');
-                    if (starRating <= rating) {
-                        star.classList.remove('far');
-                        star.classList.add('fas');
-                    } else {
-                        star.classList.remove('fas');
-                        star.classList.add('far');
-                    }
-                });
-            }
-
-            stars.forEach(star => {
-                star.addEventListener('mouseover', function() {
-                    const rating = this.getAttribute('data-rating');
-                    highlightStars(rating);
-                });
-
-                star.addEventListener('mouseout', function() {
-                    const currentRating = ratingInput.value;
-                    highlightStars(currentRating);
-                });
-
-                star.addEventListener('click', function() {
-                    const rating = this.getAttribute('data-rating');
-                    ratingInput.value = rating;
-                    highlightStars(rating);
-                });
+                addToCart(productName, price, 'Candle');
+                showCart();
             });
+        });
 
-            if (reviewForm) {
-                reviewForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    const name = document.getElementById('reviewerName').value;
-                    const product = document.getElementById('reviewProduct').value;
-                    const rating = document.getElementById('reviewRating').value;
-                    const text = document.getElementById('reviewText').value;
-
-                    if (!name || !product || !text) {
-                        alert('Please fill in all fields');
-                        return;
-                    }
-
-                    const newReview = {
-                        name: name,
-                        product: product,
-                        rating: parseInt(rating),
-                        text: text,
-                        date: new Date().toISOString().split('T')[0]
-                    };
-
-                    reviews.push(newReview);
-                    localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
-
-                    displayReviews();
-                    reviewForm.reset();
-
-                    stars.forEach(star => {
-                        star.classList.remove('fas');
-                        star.classList.add('far');
-                    });
-                    ratingInput.value = '5';
-
-                    alert('Thank you for your review!');
-                });
-            }
-
-            displayReviews();
+        if (cartIcon) {
+            cartIcon.addEventListener('click', showCart);
         }
 
-        // Mobile menu
-        function initMobileMenu() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav ul');
-
-            if (menuToggle && nav) {
-                menuToggle.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                    const icon = this.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
-                    }
-                });
-
-                const navLinks = document.querySelectorAll('nav ul li a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        nav.classList.remove('active');
-                        const icon = menuToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.add('fa-bars');
-                            icon.classList.remove('fa-times');
-                        }
-                    });
-                });
-            }
+        if (closeCart) {
+            closeCart.addEventListener('click', hideCart);
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            initMobileMenu();
-            fixMobileDropdown();
-            initProductSizeSelection();
-            initWaxMelts();
-            initCart();
-            initLightbox();
-            initReviews();
-            loadCartFromLocalStorage();
+        if (continueShopping) {
+            continueShopping.addEventListener('click', hideCart);
+        }
 
-            updateCart();
-            updatePaymentAmounts();
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', proceedToCheckout);
+        }
 
-            // Set default payment method to venmo
-            selectPaymentMethod('venmo');
-
-            if (checkoutSection) {
-                checkoutSection.style.display = 'block';
-            }
-            if (orderSuccess) {
+        if (continueShoppingBtn) {
+            continueShoppingBtn.addEventListener('click', function() {
                 orderSuccess.style.display = 'none';
+                checkoutSection.style.display = 'block';
+                window.location.href = '#products';
+            });
+        }
+    }
+
+    function initLightbox() {
+        let currentImageIndex = 0;
+        let productImages = [];
+
+        const productImageContainers = document.querySelectorAll('.product-image');
+        const lightbox = document.getElementById('productLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const closeBtn = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('prevImage');
+        const nextBtn = document.getElementById('nextImage');
+
+        productImageContainers.forEach((container, index) => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                productImages = [];
+                document.querySelectorAll('.product-image').forEach((imgContainer, i) => {
+                    const img = imgContainer.querySelector('img');
+                    const productCard = imgContainer.closest('.product-card');
+                    const productName = productCard.querySelector('.product-header h4').textContent;
+                    productImages.push({ src: img.src, name: productName });
+                });
+
+                currentImageIndex = index;
+                lightboxImg.src = productImages[currentImageIndex].src;
+                lightboxCaption.textContent = productImages[currentImageIndex].name;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function changeImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + productImages.length) % productImages.length;
+            lightboxImg.src = productImages[currentImageIndex].src;
+            lightboxCaption.textContent = productImages[currentImageIndex].name;
+        }
+
+        closeBtn.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        prevBtn.addEventListener('click', function() { changeImage(-1); });
+        nextBtn.addEventListener('click', function() { changeImage(1); });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
-    </script>
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                changeImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeImage(1);
+            }
+        });
+    }
+
+    function initReviews() {
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        const reviewForm = document.getElementById('reviewForm');
+        let reviews = JSON.parse(localStorage.getItem('kendrasLightReviews')) || [];
+
+        if (reviews.length === 0) {
+            reviews = [];
+            localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+        }
+
+        function displayReviews() {
+            reviewsContainer.innerHTML = '';
+
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = `
+                    <div class="no-reviews-message" style="text-align: center; padding: 60px 20px; grid-column: 1 / -1; background-color: #f9f5f0; border-radius: 15px;">
+                        <i class="fas fa-star" style="font-size: 4rem; color: var(--color-secondary); margin-bottom: 20px;"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Be the First to Review!</h3>
+                        <p style="font-size: 1.2rem; color: var(--color-gray); max-width: 500px; margin: 0 auto;">Share your experience with our candles using the form below.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            reviews.slice().reverse().forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'review-card';
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    stars += `<i class="${i <= review.rating ? 'fas' : 'far'} fa-star"></i>`;
+                }
+                reviewCard.innerHTML = `
+                    <div class="review-header">
+                        <span class="reviewer-name">${review.name}</span>
+                        <span class="review-product">${review.product}</span>
+                    </div>
+                    <div class="review-rating">${stars}</div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-date">${review.date}</div>
+                `;
+                reviewsContainer.appendChild(reviewCard);
+            });
+        }
+
+        const stars = document.querySelectorAll('.stars i');
+        const ratingInput = document.getElementById('reviewRating');
+
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                const starRating = star.getAttribute('data-rating');
+                if (starRating <= rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                highlightStars(this.getAttribute('data-rating'));
+            });
+            star.addEventListener('mouseout', function() {
+                highlightStars(ratingInput.value);
+            });
+            star.addEventListener('click', function() {
+                ratingInput.value = this.getAttribute('data-rating');
+                highlightStars(ratingInput.value);
+            });
+        });
+
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('reviewerName').value;
+                const product = document.getElementById('reviewProduct').value;
+                const rating = document.getElementById('reviewRating').value;
+                const text = document.getElementById('reviewText').value;
+
+                if (!name || !product || !text) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                const newReview = {
+                    name: name,
+                    product: product,
+                    rating: parseInt(rating),
+                    text: text,
+                    date: new Date().toISOString().split('T')[0]
+                };
+
+                reviews.push(newReview);
+                localStorage.setItem('kendrasLightReviews', JSON.stringify(reviews));
+                displayReviews();
+                reviewForm.reset();
+                stars.forEach(star => {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                });
+                ratingInput.value = '5';
+                alert('Thank you for your review!');
+            });
+        }
+
+        displayReviews();
+    }
+
+    // Fixed Mobile Menu - Products dropdown does NOT close the main menu
+    function initMobileMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul');
+
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+
+            // Close menu when clicking on regular nav links (NOT Products dropdown)
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                // Skip the Products dropdown link - it should NOT close the menu
+                if (link.closest('.has-dropdown')) {
+                    return;
+                }
+                
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+        }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        initMobileMenu();
+        fixMobileDropdown();
+        initProductSizeSelection();
+        initWaxMelts();
+        initCart();
+        initLightbox();
+        initReviews();
+        loadCartFromLocalStorage();
+
+        updateCart();
+        updatePaymentAmounts();
+
+        selectPaymentMethod('venmo');
+
+        if (checkoutSection) {
+            checkoutSection.style.display = 'block';
+        }
+        if (orderSuccess) {
+            orderSuccess.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
