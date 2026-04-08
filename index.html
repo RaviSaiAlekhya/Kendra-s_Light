@@ -3516,44 +3516,21 @@
 
             return false; // Prevent form submission
         }
-        // Make Products dropdown work on mobile
+        // Make Products dropdown work on mobile (no page jump)
 function fixMobileDropdown() {
     const productsLink = document.querySelector('.has-dropdown > a');
     if (productsLink) {
         productsLink.addEventListener('click', function(e) {
+            // Only on mobile screens
             if (window.innerWidth <= 768) {
-                e.preventDefault();
+                e.preventDefault();  // Stops the page from jumping to #products
+                e.stopPropagation(); // Prevents the click from bubbling up
                 this.parentElement.classList.toggle('open');
+                return false;
             }
         });
     }
 }
-
-        // Product size selection with toggle functionality
-        function initProductSizeSelection() {
-            const sizeOptions = document.querySelectorAll('.size-option');
-            sizeOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const productCard = this.closest('.product-card');
-
-                    // Check if this option is already selected
-                    const isSelected = this.classList.contains('selected');
-
-                    if (isSelected) {
-                        // If it's selected, remove selection (toggle off)
-                        this.classList.remove('selected');
-                    } else {
-                        // If not selected, remove selection from all options in this product
-                        const allOptions = productCard.querySelectorAll('.size-option');
-                        allOptions.forEach(opt => opt.classList.remove('selected'));
-                        // Then select this one
-                        this.classList.add('selected');
-                    }
-                });
-            });
-        }
-
         // Wax melts click handlers
         function initWaxMelts() {
             const waxItems = document.querySelectorAll('.wax-item');
