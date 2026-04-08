@@ -241,6 +241,29 @@
 .dropdown-menu li a::after {
     display: none;
 }
+        /* Mobile dropdown fix - makes it work on phones */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        display: none;
+        position: static;
+        box-shadow: none;
+        background-color: #f9f5f0;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+    
+    .has-dropdown.open .dropdown-menu {
+        display: block;
+    }
+    
+    .has-dropdown > a i {
+        transition: transform 0.3s;
+    }
+    
+    .has-dropdown.open > a i {
+        transform: rotate(180deg);
+    }
+}
 
         .header-actions {
             display: flex;
@@ -2224,7 +2247,7 @@
             <!-- WICKLESS CANDLES SECTION -->
 <div class="product-category" id="wickless-candles">
     <h3><i class="fas fa-temperature-low"></i> Wickless Candles</h3>
-    <p class="category-subtitle">Same amazing scents, no wick — designed for electric warmers or lamp melters. (Warmer sold separately)</p>
+    <p class="category-subtitle">Same amazing scents, no wick — designed for electric warmers or lamp melters.</p>
     <div class="products-grid" id="wicklessGrid">
         
         <!-- Wickless Product 1 -->
@@ -3485,6 +3508,18 @@
 
             return false; // Prevent form submission
         }
+        // Make Products dropdown work on mobile
+function fixMobileDropdown() {
+    const productsLink = document.querySelector('.has-dropdown > a');
+    if (productsLink) {
+        productsLink.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle('open');
+            }
+        });
+    }
+}
 
         // Product size selection with toggle functionality
         function initProductSizeSelection() {
@@ -3814,6 +3849,7 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             initMobileMenu();
+            fixMobileDropdown();
             initProductSizeSelection();
             initWaxMelts();
             initCart();
